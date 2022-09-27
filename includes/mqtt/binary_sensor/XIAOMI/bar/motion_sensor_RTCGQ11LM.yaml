@@ -1,0 +1,8 @@
+- unique_id: datchik_dvizheniia_bar
+  name: "Датчик движения (Бар)"
+  state_topic: "zigbee2mqtt/bar_motion"
+  availability_topic: "zigbee2mqtt/bar_motion/availability"
+  value_template: "{{ value_json.occupancy }}"
+  payload_on: true
+  payload_off: false
+  device_class: "motion"

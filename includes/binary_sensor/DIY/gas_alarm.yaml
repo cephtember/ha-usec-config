@@ -1,15 +1,15 @@
  - platform: template
    sensors:
-     gas_condition:
+     analogovyi_datchik_gaza_kukhnia_condition:
        friendly_name: "! Датчик газа под плитой (Кухня)"
        icon_template: > 
-         {% if states('sensor.diy_kitchen_gas') | float > 500 %} 
+         {% if states('sensor.analogovyi_datchik_gaza_kukhnia') | float > 500 %} 
            mdi:alarm-light-outline 
          {% else %}
            mdi:alarm-light
          {% endif %}
        value_template: >
-         {% if states('sensor.diy_kitchen_gas') | float > 500 %} 
+         {% if states('sensor.analogovyi_datchik_gaza_kukhnia') | float > 500 %} 
            on
          {% else %}
            off

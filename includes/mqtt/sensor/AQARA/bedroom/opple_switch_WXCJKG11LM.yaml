@@ -1,0 +1,18 @@
+- unique_id: vykliuchatel_spalnia_availability
+  name: Выключатель (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_switch/availability"
+
+- unique_id: vykliuchatel_spalnia_battery
+  name: Выключатель (Спальня)_battery
+  state_topic: "zigbee2mqtt/bedroom_switch"
+  availability_topic: "zigbee2mqtt/bedroom_switch/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+
+- unique_id: vykliuchatel_spalnia_action
+  name: Выключатель (Спальня)_action
+  state_topic: "zigbee2mqtt/bedroom_switch"
+  availability_topic: "zigbee2mqtt/bedroom_switch/availability"
+  value_template: "{{ value_json.action }}"
+  icon: "mdi:gesture-double-tap"

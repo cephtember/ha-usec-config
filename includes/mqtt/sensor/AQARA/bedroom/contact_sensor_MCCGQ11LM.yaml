@@ -1,0 +1,39 @@
+- unique_id: levoe_okno_spalnia_availability
+  name: Левое окно (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_left_window/availability"
+  
+- unique_id: levoe_okno_spalnia_battery
+  name: Левое окно (Спальня)_battery
+  state_topic: "zigbee2mqtt/bedroom_left_window"
+  availability_topic: "zigbee2mqtt/bedroom_left_window/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+####################
+
+- unique_id: pravoe_okno_spalnia_availability
+  name: Правое окно (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_right_window/availability"
+  
+- unique_id: pravoe_okno_spalnia_battery
+  name: Правое окно (Спальня)_battery
+  state_topic: "zigbee2mqtt/bedroom_right_window"
+  availability_topic: "zigbee2mqtt/bedroom_right_window/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+####################
+
+- unique_id: dver_spalnia_availability
+  name: Дверь (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_door/availability"
+  
+- unique_id: dver_spalnia_battery
+  name: Дверь (Спальня)_battery
+  state_topic: "zigbee2mqtt/bedroom_door"
+  availability_topic: "zigbee2mqtt/bedroom_door/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"

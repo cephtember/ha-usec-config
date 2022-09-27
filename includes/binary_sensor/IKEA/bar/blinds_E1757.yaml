@@ -1,15 +1,15 @@
 - platform: template
   sensors:
-    ikea_blinds_availability_problem:
+    zhaliuzi_bar_availability_problem:
       friendly_name: "Жалюзи (Бар)_availability_problem"
       icon_template: > 
-        {% if is_state('sensor.ikea_blinds_availability', 'offline') %}
+        {% if is_state('sensor.zhaliuzi_bar_availability', 'offline') %}
           mdi:car-brake-alert 
         {% else %}
           mdi:car-brake-worn-linings
         {% endif %}
       value_template: >
-        {% if is_state('sensor.ikea_blinds_availability', 'offline') %}
+        {% if is_state('sensor.zhaliuzi_bar_availability', 'offline') %}
           ON
         {% else %}
           OFF

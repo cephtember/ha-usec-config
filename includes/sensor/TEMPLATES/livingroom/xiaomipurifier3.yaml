@@ -1,17 +1,17 @@
 - platform: template
   sensors:
-    xiaomi_purifier_3_state:
+    zhimi_ma4_39fd_air_purifier_state:
       friendly_name: 'Очиститель воздуха (Зал)_status'
       #unit_of_measurement: 'Mbit/s'
       value_template: >-
-        {% set state_status = states('fan.zhimi_airpurifier_ma4') %}
+        {% set state_status = states('fan.zhimi_ma4_39fd_air_purifier') %}
         {% if state_status == 'on' %}
           Включен
         {% elif state_status == 'off' %}
           Выключен
         {% endif %}
       icon_template: >-
-        {% set state_status = states('fan.zhimi_airpurifier_ma4') %}
+        {% set state_status = states('fan.zhimi_ma4_39fd_air_purifier') %}
         {% if state_status == 'on' %}
           mdi:air-purifier
         {% elif state_status == 'off' %}

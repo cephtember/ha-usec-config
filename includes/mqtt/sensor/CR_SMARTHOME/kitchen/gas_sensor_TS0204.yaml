@@ -1,0 +1,3 @@
+- unique_id: datchik_gaza_kukhnia_availability
+  name: Датчик газа (Кухня)_availability
+  state_topic: "zigbee2mqtt/kitchen_gas_sensor/availability"

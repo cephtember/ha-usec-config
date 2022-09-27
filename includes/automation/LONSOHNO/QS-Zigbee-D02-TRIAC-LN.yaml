@@ -8,12 +8,12 @@
       encoding: "utf-8"
   action:
     - service: light.turn_on
-      entity_id: light.bar_underlight
+      entity_id: light.svet_nad_stolom_bar
       data_template:
         brightness: >
           {% set step_size = 55 %}
-          {% if (state_attr('light.bar_underlight', 'brightness') != None)%}
-            {% set current_brightness = (state_attr('light.bar_underlight', 'brightness') | int) %}
+          {% if (state_attr('light.svet_nad_stolom_bar', 'brightness') != None)%}
+            {% set current_brightness = (state_attr('light.svet_nad_stolom_bar', 'brightness') | int) %}
           {% else %}
             {% set current_brightness = 0 %}
           {% endif %}
@@ -36,4 +36,4 @@
       encoding: "utf-8"
   action:
     - service: light.toggle
-      entity_id: light.bar_underlight
+      entity_id: light.svet_nad_stolom_bar

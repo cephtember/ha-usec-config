@@ -1,0 +1,26 @@
+
+- unique_id: datchik_dvizheniia_kukhnia_availability
+  name: Датчик движения (Кухня)_availability
+  state_topic: "zigbee2mqtt/kitchen_motion/availability"
+  
+- unique_id: datchik_dvizheniia_kukhnia_battery
+  name: Датчик движения (Кухня)_battery
+  state_topic: "zigbee2mqtt/kitchen_motion"
+  availability_topic: "zigbee2mqtt/kitchen_motion/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+- unique_id: datchik_dvizheniia_kukhnia_Illuminance_lux
+  name: Датчик движения (Кухня)_Illuminance_lux
+  state_topic: "zigbee2mqtt/kitchen_motion"
+  availability_topic: "zigbee2mqtt/kitchen_motion/availability"
+  value_template: "{{ value_json.illuminance_lux }}"
+  unit_of_measurement: "1x"
+
+- unique_id: datchik_dvizheniia_kukhnia_Illuminance
+  name: Датчик движения (Кухня)_Illuminance
+  state_topic: "zigbee2mqtt/kitchen_motion"
+  availability_topic: "zigbee2mqtt/kitchen_motion/availability"
+  value_template: "{{ value_json.illuminance }}"
+  unit_of_measurement: "1x"

@@ -1,27 +1,17 @@
 - platform: template
   sensors:
-    xiaomi_kitchen_motion_availability_problem:
+    datchik_dvizheniia_kukhnia_availability_problem:
       friendly_name: "Датчик движения (Кухня)_availability_problem"
       icon_template: > 
-        {% if is_state('sensor.kitchen_motion_availability', 'offline') %}
+        {% if is_state('sensor.datchik_dvizheniia_kukhnia_availability', 'offline') %}
           mdi:car-brake-alert 
         {% else %}
           mdi:car-brake-worn-linings
         {% endif %}
       value_template: >
-        {% if is_state('sensor.kitchen_motion_availability', 'offline') %}
+        {% if is_state('sensor.datchik_dvizheniia_kukhnia_availability', 'offline') %}
           ON
         {% else %}
           OFF
         {% endif %}
       device_class: "problem"
-      
-- platform: "mqtt"
-  unique_id: kitchen_motion
-  name: "Датчик движения (Кухня)"
-  state_topic: "zigbee2mqtt/kitchen_motion"
-  availability_topic: "zigbee2mqtt/kitchen_motion/availability"
-  value_template: "{{ value_json.occupancy }}"
-  payload_on: true
-  payload_off: false
-  device_class: "motion"

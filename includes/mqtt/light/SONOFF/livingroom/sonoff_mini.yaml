@@ -1,0 +1,12 @@
+- name: "Бра (Зал)"
+  unique_id: bra_zal
+  icon: mdi:coach-lamp
+  command_topic: "livingroom/cmnd/sonoff_switch_light/power"
+  state_topic: "livingroom/stat/sonoff_switch_light/RESULT"
+  state_value_template: "{{ value_json.POWER }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false

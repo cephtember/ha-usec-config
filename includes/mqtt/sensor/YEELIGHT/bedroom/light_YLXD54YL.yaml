@@ -1,0 +1,9 @@
+- unique_id: osnovnoi_svet_spalnia_brightness
+  name: Основной свет (Спальня)_brightness
+  state_topic: "bedroom/stat/yeelight/brightness"
+  icon: "mdi:brightness-7"
+
+- unique_id: osnovnoi_svet_spalnia_color_temp
+  name: Основной свет (Спальня)_color_temp
+  state_topic: "bedroom/stat/yeelight/color_temp"
+  icon: "mdi:temperature-kelvin"

@@ -1,0 +1,35 @@
+- unique_id: teplyi_pol_detskaia_sensor
+  name: "Теплый пол (Детская)_sensor"
+  icon: mdi:dome-light
+  command_topic: "zigbee2mqtt/cabinet_thermostat/set/sensor"
+  state_topic: "zigbee2mqtt/cabinet_thermostat"
+  value_template: "{{ value_json.sensor }}"
+  state_on: "OU"
+  state_off: "IN"
+  qos: 1
+  payload_on: "OU"
+  payload_off: "IN"
+  retain: false
+  
+- unique_id: teplyi_pol_detskaia_preset_program
+  name: "Теплый пол (Детская)_Авто"
+  command_topic: "zigbee2mqtt/cabinet_thermostat/set/preset"
+  state_topic: "zigbee2mqtt/cabinet_thermostat"
+  value_template: "{{ value_json.preset }}"
+  state_on: "program"
+  state_off: "hold"
+  payload_on: "program"
+  payload_off: "hold"
+  retain: false
+  
+- unique_id: teplyi_pol_detskaia_preset_hold
+  name: "Теплый пол (Детская)_Вручную"
+  command_topic: "zigbee2mqtt/cabinet_thermostat/set/preset"
+  state_topic: "zigbee2mqtt/cabinet_thermostat"
+  value_template: "{{ value_json.preset }}"
+  state_on: "hold"
+  state_off: "program"
+  payload_on: "hold"
+  payload_off: "program"
+  qos: 1
+  retain: false

@@ -1,0 +1,25 @@
+- unique_id: datchik_utechki_vody_pod_posudomoikoi_kukhnia_water_leak
+  name: "! Датчик утечки воды под посудомойкой (Кухня)"
+  state_topic: "zigbee2mqtt/kitchen_leak"
+  availability_topic: "zigbee2mqtt/kitchen_leak/availability"
+  value_template: "{{ value_json.water_leak }}"
+  payload_on: true
+  payload_off: false
+  device_class: "moisture"
+
+- unique_id: datchik_utechki_vody_pod_posudomoikoi_kukhnia_battery_low
+  name: "Датчик утечки воды под посудомойкой (Кухня)_батарейка_низкая"
+  state_topic: "zigbee2mqtt/kitchen_leak"
+  availability_topic: "zigbee2mqtt/kitchen_leak/availability"
+  value_template: "{{ value_json.battery_low }}"
+  payload_on: true
+  payload_off: false
+  device_class: "battery"
+
+- unique_id: datchik_utechki_vody_pod_posudomoikoi_kukhnia_tamper
+  name: "Датчик утечки воды под посудомойкой (Кухня)_тампер"
+  state_topic: "zigbee2mqtt/kitchen_leak"
+  availability_topic: "zigbee2mqtt/kitchen_leak/availability"
+  value_template: "{{ value_json.tamper }}"
+  payload_on: true
+  payload_off: false

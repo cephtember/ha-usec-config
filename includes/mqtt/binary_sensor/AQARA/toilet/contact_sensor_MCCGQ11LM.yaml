@@ -1,0 +1,8 @@
+- unique_id: dver_tualet
+  name: "Дверь (Туалет)"
+  state_topic: "zigbee2mqtt/toilet_door"
+  availability_topic: "zigbee2mqtt/toilet_door/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "door"

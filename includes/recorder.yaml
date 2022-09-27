@@ -1,76 +1,87 @@
-#db_url: !secret db_url
-include:
-  domains:
-      - updater
-  entities:
     ### БАР
-    - cover.ikea_blinds
-    - sensor.sonoff_bar_temperature
-    - sensor.sonoff_bar_temperature_humidity
-    - binary_sensor.bar_left_window_contact
-    - binary_sensor.bar_big_window_contact
-    - binary_sensor.bar_small_window_contact
-    - binary_sensor.bar_motion
+    - cover.zhaliuzi_bar
+    - sensor.datchik_temperatury_bar_temperature
+    - sensor.datchik_temperatury_bar_humidity
+    - binary_sensor.levoe_okno_bar
+    - binary_sensor.pravoe_okno_bar
+    - binary_sensor.levoe_okno_fortochka_bar
+    - binary_sensor.datchik_dvizheniia_bar
 
     ### ВАННАЯ
-    - binary_sensor.aqara_bathroom_leak_water_leak
-    - binary_sensor.aqara_bathroom_2_leak_water_leak
-    - binary_sensor.bath_door_contact
+    - binary_sensor.datchik_utechki_vody_pod_vannoi_vannaia
+    - binary_sensor.datchik_utechki_vody_pod_rakovinoi_vannaia
+    - binary_sensor.dver_vannaia
 
     ### ЗАЛ
-    - sensor.livingroom_xiaomi_purifier_temperature
-    - binary_sensor.aqara_livingroom_leak_water_leak
-    - sensor.zhimi_airpurifier_ma4_pm2_5
-    - sensor.livingroom_temperature_temperature
-    - sensor.livingroom_temperature_humidity
-    - binary_sensor.livingroom_motion
+    - binary_sensor.datchik_utechki_vody_zal
+    - sensor.zhimi_ma4_39fd_pm25_density
+    - sensor.datchik_temperatury_zal_temperature
+    - sensor.datchik_temperatury_zal_humidity
+    - binary_sensor.datchik_dvizheniia_zal
 
     ### ДЕТСКАЯ
-    - sensor.aqara_cabinet_temperature
-    - sensor.aqara_cabinet_temperature_humidity
-    - binary_sensor.cabinet_left_window_contact
-    - binary_sensor.cabinet_right_window_contact
-    - sensor.cabinet_floor_temperature_temperature
-    - sensor.cabinet_floor_temperature_humidity
-    - binary_sensor.cabinet_motion
+    - sensor.datchik_temperatury_na_polu_detskaia_temperature
+    - sensor.datchik_temperatury_na_polu_detskaia_humidity
+    - binary_sensor.levoe_okno_detskaia
+    - binary_sensor.pravoe_okno_detskaia
+    - sensor.datchik_temperatury_detskaia_temperature
+    - sensor.datchik_temperatury_detskaia_humidity
+    - binary_sensor.datchik_dvizheniia_detskaia
+    - sensor.konditsioner_detskaia_current
+    - sensor.konditsioner_detskaia_energy
+    - sensor.konditsioner_detskaia_power
+    - sensor.konditsioner_detskaia_power_outage_memory
+    - sensor.konditsioner_detskaia_voltage
 
     ### Кухня
-    - binary_sensor.kitchen_gas_sensor
-    - binary_sensor.kitchen_smoke_sensor
-    - binary_sensor.aqara_kitchen_leak_water_leak
-    - binary_sensor.kitchen_motion
+    - binary_sensor.datchik_gaza_kukhnia
+    - binary_sensor.datchik_dyma_kukhnia
+    - binary_sensor.datchik_utechki_vody_pod_posudomoikoi_kukhnia
+    - binary_sensor.datchik_dvizheniia_kukhnia
 
     ### Серверная
-    - binary_sensor.storage_failure
-    - binary_sensor.hikvision_custom_cell_motion_detection
-    - sensor.pzem04_energy_voltage
-    - sensor.pzem04_energy_today
-    - sensor.pzem04_energy_yesterday
-    - sensor.pzem04_energy_total
-    - sensor.no_electricity
+    - sensor.pzem04_energy_apparentpower
+    - sensor.pzem04_energy_current
     - sensor.pzem04_energy_frequency
+    - sensor.pzem04_energy_power
+    - sensor.pzem04_energy_reactivepower
+    - sensor.pzem04_energy_today
+    - sensor.pzem04_energy_total
+    - sensor.pzem04_energy_voltage
+    - sensor.pzem04_energy_yesterday
+    - sensor.no_electricity
 
     ### Подъезд
-    - binary_sensor.entrace_door_contact
+    - binary_sensor.dver_podezd
+    - binary_sensor.camera_entrace_cell_motion_detection
+    - binary_sensor.camera_entrace_motion_alarm
 
     ### Спальня
-    - binary_sensor.bedroom_left_window_contact
-    - binary_sensor.bedroom_right_window_contact
-    - binary_sensor.aqara_bedroom_leak_water_leak
-    - sensor.bedroom_temperature_temperature
-    - sensor.bedroom_temperature_humidity
-    - binary_sensor.bedroom_door_contact
-    - binary_sensor.bedroom_motion
+    - binary_sensor.levoe_okno_spalnia
+    - binary_sensor.pravoe_okno_spalnia
+    - binary_sensor.datchik_utechki_vody_spalnia
+    - sensor.datchik_temperatury_spalnia_temperature
+    - sensor.datchik_temperatury_spalnia_humidity
+    - binary_sensor.dver_spalnia
+    - binary_sensor.datchik_dvizheniia_spalnia
+    - sensor.konditsioner_spalnia_current
+    - sensor.konditsioner_spalnia_energy
+    - sensor.konditsioner_spalnia_power
+    - sensor.konditsioner_spalnia_power_outage_memory
+    - sensor.konditsioner_spalnia_voltage
 
     ### Туалет
-    - binary_sensor.toilet_door_contact
+    - binary_sensor.dver_tualet
     
-    ### Разное
-    - sensor.ikea_blinds_state
-    - sensor.sony_bravia_tv_state
-    - sensor.xiaomi_humidifier_state
-    - sensor.xiaomi_purifier_3_state
-    - vacuum.xiaomi_1c
+    ### Прихожая
+    - binary_sensor.datchik_dvizheniia_prikhozhaia
+
+    # ### Разное
+    # - sensor.ikea_blinds_state
+    # - sensor.sony_bravia_tv_state
+    # - sensor.xiaomi_humidifier_state
+    # - sensor.xiaomi_purifier_3_state
+    # - vacuum.xiaomi_1c
 
     ### Электричество
     - sensor.elektrichestvo_den
@@ -79,3 +90,42 @@ include:
     - sensor.polotentsesushitel_energiia_den
     - sensor.stiralnaia_mashina_energiia_den
     - sensor.konditsioner_v_spalne_energiia_den
+
+    ### Свет
+    ### Бар
+    - light.svet_nad_stolom_bar
+    - light.bar_tsvetnye
+    ###
+    - light.yeelight_ceiling14_0x12ada382
+    - light.trekingovyi_svet_spalnia
+    - light.bedroom_underlight
+    ###
+    - light.yeelight_ceiling15_0x12ee89e4
+    - light.trekingovyi_svet_detskaia
+    ###
+    - light.entrace_light
+    ###
+    - light.yeelight_ceila_0x1a5b20e7
+    - light.yeelight_strip6_0x12ed5ce2
+    ###
+    - light.bra_zal
+    - light.trekingovyi_svet_zal
+    - light.zal_tsvetnye
+    - light.zal_tsvetnye_malenkie
+    ###
+    - light.svet_tualet
+    ###
+    - light.svet_vannaia
+    - light.podsvetka_vannaia
+    ###
+    - light.osnovnoi_svet_prikhozhaia
+    - light.svet_nad_porogom_prikhozhaia
+    ###
+    - light.svet_podezd
+
+    ### Климат
+    - climate.midea_ac_30786326300484
+    - climate.midea_ac_30786325663901
+    - climate.teplyi_pol_detskaia
+    - humidifier.deerma_jsq5_dbeb_humidifier
+    - fan.zhimi_ma4_39fd_air_purifier

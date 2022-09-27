@@ -1,0 +1,11 @@
+- unique_id: dver_vannaia_availability
+  name: "Дверь (Ванная)_availability"
+  state_topic: "zigbee2mqtt/bath_door/availability"
+  
+- unique_id: dver_vannaia_battery
+  name: "Дверь (Ванная)_battery"
+  state_topic: "zigbee2mqtt/bath_door"
+  availability_topic: "zigbee2mqtt/bath_door/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"

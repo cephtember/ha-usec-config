@@ -1,17 +1,17 @@
 - platform: template
   sensors:
-    xiaomi_humidifier_state:
-      friendly_name: 'Очиститель воздуха (Зал)_status'
+    deerma_jsq5_dbeb_humidifier_state:
+      friendly_name: 'Увлажнитель воздуха (Зал)_status'
       #unit_of_measurement: 'Mbit/s'
       value_template: >-
-        {% set state_status = states('humidifier.deerma_jsq5_humidifier') %}
+        {% set state_status = states('humidifier.deerma_jsq5_dbeb_humidifier') %}
         {% if state_status == 'on' %}
           Включен
         {% elif state_status == 'off' %}
           Выключен
         {% endif %}
       icon_template: >-
-        {% set state_status = states('humidifier.deerma_jsq5_humidifier') %}
+        {% set state_status = states('humidifier.deerma_jsq5_dbeb_humidifier') %}
         {% if state_status == 'on' %}
           mdi:air-humidifier
         {% elif state_status == 'off' %}

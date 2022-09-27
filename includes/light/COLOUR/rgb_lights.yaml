@@ -1,29 +1,29 @@
 - platform: group
-  unique_id: bar_color_lights
+  unique_id: bar_tsvetnye
   name: "Бар цветные"
   entities:
-    - light.bar_philips_cbulb_light_x1
-    - light.bar_philips_cbulb_light_x2
-    - light.bar_philips_cbulb_light_x3
+    - light.philips_cbulb_3896_light
+    - light.philips_cbulb_0c10_light
+    - light.philips_cbulb_734f_light
 
 - platform: group
-  unique_id: livingroom_color_lights_add
+  unique_id: zal_tsvetnye
   name: "Зал цветные"
   entities:
-    - light.livingroom_cbulb_light_x1
-    - light.livingroom_cbulb_light_x2
-    - light.livingroom_cbulb_light_x3
-    - light.livingroom_cbulb_light_x4
+    - light.philips_cbulb_338e_light
+    - light.philips_cbulb_f841_light
+    - light.philips_cbulb_b87d_light
+    - light.philips_cbulb_c7d3_light
 
 - platform: group
-  unique_id: livingroom_color_lights_main 
+  unique_id: zal_tsvetnye_malenkie
   name: "Зал цветные маленькие"
   entities:
-    - light.livingroom_cbuld_add_light_x1
-    - light.livingroom_cbuld_add_light_x2
+    - light.philips_cbulb_4b48_light
+    - light.philips_cbulb_2872_light
 
 - platform: group
-  unique_id: strips_color
+  unique_id: tsvetnye_lenty
   name: "Цветные ленты"
   entities:
-    - light.kitchen_underlight
+    - light.yeelight_strip6_0x12ed5ce2

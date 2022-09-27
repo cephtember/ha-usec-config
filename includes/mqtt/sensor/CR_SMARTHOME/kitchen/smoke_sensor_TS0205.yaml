@@ -1,0 +1,11 @@
+- unique_id: datchik_dyma_kukhnia_availability
+  name: Датчик дыма (Кухня)_availability
+  state_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+      
+- unique_id: datchik_dyma_kukhnia_battery
+  name: Датчик дыма (Кухня_полоток)_battery
+  state_topic: "zigbee2mqtt/kitchen_smoke_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"

@@ -1,0 +1,8 @@
+- unique_id: dver_vannaia
+  name: "Дверь(Ванная)"
+  state_topic: "zigbee2mqtt/bath_door"
+  availability_topic: "zigbee2mqtt/bath_door/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "door"

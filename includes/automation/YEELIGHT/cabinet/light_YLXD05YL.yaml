@@ -8,47 +8,13 @@
       encoding: "utf-8"
   action:
      - service: light.toggle
-       entity_id: light.cabinet_main_lamp
+       entity_id: light.yeelight_ceiling15_0x12ee89e4
      - delay: 0.5
      - service: mqtt.publish
        data:
          topic: "cabinet/stat/yeelight/RESULT"
          retain: false
-         payload: "{\"POWER\":\"{{ states('light.cabinet_main_lamp') }}\"}"
-       
-- alias: "[Основной свет (Детская)] - Включать Yeelight в детской через MQTT"
-  trigger:
-    - platform: mqtt
-      topic: "cabinet/cmnd/yeelight/power"
-      # Optional
-      payload: "ON"
-      encoding: "utf-8"
-  action:
-     - service: light.turn_on
-       entity_id: light.cabinet_main_lamp
-     - delay: 0.5
-     - service: mqtt.publish
-       data:
-         topic: "cabinet/stat/yeelight/RESULT"
-         retain: false
-         payload: "{\"POWER\":\"{{ states('light.cabinet_main_lamp') }}\"}"
-         
-- alias: "[Основной свет (Детская)] - Выключать Yeelight в детской через MQTT"
-  trigger:
-    - platform: mqtt
-      topic: "cabinet/cmnd/yeelight/power"
-      # Optional
-      payload: "OFF"
-      encoding: "utf-8"
-  action:
-     - service: light.turn_off
-       entity_id: light.cabinet_main_lamp
-     - delay: 2
-     - service: mqtt.publish
-       data:
-         topic: "cabinet/stat/yeelight/RESULT"
-         retain: false
-         payload: "{\"POWER\":\"{{ states('light.cabinet_main_lamp') }}\"}"
+         payload: "{\"POWER\":\"{{ states('light.yeelight_ceiling15_0x12ee89e4') }}\"}"
          
 - alias: "[Основной свет (Детская)] - Переключать яркость Yeelight в детской через MQTT"
   id: toggle_cabinet_yeelight_brightness
@@ -59,69 +25,19 @@
       payload: "TOGGLE"
       encoding: "utf-8"
   action:
-    - service: mqtt.publish
+    - service: light.turn_on
+      entity_id: light.yeelight_ceiling15_0x12ee89e4
       data_template:
-        topic: "cabinet/stat/yeelight/brightness"
-        retain: false
-        payload_template: >
-          {% if states('sensor.cabinet_main_lamp_brightness')|int >= 99 %}        
+        brightness: >
+          {% set step_size = 55 %}
+          {% if (state_attr('light.yeelight_ceiling15_0x12ee89e4', 'brightness') != None)%}
+            {% set current_brightness = (state_attr('light.yeelight_ceiling15_0x12ee89e4', 'brightness') | int) %}
+          {% else %}
+            {% set current_brightness = 0 %}
+          {% endif %}
+          {% set new_brightness = current_brightness | int + step_size %}
+          {% if new_brightness > 255 %}
             0
-          {% elif states('sensor.cabinet_main_lamp_brightness')|int < 99 %}
-            {{ states('sensor.cabinet_main_lamp_brightness')|int + 33 }}            
-          {%- else -%}
-            100
-          {%- endif %}
-    - service: yeelight.set_color_temp_scene
-      data_template:
-        entity_id: light.cabinet_main_lamp
-        kelvin: > 
-          {% if is_state('sensor.cabinet_main_lamp_color_temp',"unknown") %} 
-            6500
-          {%- else -%}
-            {{ states('sensor.cabinet_main_lamp_color_temp')|int }}
-          {%- endif %}
-        brightness: >
-          {% if is_state('sensor.cabinet_main_lamp_brightness',"unknown") %}
-            100
-          {%- else -%}
-            {{ states('sensor.cabinet_main_lamp_brightness')|int }}
-          {%- endif %}
-    - delay: 0.5
-
-- alias: "[Основной свет (Детская)] - Переключать цвет Yeelight в детской через MQTT"
-  id: toggle_cabinet_yeelight_color_temp
-  trigger:
-    - platform: mqtt
-      topic: "cabinet/cmnd/yeelight/color"
-      # Optional
-      payload: "TOGGLE"
-      encoding: "utf-8"
-  action:
-    - service: mqtt.publish
-      data_template:
-        topic: "cabinet/stat/yeelight/color_temp"
-        retain: false
-        payload_template: >
-          {% if states('sensor.cabinet_main_lamp_color_temp')|int > 6000 %}        
-            2000
-          {% elif states('sensor.cabinet_main_lamp_color_temp')|int < 4000 %}
-            {{ states('sensor.cabinet_main_lamp_color_temp')|int + 2000 }}            
-          {%- else -%}
-            6500
-          {%- endif %}
-    - service: yeelight.set_color_temp_scene
-      data_template:
-        entity_id: light.cabinet_main_lamp
-        kelvin: > 
-          {% if is_state('sensor.cabinet_main_lamp_color_temp',"unknown") %} 
-            6500
-          {%- else -%}
-            {{ states('sensor.cabinet_main_lamp_color_temp')|int }}
-          {%- endif %}
-        brightness: >
-          {% if is_state('sensor.cabinet_main_lamp_brightness',"unknown") %}
-            100
-          {%- else -%}
-            {{ states('sensor.cabinet_main_lamp_brightness')|int }}
-          {%- endif %}
-    - delay: 0.5
+          {% else %}
+            {{ new_brightness }}
+          {% endif %}

@@ -1,0 +1,8 @@
+- name: "Свет над столом (Бар)"
+  schema: json
+  unique_id: svet_nad_stolom_bar
+  state_topic: "zigbee2mqtt/bar_underlight"
+  command_topic: "zigbee2mqtt/bar_underlight/set"
+  brightness: true
+  availability_topic: "zigbee2mqtt/bar_underlight/availability"
+  qos: 0

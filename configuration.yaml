@@ -26,8 +26,6 @@ lovelace:
       type: module
     - url: /hacsfiles/ha-floorplan/floorplan.js
       type: module
-    - url: /hacsfiles/spotify-card/spotify-card.js
-      type: module
     - url: /hacsfiles/hass-shutter-card/hass-shutter-card.js
       type: module
     - url: /hacsfiles/custom-sidebar/custom-sidebar.js
@@ -64,11 +62,11 @@ lovelace:
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-mqtt:
-  # broker: !secret mqtt_host
-  # username: !secret mqtt_username
-  # password: !secret mqtt_password
-  discovery: false
+# mqtt:
+#   # broker: !secret mqtt_host
+#   # username: !secret mqtt_username
+#   # password: !secret mqtt_password
+#   discovery: false
 
 http:
   ssl_certificate: crt/fullchain.pem
@@ -81,81 +79,7 @@ tts:
 frontend:
   themes: !include_dir_merge_named themes
 
-history:
-  include:
-    domains:
-      - updater
-    entities:
-      ### БАР
-      - cover.ikea_blinds
-      - sensor.sonoff_bar_temperature
-      - sensor.sonoff_bar_temperature_humidity
-      - binary_sensor.bar_left_window_contact
-      - binary_sensor.bar_big_window_contact
-      - binary_sensor.bar_small_window_contact
-      - binary_sensor.bar_motion
-      ### ВАННАЯ
-      - binary_sensor.aqara_bathroom_leak_water_leak
-      - binary_sensor.aqara_bathroom_2_leak_water_leak
-      - binary_sensor.bath_door_contact
-      ### ЗАЛ
-      - sensor.livingroom_xiaomi_purifier_temperature
-      - binary_sensor.aqara_livingroom_leak_water_leak
-      - sensor.zhimi_airpurifier_ma4_pm2_5
-      - sensor.livingroom_temperature_temperature
-      - sensor.livingroom_temperature_humidity
-      - binary_sensor.livingroom_motion
-      ### ДЕТСКАЯ
-      - sensor.aqara_cabinet_temperature
-      - sensor.aqara_cabinet_temperature_humidity
-      - binary_sensor.cabinet_left_window_contact
-      - binary_sensor.cabinet_right_window_contact
-      - binary_sensor.cabinet_motion
-      - sensor.cabinet_floor_temperature_temperature
-      - sensor.cabinet_floor_temperature_humidity
-      ### Кухня
-      - binary_sensor.kitchen_gas_sensor
-      - binary_sensor.kitchen_smoke_sensor
-      - binary_sensor.aqara_kitchen_leak_water_leak
-      - binary_sensor.kitchen_motion
-      ### Серверная
-      - binary_sensor.storage_failure
-      - binary_sensor.hikvision_custom_cell_motion_detection
-      - sensor.pzem04_energy_voltage
-      - sensor.pzem04_energy_today
-      - sensor.pzem04_energy_yesterday
-      - sensor.pzem04_energy_total
-      - sensor.pzem04_energy_frequency
-      - sensor.no_electricity
-      ### Подъезд
-      - binary_sensor.entrace_door_contact
-      ### Спальня
-      - binary_sensor.bedroom_left_window_contact
-      - binary_sensor.bedroom_right_window_contact
-      - binary_sensor.aqara_bedroom_leak_water_leak
-      - sensor.bedroom_temperature_temperature
-      - sensor.bedroom_temperature_humidity
-      - binary_sensor.bedroom_door_contact
-      - binary_sensor.bedroom_motion
-      ### Туалет
-      - binary_sensor.toilet_door_contact
-      ### Разное
-      - sensor.ikea_blinds_state
-      - sensor.sony_bravia_tv_state
-      - sensor.xiaomi_humidifier_state
-      - sensor.xiaomi_purifier_3_state
-      - vacuum.xiaomi_1c
-      ### Электричество
-      - sensor.elektrichestvo_den
-      - sensor.elektrichestvo_den_cost
-      - sensor.konditsioner_v_detskoi_energiia_den
-      - sensor.polotentsesushitel_energiia_den
-      - sensor.stiralnaia_mashina_energiia_den
-      - sensor.konditsioner_v_spalne_energiia_den
-
 input_boolean:
-  auto_climate:
-    name: Автоматическое управление климатом
   auto_lights:
     name: Адаптивное управления светом
 
@@ -219,24 +143,6 @@ input_select:
 
 ##########
 
-variable:
-  last_alarm:
-    value: "No"
-    attributes:
-      friendly_name: "Последние оповещения"
-      icon: mdi:alarm
-      history_1: ""
-      history_2: ""
-      history_3: ""
-      history_4: ""
-      history_5: ""
-      history_6: ""
-      history_7: ""
-      history_8: ""
-      history_9: ""
-      history_10: ""
-    restore: true
-
 #Telegram
 telegram_bot:
   - platform: polling
@@ -245,7 +151,6 @@ telegram_bot:
     allowed_chat_ids:
       - !secret telegram_id_1 # example: 123456789 for the chat_id of a user
       - !secret telegram_id_2
-      - !secret telegram_group_id_1
 
 # Example configuration.yaml entry for the notifier
 notify:
@@ -263,9 +168,9 @@ notify:
       - service: mobile_app_iphone_amnezia
       - service: mobile_app_tanzilyas_iphone
 
-spotcast:
-  sp_dc: !secret spotcast_dc
-  sp_key: !secret spotcast_key
+# spotcast:
+#   sp_dc: !secret spotcast_dc
+#   sp_key: !secret spotcast_key
 
 proximity:
   ty_to_home:
@@ -314,20 +219,40 @@ xiaomi_miot:
 cover: !include_dir_merge_list includes/covers
 sensor: !include_dir_merge_list includes/sensor
 switch: !include_dir_merge_list includes/switch
+mqtt: 
+  switch: !include_dir_merge_list includes/mqtt/switch
+  binary_sensor: !include_dir_merge_list includes/mqtt/binary_sensor
+  climate: !include_dir_merge_list includes/mqtt/climate
+  cover: !include_dir_merge_list includes/mqtt/cover
+  light: !include_dir_merge_list includes/mqtt/light
+  sensor: !include_dir_merge_list includes/mqtt/sensor
+  discovery: false
+  discovery_prefix: ha
 fan: !include_dir_merge_list includes/fan
 binary_sensor: !include_dir_merge_list includes/binary_sensor
 automation: !include_dir_merge_list includes/automation
 group: !include includes/groups.yaml
 script: !include includes/scripts.yaml
-recorder: !include includes/recorder.yaml
 scene: !include includes/scenes.yaml
 media_player: !include includes/media_players.yaml
 climate: !include_dir_merge_list includes/climate
 utility_meter: !include includes/utility_meter.yaml
 light: !include_dir_merge_list includes/light
 google_assistant: !include google_assistant.yaml
-yandex_smart_home: !include yandex_smart_home.yaml
 alarm_control_panel: !include includes/alarm_control_panel.yaml
+recorder: 
+  purge_keep_days: 1000
+  include:
+    domains:
+        - updater
+    entities: !include includes/recorder.yaml
+history:
+  include:
+    domains:
+      - updater
+    entities: !include includes/recorder.yaml
+
+###############
 
 adaptive_lighting:
   - name: "default"
@@ -352,23 +277,27 @@ adaptive_lighting:
     #prefer_rgb_color: true
 
 homekit:
-  filter:
-    include_entities:
-      - camera.embedded_net_vis_mainstream
-      - camera.hikvision_ds_2cd1143g0_i_mainstream
-  entity_config:
-    camera.hikvision_ds_2cd1143g0_i_mainstream:
-      #linked_doorbell_sensor: binary_sensor.doorbell
-      stream_source: !secret rtsp_1
-    camera.embedded_net_vis_mainstream:
-      linked_doorbell_sensor: binary_sensor.doorbell
-      stream_source: !secret rtsp_2
+  - filter:
+      include_entities:
+        - camera.embedded_net_vis_mainstream
+        - camera.camera_entrace_mainstream
+    entity_config:
+      camera.camera_entrace_mainstream:
+        stream_source: !secret rtsp_1
+      camera.embedded_net_vis_mainstream:
+        linked_doorbell_sensor: binary_sensor.doorbell
+        stream_source: !secret rtsp_2
+  - name: Homekit Accessories
+    port: 21065
+    filter:
+      include_entities: !include includes/recorder.yaml
 
-panel_iframe:
-  pihole:
-    title: "ADGUARD"
-    url: !secret pihole_link
-    icon: mdi:shield-check
+
+  # panel_iframe:
+  #   pihole:
+  #     title: "ADGUARD"
+  #     url: !secret pihole_link
+  #     icon: mdi:shield-check
 
 pandora_cas:
     username: !secret pandora_username_1 

@@ -1,0 +1,3 @@
+- unique_id: trekingovyi_svet_spalnia_availability
+  name: Трекинговый свет (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_underlight/availability"

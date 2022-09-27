@@ -5,7 +5,7 @@
   trigger:
     - platform: device
       device_id: 12efdf600569a217d856fb01e38f3cbf
-      entity_id: binary_sensor.hikvision_custom_cell_motion_detection
+      entity_id: binary_sensor.camera_entrace_motion_alarm
       domain: binary_sensor
       type: motion
   action:
@@ -17,7 +17,7 @@
   trigger:
     - platform: device
       device_id: 12efdf600569a217d856fb01e38f3cbf
-      entity_id: binary_sensor.hikvision_videosource_1_motion_alarm
+      entity_id: binary_sensor.camera_entrace_motion_alarm
       domain: binary_sensor
       type: motion
   condition:
@@ -26,8 +26,8 @@
       state: "below_horizon"
   action:
     - service: light.turn_on
-      entity_id: light.entrace_light
+      entity_id: light.svet_podezd
     - delay: 00:05:00
     - service: light.turn_off
-      entity_id: light.entrace_light
+      entity_id: light.svet_podezd
     - delay: 00:00:10

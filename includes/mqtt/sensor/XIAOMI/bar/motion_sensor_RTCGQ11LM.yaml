@@ -1,0 +1,25 @@
+- unique_id: datchik_dvizheniia_bar_availability
+  name: Датчик движения (Бар)_availability
+  state_topic: "zigbee2mqtt/bar_motion/availability"
+  
+- unique_id: datchik_dvizheniia_bar_battery
+  name: Датчик движения (Бар)_battery
+  state_topic: "zigbee2mqtt/bar_motion"
+  availability_topic: "zigbee2mqtt/bar_motion/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+- unique_id: datchik_dvizheniia_bar_Illuminance_lux
+  name: Датчик движения (Бар)_Illuminance_lux
+  state_topic: "zigbee2mqtt/bar_motion"
+  availability_topic: "zigbee2mqtt/bar_motion/availability"
+  value_template: "{{ value_json.illuminance_lux }}"
+  unit_of_measurement: "1x"
+
+- unique_id: datchik_dvizheniia_bar_Illuminance
+  name: Датчик движения (Бар)_Illuminance
+  state_topic: "zigbee2mqtt/bar_motion"
+  availability_topic: "zigbee2mqtt/bar_motion/availability"
+  value_template: "{{ value_json.illuminance }}"
+  unit_of_measurement: "1x"

@@ -22,55 +22,7 @@
           - !secret telegram_id_2
         disable_notification: false
         
-#    - service: notify.mobile_app_vladimir_filatov_mi9se
-#      data:
-#        title: "Кто-то звонит в дверь"
-#        message: "TTS"
-#        data:
-#          ttl: 0
-#          priority: high
-#          channel: alarm_stream_max
-          
-
-    
     - service: script.photo_hikvision_telegram
-
-
-#    - service: notify.mobile_app_iphone_amnezia
-#      data:
-#        title: "Дверной звонок"
-#        message: "У вас посетитель"
-#        data:
-#          image: "https://home.usec.uz:8123/local/cam_captures/hikvision_upper.jpg"
-#          sticky: "true"
-#          persistent: true # Set to true to create a persistent notification
-#          tag: "doorbell" # Tag is required for the persistent notification
-#          timeout: 6000
-
-#    - service: notify.mobile_app_tanzilyas_iphone
-#      data:
-#        title: "Дверной звонок"
-#        message: "У вас посетитель"
-#        data:
-#          image: "https://home.usec.uz:8123/local/cam_captures/hikvision_upper.jpg"
-#          sticky: "true"
-#          persistent: true # Set to true to create a persistent notification
-#          tag: "doorbell" # Tag is required for the persistent notification
-#          timeout: 6000
-
-
-    - service: notify.mobile_app_tanzilyas_iphone
-      data:
-        message: У вас посетитель
-        data:
-          entity_id: camera.embedded_net_vis_mainstream
-
-
-    - service: notify.mobile_app_iphone_amnezia
-      data:
-        message: У вас посетитель
-        data:
-          entity_id: camera.embedded_net_vis_mainstream
     
     - delay: 30
     
@@ -79,25 +31,3 @@
          topic: "entrace/doorbell"
          retain: false
          payload: "{\"click\":false}"
-         
-#    - service: notify.mobile_app_vladimir_filatov_mi9se    
-#      data:
-#        title: "Дверной звонок"
-#        message: "У вас посетитель"
-#        data:
-#          #image: "https://home.usec.uz:8123/local/cam_captures/hikvision_doorbell.jpg"
-#          image: "https://home.usec.uz:8123/local/cam_captures/hikvision_upper.jpg"
-#          sticky: "true"
-#          persistent: true # Set to true to create a persistent notification
-#          tag: "doorbell" # Tag is required for the persistent notification
-#          timeout: 6000 
-#          #entity_id: camera.embedded_net_vis_mainstream 
-#          
-#          # attachment:
-#            # url: "https://home.usec.uz:8123/local/cam_captures/hikvision_doorbell.jpg" 
-#            # content-type: jpeg
-#            # hide-thumbnail: false            
-#          #push:
-#          #{% set android_data = {"image": "%s"} | format(snapshot_access_file_path) %}
-#          #{% set ios_data = {"attachment": {"url": "%s", "content_type": "JPEG"}} | format(snapshot_access_file_path) %}
-#          #{{ android_data }}

@@ -1,0 +1,12 @@
+- name: "Свет (Подъезд)"
+  unique_id: svet_podezd
+  icon: mdi:dome-light
+  command_topic: "entrace/cmnd/sonoff_switch_light/power"
+  state_topic: "entrace/stat/sonoff_switch_light/RESULT"
+  state_value_template: "{{ value_json.POWER }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false

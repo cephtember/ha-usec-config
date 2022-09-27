@@ -1,0 +1,25 @@
+- unique_id: levoe_okno_detskaia_availability
+  name: Левое окно (Детская)_availability
+  state_topic: "zigbee2mqtt/cabinet_left_window/availability"
+  
+- unique_id: levoe_okno_detskaia_battery
+  name: Левое окно (Детская)_battery
+  state_topic: "zigbee2mqtt/cabinet_left_window"
+  availability_topic: "zigbee2mqtt/cabinet_left_window/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+####################
+
+- unique_id: pravoe_okno_detskaia_availability
+  name: Правое окно (Детская)_availability
+  state_topic: "zigbee2mqtt/cabinet_right_window/availability" 
+  
+- unique_id: pravoe_okno_detskaia_battery
+  name: Правое окно (Детская)_battery
+  state_topic: "zigbee2mqtt/cabinet_right_window"
+  availability_topic: "zigbee2mqtt/cabinet_right_window/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"

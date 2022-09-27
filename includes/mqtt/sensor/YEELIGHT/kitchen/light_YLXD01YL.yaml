@@ -1,0 +1,9 @@
+- unique_id: osnovnoi_svet_kukhnia_brightness
+  name: Основной свет (Кухня)_brightness
+  state_topic: "kitchen/stat/yeelight/brightness"
+  icon: "mdi:brightness-7"
+
+- unique_id: osnovnoi_svet_kukhnia_color_temp
+  name: Основной свет (Кухня)_color_temp
+  state_topic: "kitchen/stat/yeelight/color_temp"
+  icon: "mdi:temperature-kelvin"

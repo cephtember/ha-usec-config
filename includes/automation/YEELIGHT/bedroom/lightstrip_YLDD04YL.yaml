@@ -15,38 +15,4 @@
          topic: "bedroom/stat/yeelight/RESULT2"
          retain: false
          payload: "{\"POWER\":\"{{ states('light.bedroom_underlight') }}\"}"
-       
-- alias: "[Подсветка (Спальня)] - Включать подсветку в спальне через MQTT"
-  trigger:
-    - platform: mqtt
-      topic: "bedroom/cmnd/yeelight/power2"
-      # Optional
-      payload: "ON"
-      encoding: "utf-8"
-  action:
-     - service: switch.turn_on
-       entity_id: switch.bedroom_underlight
-     - delay: 0.5
-     - service: mqtt.publish
-       data:
-         topic: "bedroom/stat/yeelight/RESULT2"
-         retain: false
-         payload: "{\"POWER\":\"{{ states('light.bedroom_underlight') }}\"}"
-         
-- alias: "[Подсветка (Спальня)] - Выключать подсветку в спальне через MQTT"
-  trigger:
-    - platform: mqtt
-      topic: "bedroom/cmnd/yeelight/power2"
-      # Optional
-      payload: "OFF"
-      encoding: "utf-8"
-  action:
-     - service: light.turn_off
-       entity_id: light.bedroom_underlight
-     - delay: 2
-     - service: mqtt.publish
-       data:
-         topic: "bedroom/stat/yeelight/RESULT2"
-         retain: false
-         payload: "{\"POWER\":\"{{ states('light.bedroom_underlight') }}\"}"
          

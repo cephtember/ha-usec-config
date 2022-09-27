@@ -1,0 +1,25 @@
+- unique_id: datchik_dvizheniia_detskaia_availability
+  name: Датчик движения (Детская)_availability
+  state_topic: "zigbee2mqtt/cabinet_motion/availability"
+  
+- unique_id: datchik_dvizheniia_detskaia_battery
+  name: Датчик движения (Детская)_battery
+  state_topic: "zigbee2mqtt/cabinet_motion"
+  availability_topic: "zigbee2mqtt/cabinet_motion/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+- unique_id: datchik_dvizheniia_detskaia_Illuminance_lux
+  name: Датчик движения (Детская)_Illuminance_lux
+  state_topic: "zigbee2mqtt/cabinet_motion"
+  availability_topic: "zigbee2mqtt/cabinet_motion/availability"
+  value_template: "{{ value_json.illuminance_lux }}"
+  unit_of_measurement: "1x"
+
+- unique_id: datchik_dvizheniia_detskaia_Illuminance
+  name: Датчик движения (Детская)_Illuminance
+  state_topic: "zigbee2mqtt/cabinet_motion"
+  availability_topic: "zigbee2mqtt/cabinet_motion/availability"
+  value_template: "{{ value_json.illuminance }}"
+  unit_of_measurement: "1x"

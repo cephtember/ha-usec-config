@@ -1,0 +1,8 @@
+- unique_id: datchik_dvizheniia_detskaia
+  name: "Датчик движения (Детская)"
+  state_topic: "zigbee2mqtt/cabinet_motion"
+  availability_topic: "zigbee2mqtt/cabinet_motion/availability"
+  value_template: "{{ value_json.occupancy }}"
+  payload_on: true
+  payload_off: false
+  device_class: "motion"

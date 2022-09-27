@@ -1,0 +1,3 @@
+- unique_id: ha_theme
+  name: ha_theme
+  state_topic: "homeassistant/ha_theme"

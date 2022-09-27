@@ -1,0 +1,11 @@
+- unique_id: dver_podezd_availability
+  name: Дверь (Подъезд)_availability
+  state_topic: "zigbee2mqtt/entrace_door/availability"
+  
+- unique_id: dver_podezd_battery
+  name: Дверь (Подъезд)_battery
+  state_topic: "zigbee2mqtt/entrace_door"
+  availability_topic: "zigbee2mqtt/entrace_door/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
