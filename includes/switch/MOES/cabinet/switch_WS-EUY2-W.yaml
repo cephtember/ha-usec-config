@@ -1,0 +1,16 @@
+- platform: mqtt
+  name: "Основной свет (Детская)"
+  unique_id: switch_cabinet_main_lamp
+  icon: mdi:dome-light
+  command_topic: "cabinet/cmnd/yeelight/power"
+  state_topic: "cabinet/stat/yeelight/RESULT"
+  state_on: "on"
+  state_off: "off"
+  value_template: "{{ value_json.POWER }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+

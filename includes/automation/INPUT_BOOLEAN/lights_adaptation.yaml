@@ -1,0 +1,40 @@
+- alias: "[ INPUT_BOOLEAN ] Включение Управления адаптивным светом от переключателя"
+  id: turnon_adaptive_lights
+  mode: single
+  trigger:
+      platform: state
+      entity_id: input_boolean.auto_lights
+      from: "off"
+      to: "on"
+  action:
+    - service: switch.turn_on
+      data: {}
+      target:
+        entity_id:
+          - switch.adaptive_lighting_adapt_brightness_default
+          - switch.adaptive_lighting_adapt_color_default
+          - switch.adaptive_lighting_default
+          - switch.adaptive_lighting_color
+          - switch.adaptive_lighting_adapt_color_color
+          - switch.adaptive_lighting_adapt_brightness_color
+    
+- alias: "[ INPUT_BOOLEAN ] Выключение Управления адаптивным светом от переключателя"
+  id: turnoff_adaptive_lights
+  mode: single
+  trigger:
+      platform: state
+      entity_id: input_boolean.auto_lights
+      from: "on"
+      to: "off"
+  action:
+    - service: switch.turn_off
+      data: {}
+      target:
+        entity_id:
+          - switch.adaptive_lighting_adapt_brightness_default
+          - switch.adaptive_lighting_adapt_color_default
+          - switch.adaptive_lighting_default
+          - switch.adaptive_lighting_color
+          - switch.adaptive_lighting_adapt_color_color
+          - switch.adaptive_lighting_adapt_brightness_color
+    

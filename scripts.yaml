@@ -1,0 +1,62 @@
+'1650863926025':
+  alias: Моргать лампами красным цветом
+  sequence:
+  - repeat:
+      while:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: triggered
+      - condition: template
+        value_template: '{{ repeat.index <= 500 }}'
+      sequence:
+      - service: light.turn_on
+        target:
+          entity_id:
+          - light.bar_lights_color
+          - light.livingroon_color_lights
+          - light.strips_color
+        data:
+          color_name: red
+          brightness: 255
+      - service: light.toggle
+        data:
+          color_name: red
+        target:
+          entity_id:
+          - light.bar_lights_color
+          - light.livingroon_color_lights
+          - light.strips_color
+      - delay:
+          seconds: 2
+  mode: single
+'1650863969392':
+  alias: Моргать лампами красным цветом
+  sequence:
+  - repeat:
+      while:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: triggered
+      - condition: template
+        value_template: '{{ repeat.index <= 500 }}'
+      sequence:
+      - service: light.turn_on
+        target:
+          entity_id:
+          - light.bar_lights_color
+          - light.livingroon_color_lights
+          - light.strips_color
+        data:
+          color_name: red
+          brightness: 255
+      - service: light.toggle
+        data:
+          color_name: red
+        target:
+          entity_id:
+          - light.bar_lights_color
+          - light.livingroon_color_lights
+          - light.strips_color
+      - delay:
+          seconds: 2
+  mode: single

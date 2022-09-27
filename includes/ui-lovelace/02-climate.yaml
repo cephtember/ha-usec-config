@@ -1,0 +1,346 @@
+title: Климат
+icon: mdi:home-thermometer
+panel: true
+cards:
+  - type: custom:layout-card
+    layout_type: horizontal
+    layout_options:
+      width: 300
+      max_cols: 3
+    cards:
+      - type: custom:layout-card
+        layout_type: vertical
+        cards:
+          - type: vertical-stack
+            title: Жилая комната
+            cards:
+              # - type: horizontal-stack
+                # cards:
+                  # - type: custom:mini-graph-card
+                    # name: Температура
+                    # entities:
+                      # - sensor.livingroom_xiaomi_purifier_temperature
+                    # hour24: true
+                    # height: 150
+                    # show:
+                      # graph: false
+                      # icon: true
+                      # extrema: true
+                      # fill: false
+                    # align_state: left
+                    
+                  # - type: custom:mini-graph-card
+                    # name: Влажность
+                    # icon: mdi:water-percent
+                    # entities:
+                      # - sensor.livingroom_xiaomi_purifier_humidity
+                    # hour24: true
+                    # height: 150
+                    # show:
+                      # graph: false
+                      # icon: true
+                      # extrema: true
+                      # fill: false
+                    # align_state: left
+                    
+              - type: horizontal-stack
+                cards:                    
+                  - type: custom:mini-graph-card
+                    name: Температура 24ч
+                    entities: 
+                      - entity: sensor.livingroom_temperature_temperature
+                        name: Зал Температура
+                    line_width: 4
+                    height: 150
+                    hours_to_show: 24
+                    points_per_hour: 1
+                    hour24: true
+                    line_color: red
+                    show:
+                      icon: true
+                      points: hover
+                      #fill: false
+                    align_state: center
+                    animate: true
+                  
+                  - type: custom:mini-graph-card
+                    name: Влажность 24ч
+                    entities: 
+                      - entity: sensor.livingroom_temperature_humidity
+                        name: Зал Влажность
+                    line_width: 4
+                    height: 150
+                    hours_to_show: 24
+                    points_per_hour: 1
+                    hour24: true
+                    line_color: blue
+                    show:
+                      icon: true
+                      points: hover
+                      #fill: false
+                    align_state: center
+                    animate: true
+          
+          - type: vertical-stack
+            title: Бар
+            cards:                    
+              - type: horizontal-stack
+                cards:                    
+                  - type: custom:mini-graph-card
+                    name: Температура 24ч
+                    entities: 
+                      - entity: sensor.sonoff_bar_temperature
+                        name: Бар Температура
+                    line_width: 4
+                    height: 150
+                    hours_to_show: 24
+                    points_per_hour: 1
+                    hour24: true
+                    line_color: red
+                    show:
+                      icon: true
+                      points: hover
+                      #fill: false
+                    align_state: center
+                    animate: true
+                  
+                  - type: custom:mini-graph-card
+                    name: Влажность 24ч
+                    entities: 
+                      - entity: sensor.sonoff_bar_temperature_humidity
+                        name: Бар Влажность
+                    line_width: 4
+                    height: 150
+                    hours_to_show: 24
+                    points_per_hour: 1
+                    hour24: true
+                    line_color: blue
+                    show:
+                      icon: true
+                      points: hover
+                      #fill: false
+                    align_state: center
+                    animate: true
+                    
+                    
+          - type: vertical-stack
+            title: Детская
+            cards:                    
+              - type: horizontal-stack
+                cards:                    
+                  - type: custom:mini-graph-card
+                    name: Температура 24ч
+                    entities: 
+                      - entity: sensor.aqara_cabinet_temperature
+                        name: Детская Температура
+                    line_width: 4
+                    height: 150
+                    hours_to_show: 24
+                    points_per_hour: 1
+                    hour24: true
+                    line_color: red
+                    show:
+                      icon: true
+                      points: hover
+                      #fill: false
+                    align_state: center
+                    animate: true
+                  
+                  - type: custom:mini-graph-card
+                    name: Влажность 24ч
+                    entities: 
+                      - entity: sensor.aqara_cabinet_temperature_humidity
+                        name: Детсткая Влажность
+                    line_width: 4
+                    height: 150
+                    hours_to_show: 24
+                    points_per_hour: 1
+                    hour24: true
+                    line_color: blue
+                    show:
+                      icon: true
+                      points: hover
+                      #fill: false
+                    align_state: center
+                    animate: true
+                    
+          - type: vertical-stack
+            title: Спальня
+            cards:                    
+              - type: horizontal-stack
+                cards:                    
+                  - type: custom:mini-graph-card
+                    name: Температура 24ч
+                    entities: 
+                      - entity: sensor.bedroom_temperature_temperature
+                        name: Спальня Температура
+                    line_width: 4
+                    height: 150
+                    hours_to_show: 24
+                    points_per_hour: 1
+                    hour24: true
+                    line_color: red
+                    show:
+                      icon: true
+                      points: hover
+                      #fill: false
+                    align_state: center
+                    animate: true
+                  
+                  - type: custom:mini-graph-card
+                    name: Влажность 24ч
+                    entities: 
+                      - entity: sensor.bedroom_temperature_humidity
+                        name: Спальня Влажность
+                    line_width: 4
+                    height: 150
+                    hours_to_show: 24
+                    points_per_hour: 1
+                    hour24: true
+                    line_color: blue
+                    show:
+                      icon: true
+                      points: hover
+                      #fill: false
+                    align_state: center
+                    animate: true
+
+      - type: custom:layout-card
+        layout_type: vertical
+        title: Разное
+        cards: 
+          - type: vertical-stack
+            title: Разное
+            cards:
+              - type: entities
+
+                entities:
+                  - type: 'custom:purifier-card'
+                    entity: fan.zhimi_airpurifier_ma4
+                    stats:
+                      - entity_id: sensor.zhimi_airpurifier_ma4_filter_life_remaining
+                        unit: '%'
+                        subtitle: Остаток фильтра
+                      - entity_id: sensor.zhimi_airpurifier_ma4_motor_speed
+                        unit: RPS
+                        subtitle: Скорость мотора
+                    actions:
+                      - name: Silent
+                        icon: 'mdi:weather-night'
+                        speed: Silent
+                      - name: Auto
+                        icon: 'mdi:brightness-auto'
+                        speed: Auto
+                    show_name: false
+                    show_state: true
+                    show_toolbar: true
+                    compact_view: false
+                    aqi: 
+                      entity_id: sensor.zhimi_airpurifier_ma4_pm2_5
+                   
+                  - type: 'custom:vacuum-card'
+                    entity: vacuum.xiaomi_1c
+                    compact_view: true
+                    stats:
+                      default:
+                        - attribute: filter_left_time
+                          unit: ч
+                          subtitle: Фильтр
+                        - attribute: side_brush_time_left
+                          unit: ч
+                          subtitle: Боковая щетка
+                        - attribute: main_brush_time_left
+                          unit: ч
+                          subtitle: Основная щетка
+                      cleaning:
+                        - attribute: cleaned_area
+                          unit: m2
+                          subtitle: Cleaning area
+                        - attribute: cleaning_time
+                          unit: minutes
+                          subtitle: Cleaning time
+                    actions:
+                      - name: Уборка квартиры
+                        service: script.wet_clean
+                        icon: 'mdi:robot-vacuum-variant'
+                      - name: Убрать Зал
+                        service: script.livingroom_clean
+                        icon: 'mdi:robot-vacuum'
+                      - name: Убрать кухню
+                        service: script.clean_kitchen
+                        icon: mdi:table-chair
+                      - name: Убрать коридор
+                        service: script.clean_hall
+                        icon: 'mdi:door'
+                  
+              - type: humidifier
+                entity: humidifier.deerma_jsq5_humidifier
+                name: Увлажнитель воздуха     
+
+
+      - type: custom:layout-card
+        layout_type: vertical
+        title: Инфо
+        cards:
+           - type: vertical-stack
+             title: Климат
+             cards:
+                
+              - type: horizontal-stack
+                cards:
+                  - type: vertical-stack
+                    cards:
+                      - type: thermostat
+                        name: "Теплый пол"
+                        entity: climate.cabinet_thermostat
+                      # - type: 'custom:simple-thermostat'
+                        # name: "Теплый пол"
+                        # entity: climate.cabinet_thermostat
+                        # step_size: 0.5
+                        # sensors:
+                          # - entity: sensor.cabinet_thermostat_status
+                            # name: Статус
+                          # - entity: sensor.cabinet_thermostat_temperature
+                            # name: Температура пола
+                          # - entity: sensor.aqara_cabinet_temperature
+                            # name: Температура
+                          # - entity: sensor.cabinet_thermostat_deadzone_temp
+                            # name: Мертвая зона
+                          # - entity: sensor.cabinet_thermostat_sensor
+                            # name: Сенсор
+                        # #toggle_entity:
+                        # #  entity_id: switch.thermostat_sensor
+                        # #  name: Cенсор IN/OUT
+                        # hide:
+                          # temperature: true                  
+                        # control: 
+                          # hvac: false
+                      # - type: horizontal-stack
+                        # cards:
+                          # - type: custom:button-card
+                            # entity: switch.thermostat_preset_hold
+                            # name: Вручную 
+                            # state_color: true
+                            # icon: mdi:hand
+                            # styles:
+                              # card:
+                                # - height: 75px
+
+                          # - type: custom:button-card
+                            # entity: switch.thermostat_preset_program
+                            # name: Авто
+                            # state_color: true
+                            # icon: mdi:autorenew
+                            # styles:
+                              # card:
+                                # - height: 75px
+                      
+                      - type: thermostat
+                        name: Кондиционер в детской
+                        entity: climate.cabinet_midea_ac
+                        
+                      - type: thermostat
+                        name: Кондиционер в спальне
+                        entity: climate.bedroom_midea_ac
+                        
+                        

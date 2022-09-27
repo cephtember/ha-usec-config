@@ -1,0 +1,71 @@
+  - id: sync_tasmota_states_on_restart
+    alias: "[ Home Assistant] - Сихронизировать состояния всех Tasmota устройств + обновление сенсоров"
+    initial_state: true
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+    # sync state for devices with default fulltopics
+    - service: mqtt.publish
+      data:
+        topic: kitchen/cmnd/tasmotas/state
+        payload: ''
+    # sync state for pre8.2 autodiscovery devices
+    - service: mqtt.publish
+      data:
+        topic: entrace/cmnd/tasmotas/state
+        payload: ''
+    - service: mqtt.publish
+      data:
+        topic: bedroom/cmnd/tasmotas/state
+        payload: ''
+    - service: mqtt.publish
+      data:
+        topic: cabinet/cmnd/tasmotas/state
+        payload: ''
+    - service: mqtt.publish
+      data:
+        topic: toilet/cmnd/tasmotas/state
+        payload: ''
+    - service: mqtt.publish
+      data:
+        topic: bath/cmnd/tasmotas/state
+        payload: ''
+    - service: mqtt.publish
+      data:
+        topic: livingroom/cmnd/tasmotas/state
+        payload: ''
+    - service: mqtt.publish
+      data:
+        topic: bar/cmnd/tasmotas/state
+        payload: ''
+    - service: mqtt.publish
+      data:
+        topic: hall/cmnd/tasmotas/state
+        payload: ''
+    - service: mqtt.publish
+      data:
+        topic: cabinet/stat/yeelight/brightness
+        payload: 100
+    - service: mqtt.publish
+      data:
+        topic: cabinet/stat/yeelight/color_temp
+        payload: 6500
+    - service: mqtt.publish
+      data:
+        topic: bedroom/stat/yeelight/brightness
+        payload: 100
+    - service: mqtt.publish
+      data:
+        topic: bedroom/stat/yeelight/color_temp
+        payload: 6500
+    - service: mqtt.publish
+      data:
+        topic: kitchen/stat/yeelight/brightness
+        payload: 100
+    - service: mqtt.publish
+      data:
+        topic: kitchen/stat/yeelight/color_temp
+        payload: 6500
+
+        

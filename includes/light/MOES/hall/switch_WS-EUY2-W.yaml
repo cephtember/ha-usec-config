@@ -1,0 +1,29 @@
+- platform: mqtt
+  name: "Основной свет (Прихожая)"
+  unique_id: hall_main_lamp
+  icon: mdi:dome-light
+  command_topic: "hall/cmnd/tuya_light/power2"
+  state_topic: "hall/stat/tuya_light/RESULT"
+  state_value_template: "{{ value_json.POWER2 }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+
+####################
+
+- platform: mqtt
+  name: "Свет над порогом (Прихожая)"
+  unique_id: hall_entrace
+  icon: mdi:spotlight-beam
+  command_topic: "hall/cmnd/tuya_light/power1"
+  state_topic: "hall/stat/tuya_light/RESULT"
+  state_value_template: "{{ value_json.POWER1 }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false

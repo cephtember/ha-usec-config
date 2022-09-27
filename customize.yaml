@@ -1,0 +1,22 @@
+group.bar_lights:
+  friendly_name: "Свет в Баре"
+  icon: mdi:lightbulb-group
+group.bedroom_lights:
+  friendly_name: "Свет в Спальне"
+  icon: mdi:lightbulb-group
+group.cabinet_lights:
+  friendly_name: "Свет в детской"
+  icon: mdi:lightbulb-group
+group.entrace_lights:
+  friendly_name: "Свет в подъезде"
+  icon: mdi:lightbulb-group
+group.kitchen_lights:
+  friendly_name: "Свет на кухне"
+  icon: mdi:lightbulb-group
+group.livingroom_lights:
+  friendly_name: "Свет в зале"
+  icon: mdi:lightbulb-group
+group.toilet_and_bath_lights:
+  friendly_name: "Свет в туалете и ванной"
+  icon: mdi:lightbulb-group
+  

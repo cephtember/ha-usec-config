@@ -1,0 +1,27 @@
+- platform: mqtt
+  name: "Дополнительный свет (Зал)"
+  unique_id: living_room_secondary_lamp
+  icon: mdi:dome-light
+  command_topic: "livingroom/cmnd/tuya_light/power2"
+  state_topic: "livingroom/stat/tuya_light/RESULT"
+  value_template: "{{ value_json.POWER2 }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+
+- platform: mqtt
+  name: "Основной свет (Зал)"
+  unique_id: living_room_main_lamp
+  icon: mdi:globe-light
+  command_topic: "livingroom/cmnd/tuya_light/power2"
+  state_topic: "livingroom/stat/tuya_light/RESULT"
+  value_template: "{{ value_json.POWER2 }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false

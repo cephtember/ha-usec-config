@@ -1,0 +1,81 @@
+  ac_cabinet_daily_current_energy:
+    name: Кондиционер в детской энергия (день)
+    source: sensor.cabinet_ac_energy
+    cycle: daily
+  
+  ac_cabinet_monthly_current_energy:
+    name: Кондиционер в детской энергия (месяц)
+    source: sensor.cabinet_ac_energy
+    cycle: monthly
+
+  bath_radiator_daily_current_energy:
+    name: Полотенцесушитель энергия (день)
+    source: sensor.bath_radiator_switch_energy
+    cycle: daily
+
+  bath_radiator_monthly_energy:
+    name: Полотенцесушитель энергия (месяц)
+    source: sensor.bath_radiator_switch_energy
+    cycle: monthly
+
+  washer_daily_current_energy:
+    name: Стиральная машина энергия (день)
+    source: sensor.bathroom_washer_switch_energy
+    cycle: daily
+    
+  washer_monthly_current_energy:
+    name: Стиральная машина энергия (месяц)
+    source: sensor.bathroom_washer_switch_energy
+    cycle: monthly
+    
+  ac_bedroom_daily_current_energy:
+    name: Кондиционер в спальне энергия (день)
+    source: sensor.bedroom_ac_switch_energy
+    cycle: daily
+    
+  ac_bedroom_monthly_current_energy:
+    name: Кондиционер в спальне энергия (месяц)
+    source: sensor.bedroom_ac_switch_energy
+    cycle: monthly
+      
+  electricity_daily_current_energy:
+    name: Электричество (день)
+    source: sensor.pzem04_energy_total
+    cycle: daily
+  
+  electricity_monthly_current_energy:
+    name: Электричество (месяц)
+    source: sensor.pzem04_energy_total
+    cycle: monthly
+    
+  electricity_yearly_current_energy:
+    name: Электричество (год)
+    source: sensor.pzem04_energy_total
+    cycle: yearly
+     
+  electricity_monthly:
+    name: Электричество (по месяцам)
+    source: sensor.pzem04_energy_total
+    cycle: monthly
+    tariffs:
+      - january
+      - february
+      - march
+      - april
+      - may
+      - june
+      - july
+      - august
+      - september
+      - october
+      - november
+      - december
+      
+  electricity_yearly:
+    name: Электричество (по годам)
+    source: sensor.pzem04_energy_total
+    cycle: yearly
+    tariffs:
+      - 2021
+      - 2022
+      - 2023

@@ -1,0 +1,34 @@
+- platform: history_stats
+  name: Отсутствие электричества (30 дней)
+  entity_id: sensor.no_electricity
+  state: "off"
+  type: time
+  end: "{{ now().replace(hour=0, minute=0, second=0) }}"
+  duration:
+    days: 30
+    
+- platform: history_stats
+  name: Отсутствие электричества (Все время)
+  entity_id: sensor.no_electricity
+  state: "off"
+  type: time
+  start: "{{ 0 }}"
+  end: "{{ now() }}"
+
+- platform: history_stats
+  name: Отсутствие электричества (Сегодня)
+  entity_id: sensor.no_electricity
+  state: "off"
+  type: time
+  start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+  end: "{{ now() }}"
+
+- platform: template
+  sensors:
+    no_electricity:
+      value_template: >-
+        {% if states('sensor.pzem04_energy_current') | float > 0 %}
+        on
+        {% else %}
+        off
+        {% endif %}

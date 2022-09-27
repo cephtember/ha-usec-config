@@ -1,0 +1,193 @@
+all_lights:
+  name: Весь свет
+  entities:
+    - group.bar_lights
+    - group.bar_lights_color
+    - group.bedroom_lights
+    - group.cabinet_lights
+    - group.entrace_lights
+    - group.kitchen_lights
+    - group.livingroom_lights
+    - group.livingroon_color_lights
+    - group.toilet_lights
+    - group.bath_lights
+    - group.hall_lights
+
+bar_lights:
+  name: Бар
+  entities:
+    - light.bar_underlight
+    #- light.bar_main_lamp
+    - light.bar_philips_cbulb_light_x1
+    - light.bar_philips_cbulb_light_x2
+    - light.bar_philips_cbulb_light_x3
+
+bar_lights_color:
+  name: Бар цветные
+  entities:
+    - light.bar_philips_cbulb_light_x1
+    - light.bar_philips_cbulb_light_x2
+    - light.bar_philips_cbulb_light_x3
+    
+bedroom_lights:
+  name: Спальня
+  entities:
+    - light.bedroom_main_lamp
+    - light.bedroom_rail_lamps
+    - light.bedroom_underlight
+
+cabinet_lights:
+  name: Детская
+  entities:
+    - light.cabinet_main_lamp
+    - light.cabinet_rail_lamps
+
+entrace_lights:
+  name: Подъезд
+  entities:
+    - light.entrace_light
+
+kitchen_lights:
+  name: Кухня
+  entities:
+    - light.kitchen_main_lamp
+    - light.kitchen_underlight
+
+livingroom_lights:
+  name: Зал
+  entities:
+    - light.living_room_bra
+    #- light.living_room_secondary_lamp
+    #- light.living_room_main_lamp
+    - light.living_room_rail_lamps
+    - light.livingroom_cbulb_light_x1
+    - light.livingroom_cbulb_light_x2
+    - light.livingroom_cbulb_light_x3
+    - light.livingroom_cbulb_light_x4
+    - light.livingroom_cbuld_add_light_x1
+    - light.livingroom_cbuld_add_light_x2
+
+livingroom_color_lights:
+  name: Зал цветные
+  entities:
+    - light.livingroom_cbulb_light_x1
+    - light.livingroom_cbulb_light_x2
+    - light.livingroom_cbulb_light_x3
+    - light.livingroom_cbulb_light_x4
+
+livingroom_color_lights_main:
+  name: Зал маленькие цветные
+  entities:  
+    - light.livingroom_cbuld_add_light_x1
+    - light.livingroom_cbuld_add_light_x2
+
+toilet_lights:
+  name: Туалет
+  entities:
+    - light.toilet_main_lamp
+
+
+bath_lights:
+  name: Ванная
+  entities:
+    - light.bath_main_lamp
+    - light.bathroom_underlight
+
+hall_lights:
+  name: Прихожая
+  entities:
+    - light.hall_main_lamp
+    - light.hall_entrace
+    
+###### DEVICES ######
+my_device_trackers:
+  entities:
+    - device_tracker.iphone_amnezia
+    - device_tracker.tanzilyas_iphone
+
+all_motion_sensors:
+  entities:
+    - group.cabinet_motion_sensors
+    - group.bar_motion_sensors
+    - group.livingroom_motion_sensors
+    - group.kitchen_motion_sensors
+    - group.entrace_motion_sensors
+    - group.bedroom_motion_sensors
+
+cabinet_motion_sensors:
+  entities:
+    - binary_sensor.cabinet_motion
+
+bar_motion_sensors:
+  entities:
+    - binary_sensor.bar_motion
+
+livingroom_motion_sensors:
+  entities:
+    - binary_sensor.livingroom_motion
+
+kitchen_motion_sensors:
+  entities:
+    - binary_sensor.kitchen_motion
+
+entrace_motion_sensors:
+  entities:
+    - binary_sensor.hikvision_custom_cell_motion_detection
+
+bedroom_motion_sensors:
+  entities:
+    - binary_sensor.bedroom_motion
+
+all_contact_sensors:
+  entities:
+    - group.cabinet_contact_sensors
+    - group.bar_contact_sensors
+    - group.bedroom_contact_sensors
+    - group.toilet_contact_sensors
+    - group.bathroom_contact_sensors
+    - group.entrace_contact_sensors
+    
+    
+cabinet_contact_sensors:
+  entities:
+    - binary_sensor.cabinet_right_window_contact
+    - binary_sensor.cabinet_left_window_contact
+    
+bar_contact_sensors:
+  entities:
+    - binary_sensor.bar_left_window_contact
+    - binary_sensor.bar_big_window_contact
+    - binary_sensor.bar_small_window_contact
+    
+bedroom_contact_sensors:
+  entities:
+    - binary_sensor.bedroom_left_window_contact
+    - binary_sensor.bedroom_right_window_contact
+    - binary_sensor.bedroom_door_contact
+    
+toilet_contact_sensors:
+  entities:
+    - binary_sensor.toilet_door_contact
+    
+bathroom_contact_sensors:
+  entities:
+    - binary_sensor.bath_door_contact
+    
+entrace_contact_sensors:
+  entities:
+    - binary_sensor.entrace_door_contact
+
+all_climate:
+  entities:
+    - climate.cabinet_thermostat
+    - climate.cabinet_midea_ac
+    - climate.bedroom_midea_ac
+    - climate.hall_thermostat
+
+living_climate:
+    - climate.cabinet_thermostat
+    - climate.cabinet_midea_ac
+    
+bedroom_climate:
+    - climate.bedroom_midea_ac
+

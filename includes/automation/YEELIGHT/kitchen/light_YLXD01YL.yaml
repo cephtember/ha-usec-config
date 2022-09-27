@@ -1,0 +1,131 @@
+- alias: "[Основной свет (Кухня)] - Переключать состояние Yeelight на кухне через MQTT"
+  id: toggle_kitchen_yeelight
+  trigger:
+    - platform: mqtt
+      topic: "kitchen/cmnd/yeelight/power"
+      # Optional
+      payload: "TOGGLE"
+      encoding: "utf-8"
+  action:
+     - service: light.toggle
+       entity_id: light.kitchen_main_lamp
+     - delay: 0.5
+     - service: mqtt.publish
+       data:
+         topic: "kitchen/stat/yeelight/RESULT"
+         retain: false
+         payload: "{\"POWER\":\"{{ states('light.kitchen_main_lamp') }}\"}"
+
+
+       
+- alias: "[Основной свет (Кухня)] - Включать Yeelight на кухне через MQTT"
+  trigger:
+    - platform: mqtt
+      topic: "kitchen/cmnd/yeelight/power"
+      # Optional
+      payload: "ON"
+      encoding: "utf-8"
+  action:
+     - service: light.turn_on
+       entity_id: light.kitchen_main_lamp
+     - delay: 0.5
+     - service: mqtt.publish
+       data:
+         topic: "kitchen/stat/yeelight/RESULT"
+         retain: false
+         payload: "{\"POWER\":\"{{ states('light.kitchen_main_lamp') }}\"}"
+         
+- alias: "[Основной свет (Кухня)] - Выключать Yeelight на кухне через MQTT"
+  trigger:
+    - platform: mqtt
+      topic: "kitchen/cmnd/yeelight/power"
+      # Optional
+      payload: "OFF"
+      encoding: "utf-8"
+  action:
+     - service: light.turn_off
+       entity_id: light.kitchen_main_lamp
+     - delay: 2
+     - service: mqtt.publish
+       data:
+         topic: "kitchen/stat/yeelight/RESULT"
+         retain: false
+         payload: "{\"POWER\":\"{{ states('light.kitchen_main_lamp') }}\"}"
+         
+         
+         
+- alias: "[Основной свет (Кухня)] - Переключать яркость Yeelight на кухне через MQTT"
+  id: toggle_kitchen_yeelight_brightness
+  trigger:
+    - platform: mqtt
+      topic: "kitchen/cmnd/yeelight/dim"
+      # Optional
+      payload: "TOGGLE"
+      encoding: "utf-8"
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: "kitchen/stat/yeelight/brightness"
+        retain: false
+        payload_template: >
+          {% if states('sensor.kitchen_main_lamp_brightness')|int >= 99 %}        
+            0
+          {% elif states('sensor.kitchen_main_lamp_brightness')|int < 99 %}
+            {{ states('sensor.kitchen_main_lamp_brightness')|int + 33 }}            
+          {%- else -%}
+            100
+          {%- endif %}
+    - service: yeelight.set_color_temp_scene
+      data_template:
+        entity_id: light.kitchen_main_lamp
+        kelvin: > 
+          {% if is_state('sensor.kitchen_main_lamp_color_temp',"unknown") %} 
+            6500
+          {%- else -%}
+            {{ states('sensor.kitchen_main_lamp_color_temp')|int }}
+          {%- endif %}
+        brightness: >
+          {% if is_state('sensor.kitchen_main_lamp_brightness',"unknown") %}
+            100
+          {%- else -%}
+            {{ states('sensor.kitchen_main_lamp_brightness')|int }}
+          {%- endif %}
+    - delay: 0.5
+
+- alias: "[Основной свет (Кухня)] - Переключать цвет Yeelight на кухне через MQTT"
+  id: toggle_kitchen_yeelight_color_temp
+  trigger:
+    - platform: mqtt
+      topic: "kitchen/cmnd/yeelight/color"
+      # Optional
+      payload: "TOGGLE"
+      encoding: "utf-8"
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: "kitchen/stat/yeelight/color_temp"
+        retain: false
+        payload_template: >
+          {% if states('sensor.kitchen_main_lamp_color_temp')|int > 6000 %}        
+            2000
+          {% elif states('sensor.kitchen_main_lamp_color_temp')|int < 4000 %}
+            {{ states('sensor.kitchen_main_lamp_color_temp')|int + 2000 }}            
+          {%- else -%}
+            6500
+          {%- endif %}
+    - service: yeelight.set_color_temp_scene
+      data_template:
+        entity_id: light.kitchen_main_lamp
+        kelvin: > 
+          {% if is_state('sensor.kitchen_main_lamp_color_temp',"unknown") %} 
+            6500
+          {%- else -%}
+            {{ states('sensor.kitchen_main_lamp_color_temp')|int }}
+          {%- endif %}
+        brightness: >
+          {% if is_state('sensor.kitchen_main_lamp_brightness',"unknown") %}
+            100
+          {%- else -%}
+            {{ states('sensor.kitchen_main_lamp_brightness')|int }}
+          {%- endif %}
+    - delay: 0.5

@@ -1,0 +1,375 @@
+homeassistant:
+  name: Aviasozlar-4 66A 46
+  latitude: !secret latitude_coord
+  longitude: !secret longitude_coord
+  unit_system: metric
+  time_zone: Asia/Tashkent
+  customize: !include customize.yaml
+  packages: !include_dir_merge_named includes/packages
+  external_url: "https://home.usec.uz"
+  currency: UZS
+
+lovelace:
+  mode: yaml
+  resources:
+    - url: /hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js
+      type: module
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+    - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
+      type: module
+    - url: /hacsfiles/lovelace-layout-card/layout-card.js
+      type: module
+    - url: /hacsfiles/ha-floorplan/floorplan.js
+      type: module
+    - url: /hacsfiles/spotify-card/spotify-card.js
+      type: module
+    - url: /hacsfiles/hass-shutter-card/hass-shutter-card.js
+      type: module
+    - url: /hacsfiles/custom-sidebar/custom-sidebar.js
+      type: module
+    - url: /hacsfiles/purifier-card/purifier-card.js
+      type: module
+    - url: /hacsfiles/simple-thermostat/simple-thermostat.js
+      type: module
+    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+      type: module
+    - url: /hacsfiles/vacuum-card/vacuum-card.js
+      type: module
+    - url: /hacsfiles/scheduler-card/scheduler-card.js
+      type: module
+    - url: /config/www/community/light-entity-card/light-entity-card.js
+      type: module
+    - url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
+      type: module
+    - url: /hacsfiles/PlexMeetsHomeAssistant/plex-meets-homeassistant.js
+      type: module
+  #dashboards:
+  # lovelace-generated:
+  # mode: yaml
+  # filename: ui-lovelace.yaml
+  # title: Browser
+  # show_in_sidebar: true
+  # require_admin: true
+  # lovelace-mobile:
+  # mode: yaml
+  # title: Mobile
+  # show_in_sidebar: true
+  # filename: ui-lovelace-mobile.yaml
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+mqtt:
+  # broker: !secret mqtt_host
+  # username: !secret mqtt_username
+  # password: !secret mqtt_password
+  discovery: false
+
+http:
+  ssl_certificate: crt/fullchain.pem
+  ssl_key: crt/privkey.pem
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+history:
+  include:
+    domains:
+      - updater
+    entities:
+      ### БАР
+      - cover.ikea_blinds
+      - sensor.sonoff_bar_temperature
+      - sensor.sonoff_bar_temperature_humidity
+      - binary_sensor.bar_left_window_contact
+      - binary_sensor.bar_big_window_contact
+      - binary_sensor.bar_small_window_contact
+      - binary_sensor.bar_motion
+      ### ВАННАЯ
+      - binary_sensor.aqara_bathroom_leak_water_leak
+      - binary_sensor.aqara_bathroom_2_leak_water_leak
+      - binary_sensor.bath_door_contact
+      ### ЗАЛ
+      - sensor.livingroom_xiaomi_purifier_temperature
+      - binary_sensor.aqara_livingroom_leak_water_leak
+      - sensor.zhimi_airpurifier_ma4_pm2_5
+      - sensor.livingroom_temperature_temperature
+      - sensor.livingroom_temperature_humidity
+      - binary_sensor.livingroom_motion
+      ### ДЕТСКАЯ
+      - sensor.aqara_cabinet_temperature
+      - sensor.aqara_cabinet_temperature_humidity
+      - binary_sensor.cabinet_left_window_contact
+      - binary_sensor.cabinet_right_window_contact
+      - binary_sensor.cabinet_motion
+      - sensor.cabinet_floor_temperature_temperature
+      - sensor.cabinet_floor_temperature_humidity
+      ### Кухня
+      - binary_sensor.kitchen_gas_sensor
+      - binary_sensor.kitchen_smoke_sensor
+      - binary_sensor.aqara_kitchen_leak_water_leak
+      - binary_sensor.kitchen_motion
+      ### Серверная
+      - binary_sensor.storage_failure
+      - binary_sensor.hikvision_custom_cell_motion_detection
+      - sensor.pzem04_energy_voltage
+      - sensor.pzem04_energy_today
+      - sensor.pzem04_energy_yesterday
+      - sensor.pzem04_energy_total
+      - sensor.pzem04_energy_frequency
+      - sensor.no_electricity
+      ### Подъезд
+      - binary_sensor.entrace_door_contact
+      ### Спальня
+      - binary_sensor.bedroom_left_window_contact
+      - binary_sensor.bedroom_right_window_contact
+      - binary_sensor.aqara_bedroom_leak_water_leak
+      - sensor.bedroom_temperature_temperature
+      - sensor.bedroom_temperature_humidity
+      - binary_sensor.bedroom_door_contact
+      - binary_sensor.bedroom_motion
+      ### Туалет
+      - binary_sensor.toilet_door_contact
+      ### Разное
+      - sensor.ikea_blinds_state
+      - sensor.sony_bravia_tv_state
+      - sensor.xiaomi_humidifier_state
+      - sensor.xiaomi_purifier_3_state
+      - vacuum.xiaomi_1c
+      ### Электричество
+      - sensor.elektrichestvo_den
+      - sensor.elektrichestvo_den_cost
+      - sensor.konditsioner_v_detskoi_energiia_den
+      - sensor.polotentsesushitel_energiia_den
+      - sensor.stiralnaia_mashina_energiia_den
+      - sensor.konditsioner_v_spalne_energiia_den
+
+input_boolean:
+  auto_climate:
+    name: Автоматическое управление климатом
+  auto_lights:
+    name: Адаптивное управления светом
+
+input_number:
+  energy_daily_price:
+    name: "Стоимость электроэнергии (Ежедневная)"
+    mode: box
+    initial: 295
+    min: 0
+    max: 1000
+    unit_of_measurement: "СУМ/kWh"
+    icon: mdi:currency-eur
+
+# THEMES
+input_select:
+  themes:
+    name: "Тема Home Assistant"
+    icon: mdi:format-paint
+    options:
+      - Caule Black Rose
+      - Caule Black Purple
+      - Caule Black Blue
+      - Caule Black Aqua
+      - Caule Black Green
+      - Caule Black Yellow
+      - Caule Black Orange
+      - Caule Black Coral
+      - Caule Black Pink
+      - Caule Black Gray
+      - Caule Dark Rose
+      - Caule Dark Purple
+      - Caule Dark Blue
+      - Caule Dark Aqua
+      - Caule Dark Green
+      - Caule Dark Yellow
+      - Caule Dark Orange
+      - Caule Dark Coral
+      - Caule Dark Pink
+      - Caule Dark Gray
+      - Caule Light Rose
+      - Caule Light Purple
+      - Caule Light Blue
+      - Caule Light Aqua
+      - Caule Light Green
+      - Caule Light Yellow
+      - Caule Light Orange
+      - Caule Light Coral
+      - Caule Light Pink
+      - Caule Light Gray
+      - Caule Black Rose Glass
+      - Caule Black Purple Glass
+      - Caule Black Blue Glass
+      - Caule Black Aqua Glass
+      - Caule Black Green Glass
+      - Caule Black Yellow Glass
+      - Caule Black Orange Glass
+      - Caule Black Coral Glass
+      - Caule Black Pink Glass
+      - Caule Black Gray Glass
+      - Default
+
+##########
+
+variable:
+  last_alarm:
+    value: "No"
+    attributes:
+      friendly_name: "Последние оповещения"
+      icon: mdi:alarm
+      history_1: ""
+      history_2: ""
+      history_3: ""
+      history_4: ""
+      history_5: ""
+      history_6: ""
+      history_7: ""
+      history_8: ""
+      history_9: ""
+      history_10: ""
+    restore: true
+
+#Telegram
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api_key
+    parse_mode: html
+    allowed_chat_ids:
+      - !secret telegram_id_1 # example: 123456789 for the chat_id of a user
+      - !secret telegram_id_2
+      - !secret telegram_group_id_1
+
+# Example configuration.yaml entry for the notifier
+notify:
+  - platform: telegram
+    name: vf_telegram
+    chat_id: !secret telegram_id_1
+
+  - platform: telegram
+    name: ty_telegram
+    chat_id: !secret telegram_id_2
+
+  - name: ALL_DEVICES
+    platform: group
+    services:
+      - service: mobile_app_iphone_amnezia
+      - service: mobile_app_tanzilyas_iphone
+
+spotcast:
+  sp_dc: !secret spotcast_dc
+  sp_key: !secret spotcast_key
+
+proximity:
+  ty_to_home:
+    zone: home
+    ignored_zones:
+      - work
+      - school
+    devices:
+      - person.tanzilya_yakshimbetova
+    tolerance: 10
+    unit_of_measurement: km
+
+  ty_to_work:
+    zone: work
+    devices:
+      - person.tanzilya_yakshimbetova
+    tolerance: 10
+
+  vf_to_home:
+    zone: home
+    ignored_zones:
+      - work
+      - school
+    devices:
+      - person.vladimir_filatov
+    tolerance: 10
+    unit_of_measurement: km
+
+  vf_to_work:
+    zone: work
+    devices:
+      - person.vladimir_filatov
+    tolerance: 10
+
+vacuum:
+  - platform: xiaomi_vacuum
+    name: Xiaomi 1C
+    host: !secret xiaomi_vacuum_host
+    token: !secret xiaomi_vacuum_token
+
+xiaomi_miot:
+  username: !secret xiaomi_cloud_username
+  password: !secret xiaomi_cloud_password
+  server_country: ru
+
+cover: !include_dir_merge_list includes/covers
+sensor: !include_dir_merge_list includes/sensor
+switch: !include_dir_merge_list includes/switch
+fan: !include_dir_merge_list includes/fan
+binary_sensor: !include_dir_merge_list includes/binary_sensor
+automation: !include_dir_merge_list includes/automation
+group: !include includes/groups.yaml
+script: !include includes/scripts.yaml
+recorder: !include includes/recorder.yaml
+scene: !include includes/scenes.yaml
+media_player: !include includes/media_players.yaml
+climate: !include_dir_merge_list includes/climate
+utility_meter: !include includes/utility_meter.yaml
+light: !include_dir_merge_list includes/light
+google_assistant: !include google_assistant.yaml
+yandex_smart_home: !include yandex_smart_home.yaml
+alarm_control_panel: !include includes/alarm_control_panel.yaml
+
+adaptive_lighting:
+  - name: "default"
+    lights:
+      - light.kitchen_main_lamp
+      - light.cabinet_main_lamp
+      - light.bedroom_main_lamp
+    only_once: true
+
+  - name: "color"
+    lights:
+      - light.livingroom_cbulb_light_x1
+      - light.livingroom_cbulb_light_x2
+      - light.livingroom_cbulb_light_x3
+      - light.livingroom_cbulb_light_x4
+      - light.livingroom_cbuld_add_light_x1
+      - light.livingroom_cbuld_add_light_x2
+      - light.bar_philips_cbulb_light_x1
+      - light.bar_philips_cbulb_light_x2
+      - light.bar_philips_cbulb_light_x3
+    only_once: true
+    #prefer_rgb_color: true
+
+homekit:
+  filter:
+    include_entities:
+      - camera.embedded_net_vis_mainstream
+      - camera.hikvision_ds_2cd1143g0_i_mainstream
+  entity_config:
+    camera.hikvision_ds_2cd1143g0_i_mainstream:
+      #linked_doorbell_sensor: binary_sensor.doorbell
+      stream_source: !secret rtsp_1
+    camera.embedded_net_vis_mainstream:
+      linked_doorbell_sensor: binary_sensor.doorbell
+      stream_source: !secret rtsp_2
+
+panel_iframe:
+  pihole:
+    title: "ADGUARD"
+    url: !secret pihole_link
+    icon: mdi:shield-check
+
+pandora_cas:
+    username: !secret pandora_username_1 
+    password: !secret pandora_password_1

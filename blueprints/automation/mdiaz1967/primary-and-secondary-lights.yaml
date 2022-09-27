@@ -1,0 +1,45 @@
+blueprint:
+  name: Synchronize Primary and Secondary Lights
+  description: Turn on the primary light when the secondary is turned on and turn
+    off the secondary light when the primary is turned off.
+  domain: automation
+  input:
+    primary_light:
+      name: Main light
+      description: This is the primary light, will be turned on when the secondary
+        light is turned on.
+      selector:
+        target:
+          entity:
+            domain: light
+    secondary_light:
+      name: Mirror light
+      description: This is the secondary light, will be turned off when the primary
+        light is turned off.
+      selector:
+        target:
+          entity:
+            domain: light
+  source_url: https://community.home-assistant.io/t/primary-and-secondary-lights/255878
+trigger:
+- platform: state
+  entity_id: !input 'primary_light'
+  to: 'on'
+- platform: state
+  entity_id: !input 'secondary_light'
+  to: 'off'
+action:
+  choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.to_state.state == ''on'' }}'
+    sequence:
+    - service: light.turn_on
+      entity_id: !input 'secondary_light'
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.to_state.state == ''off'' }}'
+    sequence:
+    - service: light.turn_off
+      entity_id: !input 'primary_light'
+  default: []

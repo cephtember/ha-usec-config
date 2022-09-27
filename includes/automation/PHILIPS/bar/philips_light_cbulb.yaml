@@ -1,0 +1,41 @@
+##########################
+
+- alias: "[Основной свет (Бар)] - Переключать состояние света в баре через MQTT"
+  id: main_light_bar_brightness
+  trigger:
+    - platform: mqtt
+      topic: "bar/stat/tuya_light/BUTTON1"
+      # Optional
+      payload: "{\"ACTION\":\"DOUBLE\"}"
+      encoding: "utf-8"
+  action:
+    - service: light.turn_on
+      entity_id: group.bar_lights_color
+      data_template:
+        brightness: >
+          {% set step_size = 55 %}
+          {% if (state_attr('group.bar_lights_color', 'brightness') != None)%}
+            {% set current_brightness = (state_attr('group.bar_lights_color', 'brightness') | int) %}
+          {% else %}
+            {% set current_brightness = 0 %}
+          {% endif %}
+          {% set new_brightness = current_brightness | int + step_size %}
+          {% if new_brightness > 255 %}
+            0
+          {% else %}
+            {{ new_brightness }}
+          {% endif %}
+
+
+       
+- alias: "[Основной свет (Бар)] - Переключать Свет в баре через MQTT"
+  id: toggle_bar_light
+  trigger:
+    - platform: mqtt
+      topic: "bar/stat/tuya_light/BUTTON1"
+      # Optional
+      payload: "{\"ACTION\":\"SINGLE\"}"
+      encoding: "utf-8"
+  action:
+    - service: light.toggle
+      entity_id: group.bar_lights_color

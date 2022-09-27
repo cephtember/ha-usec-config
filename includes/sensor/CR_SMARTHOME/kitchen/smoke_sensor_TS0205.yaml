@@ -1,0 +1,22 @@
+- platform: "mqtt"
+  unique_id: kitchen_smoke_sensor_availability
+  name: Датчик дыма (Кухня)_availability
+  state_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+      
+- platform: "mqtt"
+  unique_id: kitchen_smoke_sensor_battery
+  name: Датчик дыма (Кухня_полоток)_battery
+  state_topic: "zigbee2mqtt/kitchen_smoke_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+
+# - platform: "mqtt"
+#   unique_id: kitchen_smoke_sensor_signal
+#   name: Датчик дыма (Кухня_полоток)_signal
+#   state_topic: "zigbee2mqtt/kitchen_smoke_sensor"
+#   availability_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   icon: "mdi:signal"

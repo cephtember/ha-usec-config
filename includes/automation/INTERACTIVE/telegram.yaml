@@ -1,0 +1,434 @@
+### Start Keyboard ###
+- id: telegram-start
+  alias: '[Telegram] - Start Command'
+  initial_state: 'on'
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/start'
+  action:
+    service: telegram_bot.send_message
+    data_template:
+      target: "{{ trigger.event.data.user_id }}"
+      message: >
+       {{ [
+       "Привет",
+       "Что надо хозяин?",
+       "Слушаю!",
+       "Рад тебя видеть"
+       ] | random }}       
+      inline_keyboard:
+        - 'Статус системы:/status, Состояние батареек:/zigbee_batteries'
+        - 'Стоимость электроэнергии:/energy_cost'
+        - 'Датчики температуры:/temperature, Датчики состояния:/states'
+
+
+    
+      
+- alias: '[Telegram] - Ответ статус системы'
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      command: '/status'
+  action:
+    - service: telegram_bot.answer_callback_query
+      data_template:
+        callback_query_id: '{{ trigger.event.data.id }}'
+        message: "System is online!
+          Последний раз запущена {{ states('sensor.last_boot') }}."
+        show_alert: true
+
+      
+- alias: '[Telegram] - Вывод состояния батареек всех zigbee устройств'
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      command: '/zigbee_batteries'
+  action:
+    - service: telegram_bot.answer_callback_query
+      data_template:
+        callback_query_id: '{{ trigger.event.data.id }}'
+        message: "Cостояния батареек: "
+        
+    - service: telegram_bot.edit_message
+      data_template:
+        message_id: "{{ trigger.event.data.message.message_id }}"
+        chat_id: "{{ trigger.event.data.chat_id }}"
+        title: "<b>Cостояния батареек:</b>"
+        message: >
+      
+          <b>Спальня:</b>
+          
+          Дверь: {{ states('sensor.bedroom_door_battery') }}%
+      
+          Датчик движения: {{ states('sensor.bedroom_motion_battery') }}%
+
+          Выключатель: {{ states('sensor.aqara_bedroom_switch_battery') }}%
+          
+          Датчик утечки под батареей: {{ states('sensor.aqara_bedroom_leak_battery') }}%
+          
+          Датчик левого окна: {{ states('sensor.bedroom_left_window_battery') }}%
+          
+          Датчик правого окна: {{ states('sensor.bedroom_right_window_battery') }}%
+        
+        
+          <b>Детская:</b>
+        
+          Датчик температуры: {{ states('sensor.aqara_cabinet_temperature_battery') }}%
+          
+          Датчик левого окна: {{ states('sensor.cabinet_left_window_battery') }}%
+          
+          Датчик правого окна: {{ states('sensor.cabinet_right_window_battery') }}%
+          
+        
+          <b>Ванная:</b>
+          
+          Дверь: {{ states('sensor.bath_door_battery') }}%
+          
+          Кнопка подсветки: {{ states('sensor.bathroom_underlight_button_battery') }}%
+        
+          Датчик утечки под ванной: {{ states('sensor.aqara_bathroom_leak_battery') }}%
+
+          Датчик утечки под раковиной: {{ states('sensor.aqara_bathroom_2_leak_battery') }}%
+         
+          
+          <b>Кухня:</b>
+          
+          Кнопка подсветки: {{ states('sensor.aqara_kitchen_button_battery') }}%
+          
+          Датчик дыма: {{ states('sensor.kitchen_smoke_sensor_battery') }}%
+          
+          Датчик утечки под посудомойкой: {{ states('sensor.aqara_kitchen_leak_battery') }}%
+          
+          
+          <b>Зал:</b>
+          
+          Датчик температуры: {{ states('sensor.livingroom_temperature_battery') }}%
+          
+          Датчик утечки под батареей: {{ states('sensor.aqara_livingroom_leak_battery') }}%
+          
+          
+          <b>Бар:</b>
+        
+          Кнопка жалюзи: {{ states('sensor.ikea_button_battery') }}%
+        
+          Жалюзи: {{ states('sensor.ikea_blinds_battery') }}%
+        
+          Датчик температуры: {{ states('sensor.sonoff_bar_temperature_battery') }}%
+          
+          Датчик правого окна: {{ states('sensor.bar_big_window_battery') }}%
+          
+          Датчик левого окна: {{ states('sensor.bar_left_window_battery') }}%
+
+          Датчик левой форточки: {{ states('sensor.aqara_bar_small_window_battery') }}%
+        
+        inline_keyboard:
+          - 'Статус системы:/status, Состояние батареек:/zigbee_batteries'
+          - 'Стоимость электроэнергии:/energy_cost'
+          - 'Датчики температуры:/temperature, Датчики состояния:/states'
+          
+- alias: '[Telegram] - Вывод суммы за электроэнергию текущая и вчерашняя'
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      command: '/energy_cost'
+  action:
+    - service: telegram_bot.answer_callback_query
+      data_template:
+        callback_query_id: '{{ trigger.event.data.id }}'
+        message: "Стоимость потраеной электроэнергии: "
+        
+    - service: telegram_bot.edit_message
+      data_template:
+        message_id: "{{ trigger.event.data.message.message_id }}"
+        chat_id: "{{ trigger.event.data.chat_id }}"
+        title: "<b>Отчет электричество:</b>"
+        message: >
+          Сегодня было потрачено <b>{{ states('sensor.pzem04_energy_today') }}</b> кВт 
+          
+          Сумма: <b>{{ states('sensor.house_cost_daily') }}</b> Сум
+          
+          Кондиционер в детской: <b>{{ states('sensor.ac_cost_daily') }}</b> Сум
+          
+          Кондиционер в спальне: <b>{{ states('sensor.ac_bedroom_cost_daily') }}</b> Сум
+          
+          Полотенцесушитель: <b>{{ states('sensor.bath_radiator_cost_daily') }}</b> Сум
+          
+          Стиральная машинка: <b>{{ states('sensor.washer_cost_daily') }}</b> Сум
+          
+          Вчера было потрачено <b>{{ states('sensor.pzem04_energy_yesterday') }}</b> кВт
+          
+          Сумма: <b>{{ states('sensor.house_cost_yesterday') }}</b> Сум
+        
+        inline_keyboard:
+          - 'Статус системы:/status, Состояние батареек:/zigbee_batteries'
+          - 'Стоимость электроэнергии:/energy_cost'
+          - 'Датчики температуры:/temperature, Датчики состояния:/states'
+          
+          
+- alias: '[Telegram] - Вывод датчиков температуры'
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      command: '/temperature'
+  action:
+    - service: telegram_bot.answer_callback_query
+      data_template:
+        callback_query_id: '{{ trigger.event.data.id }}'
+        message: "Датчики температуры: "
+        
+    - service: telegram_bot.edit_message
+      data_template:
+        message_id: "{{ trigger.event.data.message.message_id }}"
+        chat_id: "{{ trigger.event.data.chat_id }}"
+        title: "<b>Датчики температуры: </b>"
+        message: >
+        
+          <b>Жилая комната:</b>
+          
+          Датчик температуры: Т: {{ states('sensor.livingroom_temperature_temperature') }}С Вл: {{ states('sensor.livingroom_temperature_humidity') }}%
+          
+          <b>Детская:</b>
+        
+          Датчик температуры: Т: {{ states('sensor.aqara_cabinet_temperature') }}С Вл: {{ states('sensor.aqara_cabinet_temperature_humidity') }}%
+        
+          <b>Бар:</b>
+        
+          Датчик температуры: Т: {{ states('sensor.sonoff_bar_temperature') }}С Вл: {{ states('sensor.sonoff_bar_temperature_humidity') }}%
+        
+          <b>Спальня:</b>
+          
+          Датчик температуры: Т: {{ states('sensor.bedroom_temperature_temperature') }}С Вл: {{ states('sensor.bedroom_temperature_humidity') }}%
+         
+        inline_keyboard:
+          - 'Статус системы:/status, Состояние батареек:/zigbee_batteries'
+          - 'Стоимость электроэнергии:/energy_cost'
+          - 'Датчики температуры:/temperature, Датчики состояния:/states'
+          
+
+- alias: '[Telegram] - Вывод датчиков состояния'
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      command: '/states'
+  action:
+    - service: telegram_bot.answer_callback_query
+      data_template:
+        callback_query_id: '{{ trigger.event.data.id }}'
+        message: "Датчики состояния: "
+        
+    - service: telegram_bot.edit_message
+      data_template:
+        message_id: "{{ trigger.event.data.message.message_id }}"
+        chat_id: "{{ trigger.event.data.chat_id }}"
+        title: "<b>Датчики состояния: </b>"
+        message: >
+        
+          <b>Жилая комната:</b>
+          
+          Очиститель воздуха:{% if is_state('fan.zhimi_airpurifier_ma4', 'on') %} 
+          Включен 
+          {% else %} 
+          Выключен 
+          {% endif %}
+          
+          Xbox:{% if is_state('media_player.xbox', 'on') %} 
+          Включен 
+          {% else %} 
+          Выключен 
+          {% endif %}
+          
+          Пылесос:{% if is_state('vacuum.xiaomi_1c','idle') %}
+          Простаивает
+          {% elif is_state('vacuum.xiaomi_1c','cleaning') %}
+          Убирается
+          {% elif is_state('vacuum.xiaomi_1c','docked') %}
+          На станции
+          {% else %}
+          Выключен
+          {% endif %}
+          
+          Датчик утечки воды: {% if is_state('binary_sensor.aqara_livingroom_leak_water_leak','off') %}
+          Сухо
+          {% else %}
+          Утечка
+          {% endif %}
+          
+          
+          <b>Кухня:</b>
+          
+          Датчик утечки газа (плита): {% if is_state('binary_sensor.gas_condition','off') %}
+          Чисто
+          {% else %}
+          Выше нормы
+          {% endif %}
+          
+          Датчик утечки газа (потолок): {% if is_state('binary_sensor.kitchen_gas_sensor','off') %}
+          Чисто
+          {% else %}
+          Тревога
+          {% endif %}
+          
+          Датчик дыма (потолок): {% if is_state('binary_sensor.kitchen_smoke_sensor','off') %}
+          Чисто
+          {% else %}
+          Тревога
+          {% endif %}
+          
+          Датчик утечки воды: {% if is_state('binary_sensor.aqara_kitchen_leak_water_leak','off') %}
+          Сухо
+          {% else %}
+          Утечка
+          {% endif %}
+          
+          
+          <b>Спальня:</b>
+          
+          Дверь: {% if is_state('binary_sensor.bedroom_door_contact','off') %}
+          Закрыта
+          {% else %}
+          Открыта
+          {% endif %}
+          
+          Датчик движения: {% if is_state('binary_sensor.bedroom_motion','off') %}
+          Не обнаружено
+          {% else %}
+          Обнаружено
+          {% endif %}
+
+          Кондиционер: {% if is_state('climate.bedroom_midea_ac','fan_only') %}
+          Вентиляция
+          {% elif is_state('climate.bedroom_midea_ac','auto') %}
+          Авто
+          {% elif is_state('climate.bedroom_midea_ac','dry') %}
+          Осушение
+          {% elif is_state('climate.bedroom_midea_ac','heat') %}
+          Обогрев
+          {% elif is_state('climate.bedroom_midea_ac','cool') %}
+          Охлаждение
+          {% else %}
+          Выключен
+          {% endif %}
+
+          Левое окно: {% if is_state('binary_sensor.bedroom_left_window_contact','off') %}
+          Закрыто
+          {% else %}
+          Открыто
+          {% endif %}
+          
+          Правое окно: {% if is_state('binary_sensor.bedroom_right_window_contact','off') %}
+          Закрыто
+          {% else %}
+          Открыто
+          {% endif %}
+          
+          Датчик утечки воды: {% if is_state('binary_sensor.aqara_bedroom_leak_water_leak','off') %}
+          Сухо
+          {% else %}
+          Утечка
+          {% endif %}
+          
+          
+          <b>Ванная:</b>
+          
+          Дверь: {% if is_state('binary_sensor.bath_door_contact','off') %}
+          Закрыта
+          {% else %}
+          Открыта
+          {% endif %}
+          
+          Датчик утечки воды: {% if is_state('binary_sensor.aqara_bathroom_leak_water_leak','off') %}
+          Сухо
+          {% else %}
+          Утечка
+          {% endif %}
+
+          Датчик утечки воды (р): {% if is_state('binary_sensor.aqara_bathroom_2_leak_water_leak','off') %}
+          Сухо
+          {% else %}
+          Утечка
+          {% endif %}
+          
+          Стиральная машинка: {% if is_state('sensor.washer_job_state','rinse') %} 
+          Полоскает
+          {% elif is_state('sensor.washer_job_state','wash') %}
+          Стирает
+          {% elif is_state('sensor.washer_job_state','spin') %}
+          Отжимает
+          {% elif is_state('sensor.washer_job_state','finish') %}
+          Завершает стирку
+          {% else %}
+          Выключена
+          {% endif %}
+          
+          
+          <b>Туалет:</b>
+          
+          Дверь: {% if is_state('binary_sensor.toilet_door_contact','off') %}
+          Закрыта
+          {% else %}
+          Открыта
+          {% endif %}
+          
+          
+          <b>Детская:</b>
+        
+          Кондиционер: {% if is_state('climate.cabinet_midea_ac','fan_only') %}
+          Вентиляция
+          {% elif is_state('climate.cabinet_midea_ac','auto') %}
+          Авто
+          {% elif is_state('climate.cabinet_midea_ac','dry') %}
+          Осушение
+          {% elif is_state('climate.cabinet_midea_ac','heat') %}
+          Обогрев
+          {% elif is_state('climate.cabinet_midea_ac','cool') %}
+          Охлаждение
+          {% else %}
+          Выключен
+          {% endif %}
+          
+          Теплый пол: {% if is_state('climate.cabinet_thermostat','heat') %}
+          Обогрев
+          {% else %}
+          Выключен
+          {% endif %}
+        
+          Левое окно: {% if is_state('binary_sensor.cabinet_left_window_contact','off') %}
+          Закрыто
+          {% else %}
+          Открыто
+          {% endif %}
+          
+          Правое окно: {% if is_state('binary_sensor.cabinet_right_window_contact','off') %}
+          Закрыто
+          {% else %}
+          Открыто
+          {% endif %}
+          
+          
+          <b>Бар:</b>
+        
+          Жалюзи: {{ states('sensor.ikea_blinds_state') }}
+          
+          Правое окно: {% if is_state('binary_sensor.aqara_bar_big_window_contact','off') %}
+          Закрыто
+          {% else %}
+          Открыто
+          {% endif %}
+          
+          Левое окно: {% if is_state('binary_sensor.bar_left_window_contact','off') %}
+          Закрыто
+          {% else %}
+          Открыто
+          {% endif %}        
+         
+        inline_keyboard:
+          - 'Статус системы:/status, Состояние батареек:/zigbee_batteries'
+          - 'Стоимость электроэнергии:/energy_cost'
+          - 'Датчики температуры:/temperature, Датчики состояния:/states'

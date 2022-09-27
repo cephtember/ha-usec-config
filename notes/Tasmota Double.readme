@@ -1,0 +1,45 @@
+SetOption73
+  Detach buttons from relays and send multi-press and hold MQTT messages instead
+  0 = disable (default)
+  1 = enable
+  Example message: {"Button1":{"Action":"SINGLE"}}
+
+SetOption13
+  Allow immediate action on single button press
+  0 = single, multi-press and hold button actions (default)
+  1 = only single press action for immediate response (i.e., disable multipress detection). Disable by holding for 4 x button hold time (see SetOption32).
+
+SetOption32
+  Number of 0.1 seconds to hold button before sending HOLD action message.
+  1..100 to set button hold time (default = 40). This option also affects the time required to perform a firmware defaults reset (10x HOLD action time)
+
+  
+Living Room  
+  Rule1 ON button1#state=10 DO Power1 TOGGLE ENDON
+        ON button2#state=3 DO Power2 TOGGLE ENDON
+		ON button2#state=10 DO publish livingroom/cmnd/xiaomi_philips_light/power TOGGLE ENDON
+        ON button3#state=3 DO Power3 TOGGLE ENDON 
+        ON button3#state=10 DO publish livingroom/cmnd/sonoff_switch_light/power TOGGLE  ENDON
+  
+Cabinet
+  Rule1 ON button1#state=3 DO Power1 2 ENDON 
+        ON button1#state=10 DO publish cabinet/cmnd/yeelight/power TOGGLE ENDON
+        ON button1#state=11 DO publish cabinet/cmnd/yeelight/dim TOGGLE ENDON
+        ON button1#state=12 DO publish cabinet/cmnd/yeelight/color TOGGLE ENDON
+        ON button1#state=13 DO publish cabinet/cmnd/yeelight/nightmode TOGGLE ENDON
+        ON button2#state=10 DO Power2 TOGGLE ENDON 
+        
+        
+Kitchen
+  Rule1 ON button1#state=3 DO Power1 2 ENDON 
+        ON button1#state=10 DO publish kitchen/cmnd/yeelight/power TOGGLE ENDON
+        ON button1#state=11 DO publish kitchen/cmnd/yeelight/dim TOGGLE ENDON
+        ON button1#state=12 DO publish kitchen/cmnd/yeelight/color TOGGLE ENDON
+        ON button1#state=13 DO publish kitchen/cmnd/yeelight/nightmode TOGGLE ENDON
+        
+Bar
+
+    Rule1 ON button1#state=3 DO Power1 2 ENDON 
+        ON button1#state=10 DO publish bar/cmnd/xiaomi_philips_light/power TOGGLE ENDON
+        ON button1#state=3  DO Power1 2 ENDON 
+        ON button2#state=10 DO Power2 TOGGLE ENDON 

@@ -1,0 +1,65 @@
+- platform: "mqtt"
+  unique_id: aqara_bathroom_leak_availability
+  name: Датчик утечки воды под ванной (Ванная)_availability
+  state_topic: "zigbee2mqtt/bathroom_leak/availability"
+
+- platform: "mqtt"
+  unique_id: aqara_bathroom_leak_battery
+  name: Датчик утечки воды под ванной (Ванная)_battery
+  state_topic: "zigbee2mqtt/bathroom_leak"
+  availability_topic: "zigbee2mqtt/bathroom_leak/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bathroom_leak_voltage
+#   name: Датчик утечки воды под ванной (Ванная)_voltage
+#   state_topic: "zigbee2mqtt/bathroom_leak"
+#   availability_topic: "zigbee2mqtt/bathroom_leak/availability"
+#   value_template: "{{ value_json.voltage }}"
+#   unit_of_measurement: "mV"
+#   device_class: "voltage"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bathroom_leak_signal
+#   name: Датчик утечки воды под ванной (Ванная)_signal
+#   state_topic: "zigbee2mqtt/bathroom_leak"
+#   availability_topic: "zigbee2mqtt/bathroom_leak/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   icon: "mdi:signal"
+  
+######################
+
+- platform: "mqtt"
+  unique_id: aqara_bathroom_2_leak_availability
+  name: Датчик утечки воды под раковиной (Ванная)_availability
+  state_topic: "zigbee2mqtt/bathroom_2_leak/availability"
+
+- platform: "mqtt"
+  unique_id: aqara_bathroom_2_leak_battery
+  name: Датчик утечки воды под раковиной (Ванная)_battery
+  state_topic: "zigbee2mqtt/bathroom_2_leak"
+  availability_topic: "zigbee2mqtt/bathroom_2_leak/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bathroom_2_leak_voltage
+#   name: Датчик утечки воды под раковиной (Ванная)_voltage
+#   state_topic: "zigbee2mqtt/bathroom_2_leak"
+#   availability_topic: "zigbee2mqtt/bathroom_2_leak/availability"
+#   value_template: "{{ value_json.voltage }}"
+#   unit_of_measurement: "mV"
+#   device_class: "voltage"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bathroom_2_leak_signal
+#   name: Датчик утечки воды под раковиной (Ванная)_signal
+#   state_topic: "zigbee2mqtt/bathroom_2_leak"
+#   availability_topic: "zigbee2mqtt/bathroom_2_leak/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   icon: "mdi:signal"

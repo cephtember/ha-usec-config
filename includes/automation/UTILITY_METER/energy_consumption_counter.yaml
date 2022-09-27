@@ -1,0 +1,30 @@
+######## DEPRECATED ##########
+
+# - alias: "[Электроэнергия] - Счетчик электроэнергии - ежедневный"
+  # id: utility_meter_energy_consumption_daily
+  # initial_state: on
+  # hide_entity: true
+  # trigger:
+    # platform: time
+    # at: '23:57:59'
+  # action:        
+    # - service: variable.set_variable
+      # data:
+        # variable: energy_consumption
+        # attributes:
+          # yesterday: "{{ states('sensor.pzem04_energy_yesterday') }}"
+          # january: "{% if now().month in (1,) %} {{(state_attr('variable.energy_consumption','january') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # february: "{% if now().month in (2,) %} {{(state_attr('variable.energy_consumption','february') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # march: "{% if now().month in (3,) %} {{(state_attr('variable.energy_consumption','mart') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # april: "{% if now().month in (4,) %} {{(state_attr('variable.energy_consumption','april') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # may: "{% if now().month in (5,) %} {{(state_attr('variable.energy_consumption','may') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # june: "{% if now().month in (6,) %} {{(state_attr('variable.energy_consumption','june') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # july: "{% if now().month in (7,) %} {{(state_attr('variable.energy_consumption','july') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # august: "{% if now().month in (8,) %} {{(state_attr('variable.energy_consumption','august') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # september: "{% if now().month in (9,) %} {{(state_attr('variable.energy_consumption','september') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # october: "{% if now().month in (10,) %} {{(state_attr('variable.energy_consumption','october') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # november: "{% if now().month in (11,) %} {{(state_attr('variable.energy_consumption','november') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+          # december: "{% if now().month in (12,) %} {{(state_attr('variable.energy_consumption','december') | float) + (states('sensor.pzem04_energy_today') | float)}} {% endif %}"
+            
+        # value: >
+          # {{ states('sensor.pzem04_energy_today') }}

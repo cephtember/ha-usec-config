@@ -1,0 +1,95 @@
+- platform: template
+  sensors:
+    aqara_bathroom_leak_availability_problem:
+      friendly_name: "Датчик утечки воды под ванной (Ванная)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.aqara_bathroom_leak_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.aqara_bathroom_leak_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+
+- platform: "mqtt"
+  unique_id: aqara_bathroom_leak_water_leak
+  name: "! Датчик утечки воды под ванной (Ванная)"
+  state_topic: "zigbee2mqtt/bathroom_leak"
+  availability_topic: "zigbee2mqtt/bathroom_leak/availability"
+  value_template: "{{ value_json.water_leak }}"
+  payload_on: true
+  payload_off: false
+  device_class: "moisture"
+
+- platform: "mqtt"
+  unique_id: aqara_bathroom_leak_battery_low
+  name: Датчик утечки воды под ванной (Ванная)_батарейка_низкая
+  state_topic: "zigbee2mqtt/bathroom_leak"
+  availability_topic: "zigbee2mqtt/bathroom_leak/availability"
+  value_template: "{{ value_json.battery_low }}"
+  payload_on: true
+  payload_off: false
+  device_class: "battery"
+
+- platform: "mqtt"
+  unique_id: aqara_bathroom_leak_tamper
+  name: Датчик утечки воды под ванной (Ванная)_тампер
+  state_topic: "zigbee2mqtt/bathroom_leak"
+  availability_topic: "zigbee2mqtt/bathroom_leak/availability"
+  value_template: "{{ value_json.tamper }}"
+  payload_on: true
+  payload_off: false
+  
+####################
+
+- platform: template
+  sensors:
+    aqara_bathroom_2_leak_availability_problem:
+      friendly_name: "Датчик утечки воды под раковиной (Ванная)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.aqara_bathroom_2_leak_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.aqara_bathroom_2_leak_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+      
+- platform: "mqtt"
+  unique_id: aqara_bathroom_2_leak_water_leak
+  name: "! Датчик утечки воды под раковиной (Ванная)"
+  state_topic: "zigbee2mqtt/bathroom_2_leak"
+  availability_topic: "zigbee2mqtt/bathroom_2_leak/availability"
+  value_template: "{{ value_json.water_leak }}"
+  payload_on: true
+  payload_off: false
+  device_class: "moisture"
+
+- platform: "mqtt"
+  unique_id: aqara_bathroom_2_leak_battery_low
+  name: Датчик утечки воды под раковиной (Ванная)_батарейка_низкая
+  state_topic: "zigbee2mqtt/bathroom_2_leak"
+  availability_topic: "zigbee2mqtt/bathroom_2_leak/availability"
+  value_template: "{{ value_json.battery_low }}"
+  payload_on: true
+  payload_off: false
+  device_class: "battery"
+
+- platform: "mqtt"
+  unique_id: aqara_bathroom_2_leak_tamper
+  name: Датчик утечки воды под раковиной (Ванная)_тампер
+  state_topic: "zigbee2mqtt/bathroom_leak"
+  availability_topic: "zigbee2mqtt/bathroom_leak/availability"
+  value_template: "{{ value_json.tamper }}"
+  payload_on: true
+  payload_off: false

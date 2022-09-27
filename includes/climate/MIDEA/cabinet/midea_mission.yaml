@@ -1,0 +1,6 @@
+- platform: midea_ac
+  host: 10.23.31.16
+  id: !secret midea_id_2
+  token: !secret midea_token_2
+  k1: !secret midea_key_2
+  

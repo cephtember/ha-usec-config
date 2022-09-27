@@ -1,0 +1,9 @@
+- platform: mqtt
+  name: Свет над столом (Бар)
+  schema: json
+  unique_id: bar_under_light
+  state_topic: "zigbee2mqtt/bar_underlight"
+  command_topic: "zigbee2mqtt/bar_underlight/set"
+  brightness: true
+  availability_topic: "zigbee2mqtt/bar_underlight/availability"
+  qos: 0

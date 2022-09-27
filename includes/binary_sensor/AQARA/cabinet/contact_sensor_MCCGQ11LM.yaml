@@ -1,0 +1,57 @@
+- platform: template
+  sensors:
+    aqara_cabinet_left_window_availability_problem:
+      friendly_name: "Левое окно (Детская)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.aqara_cabinet_left_window_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.aqara_cabinet_left_window_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+
+- platform: "mqtt"
+  unique_id: aqara_cabinet_left_window_contact
+  name: Левое окно (Детская)
+  state_topic: "zigbee2mqtt/cabinet_left_window"
+  availability_topic: "zigbee2mqtt/cabinet_left_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"
+
+####################
+
+- platform: template
+  sensors:
+    aqara_cabinet_right_window_availability_problem:
+      friendly_name: "Правое окно (Детская)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.aqara_cabinet_right_window_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.aqara_cabinet_right_window_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+
+- platform: "mqtt"
+  unique_id: aqara_cabinet_right_window_contact
+  name: Правое окно (Детская)
+  state_topic: "zigbee2mqtt/cabinet_right_window"
+  availability_topic: "zigbee2mqtt/cabinet_right_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"

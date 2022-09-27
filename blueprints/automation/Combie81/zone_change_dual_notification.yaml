@@ -1,0 +1,72 @@
+blueprint:
+  name: 1 Person Multi-Zone Change - Dual Notification
+  description: Send a notification to a device when a person enters a different zone.
+  domain: automation
+  input:
+# Person/Device that will be tracked
+    person_entity:
+      name: Person
+      description: Person/Device that will be tracked.
+      selector:
+        entity:
+          domain: person
+# Device that will be notified
+    notify_device_1:
+      name: Mobile Device to notify
+      description: Device needs to run the official Home Assistant app to receive notifications.
+      selector:
+        device:
+          integration: mobile_app
+# Configurable message title - can leave blank to use default
+    notification_title:
+      name: Notification title (Optional)
+      description: "The title of the notification.  Default: Update from {{ person_name }}:"
+      default: "Update from {{ person_name }}:"
+# Configurable message - can leave blank to use default
+    notification_message:
+      name: Notification message (Optional)
+      description: "The message of the notification.  Default: Moved from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"
+      default: "Moved from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"
+# Service to call for device that will be notified - have to type manually as can't select from a dropdown yet
+    notify_device_2_1:
+      name: Media Player Notification Service
+      description: "Notifier service for Media Player to receive audio/tts notifications.  Example: notify.alexa_media_living_room_echo_dot"
+# Media device that will be notified
+    notify_device_2_2:
+      name: Media Player to notify
+      description: Media Player to receive audio/tts notifications.
+      selector:
+        entity:
+          domain: media_player
+
+trigger:
+  platform: state
+  entity_id: !input person_entity
+
+variables:
+# This is the state of the person when it's in this zone
+  person_entity: !input person_entity
+  person_name: "{{ states[person_entity].name }}"
+# These are the messages that will be sent to the mobile app
+  notification_title: !input notification_title
+  notification_message: !input notification_message
+
+condition:
+# Check that the old and new states(zones) are different
+  condition: template
+  value_template: "{{ trigger.from_state.state != trigger.to_state.state }}"
+
+action:
+# Send the message to the mobile app with the chosen settings
+  - type: notify
+    domain: mobile_app
+    device_id: !input notify_device_1
+    title: "{{ notification_title }}"
+    message: "{{ notification_message }}"
+# Send the message to the media device with the chosen settings using tts
+  - service: !input notify_device_2_1
+    data:
+      data:
+        type: tts
+      message: "{{ person_name }} has entered {{ trigger.to_state.state }}"
+      target: !input notify_device_2_2

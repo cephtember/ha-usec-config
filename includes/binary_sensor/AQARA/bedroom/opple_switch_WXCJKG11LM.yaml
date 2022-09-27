@@ -1,0 +1,17 @@
+- platform: template
+  sensors:
+    aqara_bedroom_switch_availability_problem:
+      friendly_name: "Выключатель (Спальня)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.aqara_bedroom_switch_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.aqara_bedroom_switch_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"

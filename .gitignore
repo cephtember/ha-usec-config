@@ -1,0 +1,16 @@
+secrets.yaml
+*.sh
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.log.*
+usec-home-48074a7f2b57.json
+/pureftpd
+/www/cam_captures
+/custom_components
+/tts
+/mosquitto
+/crt/privkey.pem
+.storage
+.cloud

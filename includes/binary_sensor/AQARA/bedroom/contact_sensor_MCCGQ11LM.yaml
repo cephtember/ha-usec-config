@@ -1,0 +1,87 @@
+- platform: template
+  sensors:
+    aqara_bedroom_left_window_availability_problem:
+      friendly_name: "Левое окно (Спальня)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.aqara_bedroom_left_window_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.aqara_bedroom_left_window_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+
+- platform: "mqtt"
+  unique_id: aqara_bedroom_left_window_contact
+  name: Левое окно (Спальня)
+  state_topic: "zigbee2mqtt/bedroom_left_window"
+  availability_topic: "zigbee2mqtt/bedroom_left_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"
+  
+####################
+
+- platform: template
+  sensors:
+    aqara_bedroom_right_window_availability_problem:
+      friendly_name: "Правое окно (Спальня)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.aqara_bedroom_right_window_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.aqara_bedroom_right_window_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+  
+- platform: "mqtt"
+  unique_id: aqara_bedroom_right_window_contact
+  name: Правое окно (Спальня)
+  state_topic: "zigbee2mqtt/bedroom_right_window"
+  availability_topic: "zigbee2mqtt/bedroom_right_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"
+  
+####################
+
+- platform: template
+  sensors:
+    aqara_bedroom_door_availability_problem:
+      friendly_name: "Дверь (Спальня)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.aqara_bedroom_door_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.aqara_bedroom_door_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+
+- platform: "mqtt"
+  unique_id: aqara_bedroom_door_contact
+  name: Дверь (Спальня)
+  state_topic: "zigbee2mqtt/bedroom_door"
+  availability_topic: "zigbee2mqtt/bedroom_door/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "door"

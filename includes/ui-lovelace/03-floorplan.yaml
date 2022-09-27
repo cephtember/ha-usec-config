@@ -1,0 +1,451 @@
+title: План дома
+icon: mdi:floor-plan 
+panel: true
+cards:
+  - type: picture-elements
+    image: 'local/images/3DFloorplan/apt-dark.png'
+    elements:
+      - entity: sensor.brightness_sun
+        image: local/images/3DFloorplan/apt-black.png
+        state_image:
+          black: local/images/3DFloorplan/apt-black.png
+          bright: local/images/3DFloorplan/apt-bright.png
+          dark: local/images/3DFloorplan/apt-dark.png
+          mid: local/images/3DFloorplan/apt-mid.png
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+        tap_action: none
+        hold_action: none
+        type: image
+
+######### CABINET ##########
+      
+      - type: image
+        entity: light.cabinet_main_lamp
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+        state_image: 
+          'on': 'local/images/3DFloorplan/cabinet-light.png'
+          'off': 'local/images/3DFloorplan/transparent.png'
+        tap_action: none
+        hold_action: none
+          
+######### BAR     ##########
+
+      - type: image
+        entity: group.bar_lights_color
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+        tap_action: none
+        hold_action: none
+        state_image: 
+          'on': 'local/images/3DFloorplan/bar-light.png'
+          'off': 'local/images/3DFloorplan/transparent.png'
+          
+######### KITCHEN ##########      
+
+      - type: image
+        entity: light.kitchen_main_lamp
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+        tap_action: none
+        hold_action: none
+        state_image: 
+          'on': 'local/images/3DFloorplan/kitchen-light.png'
+          'off': 'local/images/3DFloorplan/transparent.png'
+          
+######### LIVINGROOM ##########
+
+      - type: image
+        entity: light.living_room_main_lamp
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+        tap_action: none
+        hold_action: none
+        state_image: 
+          'on': 'local/images/3DFloorplan/livingroom-light.png'
+          'off': 'local/images/3DFloorplan/transparent.png'
+         
+######### BATHROOM ########## 
+          
+      - type: image
+        entity: light.bath_main_lamp
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+        tap_action: none
+        hold_action: none
+        state_image: 
+          'on': 'local/images/3DFloorplan/bath-light.png'
+          'off': 'local/images/3DFloorplan/transparent.png'
+          
+######### TOILET ########## 
+
+      - type: image
+        entity: light.toilet_main_lamp
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+        tap_action: none
+        hold_action: none
+        state_image: 
+          'on': 'local/images/3DFloorplan/toilet-light.png'
+          'off': 'local/images/3DFloorplan/transparent.png'
+          
+######### BEDROOM ##########
+
+      - type: image
+        entity: light.bedroom_main_lamp
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+        tap_action: none
+        hold_action: none
+        state_image: 
+          'on': 'local/images/3DFloorplan/bedroom-light.png'
+          'off': 'local/images/3DFloorplan/transparent.png'
+
+######### HALL    ##########
+
+      - type: image
+        entity: light.hall_main_lamp
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+        tap_action: none
+        hold_action: none
+        state_image: 
+          'on': 'local/images/3DFloorplan/hall-light.png'
+          'off': 'local/images/3DFloorplan/transparent.png'
+          
+######## ENTRACE ##########  
+
+      - type: image
+        entity: light.entrace_light
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+        tap_action: none
+        hold_action: none
+        state_image: 
+          'on': 'local/images/3DFloorplan/entrace-light.png'
+          'off': 'local/images/3DFloorplan/transparent.png'
+          
+######## CABINET ##########
+      
+      - type: state-icon
+        entity: binary_sensor.cabinet_left_window_contact
+        style:
+          left: 32.0%
+          top: 4%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"      
+          
+      - type: state-icon
+        entity: binary_sensor.cabinet_right_window_contact
+        style:
+          left: 38.0%
+          top: 4%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"  
+
+      - entity: sensor.aqara_cabinet_temperature
+        style:
+          color: orange
+          font-size: 12px
+          font-weight: bold
+          top: 16%
+          left: 42.5%
+        type: icon
+        icon: mdi:thermometer
+        
+      - entity: sensor.aqara_cabinet_temperature
+        style:
+          color: orange
+          font-size: 12px
+          font-weight: bold
+          top: 16%
+          left: 45.2%
+        type: state-label
+        
+      - entity: sensor.cabinet_thermostat_temperature
+        style:
+          color: green
+          font-size: 12px
+          font-weight: bold
+          top: 22%
+          left: 42.8%
+        type: icon
+        icon: mdi:thermometer-chevron-down
+        
+      - entity: sensor.cabinet_thermostat_temperature
+        style:
+          color: green
+          font-size: 12px
+          font-weight: bold
+          top: 22%
+          left: 45.2%
+        type: state-label
+        
+      - entity: sensor.aqara_cabinet_temperature_humidity
+        style:
+          color: brown
+          font-size: 12px
+          font-weight: bold
+          top: 19%
+          left: 42.5%
+        type: icon
+        icon: mdi:water-percent
+        
+      - entity: sensor.aqara_cabinet_temperature_humidity
+        style:
+          color: brown
+          font-size: 12px
+          font-weight: bold
+          top: 19%
+          left: 45%
+        type: state-label      
+        
+######### BAR ##########
+
+      - entity: sensor.sonoff_bar_temperature
+        style:
+          color: orange
+          font-size: 12px
+          font-weight: bold
+          top: 17%
+          right: 39.5%
+        type: icon
+        icon: mdi:thermometer
+          
+      - entity: sensor.sonoff_bar_temperature
+        style:
+          color: orange
+          font-size: 12px
+          font-weight: bold
+          top: 17%
+          right: 39.5%
+          icon: mdi:thermometer
+        type: state-label        
+        
+      - entity: sensor.sonoff_bar_temperature_humidity
+        style:
+          color: brown
+          font-size: 12px
+          font-weight: bold
+          top: 20%
+          right: 39.5%
+        type: icon
+        icon: mdi:water-percent
+          
+      - entity: sensor.sonoff_bar_temperature_humidity
+        style:
+          color: brown
+          font-size: 12px
+          font-weight: bold
+          top: 20%
+          right: 40%
+          icon: mdi:thermometer
+        type: state-label        
+                
+      - type: state-icon
+        entity: sensor.ikea_blinds_state
+        style:
+          left: 49.3%
+          top: 10%
+          color: yellow
+          --paper-item-icon-color: cyan
+          text-align: center
+          
+      - type: state-icon
+        entity: binary_sensor.bar_big_window_contact
+        style:
+          left: 56.2%
+          top: 4%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"
+          
+      - type: state-icon
+        entity: binary_sensor.bar_left_window_contact
+        style:
+          left: 52.2%
+          top: 4%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"
+          
+######### KITCHEN ##########        
+                 
+      - type: state-icon
+        entity: binary_sensor.aqara_kitchen_leak_water_leak
+        style:
+          left: 55.5%
+          top: 43.5%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"
+
+######### LIVINGROOM ##########              
+        
+      - entity: sensor.livingroom_temperature_temperature
+        style:
+          color: orange
+          font-size: 12px
+          font-weight: bold
+          top: 67%
+          left: 38.5%
+        type: icon
+        icon: mdi:thermometer
+          
+      - entity: sensor.livingroom_temperature_temperature
+        style:
+          color: orange
+          font-size: 12px
+          font-weight: bold
+          top: 67%
+          left: 41%
+          icon: mdi:thermometer
+        type: state-label        
+        
+      - entity: sensor.livingroom_temperature_humidity
+        style:
+          color: brown
+          font-size: 12px
+          font-weight: bold
+          top: 70%
+          left: 38.5%
+        type: icon
+        icon: mdi:water-percent
+          
+      - entity: sensor.livingroom_temperature_humidity
+        style:
+          color: brown
+          font-size: 12px
+          font-weight: bold
+          top: 70%
+          left: 40.8%
+          icon: mdi:thermometer
+        type: state-label      
+
+      - type: state-icon
+        entity: binary_sensor.aqara_livingroom_leak_water_leak
+        style:
+          left: 42%
+          top: 31%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"
+
+######### BATHROOM ##########     
+
+      - type: state-icon
+        entity: binary_sensor.aqara_bathroom_leak_water_leak
+        style:
+          left: 52.5%
+          top: 51%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"
+
+######### TOILET ##########  
+######### BEDROOM ##########
+
+      - type: state-icon
+        entity: binary_sensor.bedroom_left_window_contact
+        style:
+          left: 65.0%
+          top: 24%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"      
+          
+      - type: state-icon
+        entity: binary_sensor.bedroom_right_window_contact
+        style:
+          left: 69.0%
+          top: 24%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"  
+          
+      - type: state-icon
+        entity: binary_sensor.aqara_bedroom_leak_water_leak
+        style:
+          left: 70%
+          top: 31%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"
+
+######### HALL    ##########
+  
+      - type: state-icon
+        entity: binary_sensor.bedroom_door_contact
+        style:
+          top: 66%
+          left: 63%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"
+          
+      - type: state-icon
+        entity: binary_sensor.toilet_door_contact
+        style:
+          top: 66%
+          left: 56.5%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"
+          
+      - type: state-icon
+        entity: binary_sensor.bath_door_contact
+        style:
+          top: 66%
+          left: 47.0%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"
+
+######### ENTRACE ##########  
+
+      - type: state-icon
+        entity: binary_sensor.hikvision_custom_cell_motion_detection
+        icon: "mdi:run"
+        style:
+          top: 82.5%
+          left: 63%
+          --iron-icon-stroke-color: "#969696"
+          border-radius: 50%
+          text-align: center
+          background-color: "rgba(255, 255, 255, 0.3)"

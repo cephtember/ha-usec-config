@@ -1,0 +1,13 @@
+- platform: manual
+  name: Home Alarm
+  #code: 2331
+  code_arm_required: false # Don't need code to arm.
+  disarm_after_trigger: false # Leave alarm armed after triggering.
+  arming_time: 30 # Time to leave the house after arming.
+  delay_time: 60 # Time to turn off after entering the house.
+  trigger_time: 600 # How long the alarm goes off for.
+  disarmed:
+    trigger_time: 0 # Can't be triggered when disarmed.
+  # armed_home:
+  #   arming_time: 0 # Arm instantly when at home.
+  #   delay_time: 0 # Trigger instantly when at home.

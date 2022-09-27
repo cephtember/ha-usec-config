@@ -1,0 +1,8 @@
+docker pull homeassistant/home-assistant:stable  # if this returns "Image is up to date" then you can stop here
+docker stop home-assistant  # stop the running container
+docker rm home-assistant  # remove it from Docker's list of containers
+docker run  -e "DISABLE_JEMALLOC=true" -d --name="home-assistant" \
+            -v /mnt/HD/HD_a2/Nas_Prog/ha:/config \
+            -v /etc/localtime:/etc/localtime:ro \
+            --net=host  --restart=always \
+            homeassistant/home-assistant:stable

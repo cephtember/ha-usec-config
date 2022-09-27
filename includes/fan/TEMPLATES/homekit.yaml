@@ -1,0 +1,25 @@
+- platform: template 
+  fans:
+    humidifier_fan:
+      friendly_name: "Humidifier"
+      value_template: "{{ states('input_boolean.state') }}"
+      percentage_template: "{{ states('input_number.percentage') }}"
+      preset_mode_template: "{{ states('input_select.preset_mode') }}"
+      oscillating_template: "{{ states('input_select.osc') }}"
+      direction_template: "{{ states('input_select.direction') }}"
+      turn_on:
+        service: fan.turn_on
+        target:
+          entity_id: fan.zhimi_airpurifier_ma4
+        data:
+          preset_mode: auto
+      turn_off:
+        service: fan.turn_off
+        target:
+          entity_id: fan.zhimi_airpurifier_ma4
+      set_percentage:
+        service: fan.set_percentage
+        target:
+          entity_id: fan.zhimi_airpurifier_ma4
+        data:
+          percentage: "{{ percentage }}"

@@ -1,0 +1,64 @@
+- alias: "[Электроэнергия] - Отчет электроэнергии - ежедневный"
+  id: utility_meter_energy_daily
+  initial_state: on
+  trigger:
+    platform: time
+    at: '23:57:59'
+  action:
+#    - service: notify.mobile_app_vladimir_filatov_mi9se
+#      data:
+#        title: "Отчет электроэнергии"
+#        message: "Сегодня было потрачено {{ states('sensor.pzem04_energy_today') }} кВт, общей стоимостью {{ states('sensor.house_cost_daily') }} Сум"
+#        data:
+#          color: "#FF9933"
+#          sticky: "true"
+#          tag: tag
+#          ttl: 0
+
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: "Отчет электроэнергии"
+        message: "Сегодня было потрачено {{ states('sensor.pzem04_energy_today') }} кВт, общей стоимостью {{ states('sensor.house_cost_daily') }} Сум"
+        data:
+          color: "#FF9933"
+          sticky: "true"
+          tag: tag
+          ttl: 0
+
+          
+    - service: notify.mobile_app_tanzilyas_iphone
+      data:
+        title: "Отчет электроэнергии"
+        message: "Сегодня было потрачено {{ states('sensor.pzem04_energy_today') }} кВт, общей стоимостью {{ states('sensor.house_cost_daily') }} Сум"
+        data:
+          color: "#FF9933"
+          sticky: "true"
+          tag: tag
+          ttl: 0          
+          
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Отчет об электроэнергии</b>"
+        message: > 
+          Сегодня было потрачено <b>{{ states('sensor.pzem04_energy_today') }}</b> кВт 
+          
+          Сумма: <b>{{ states('sensor.house_cost_daily') }}</b> Сум
+          
+          Кондиционер в детской: <b>{{ states('sensor.ac_cost_daily') }}</b> Сум
+          
+          Кондиционер в спальне: <b>{{ states('sensor.ac_bedroom_cost_daily') }}</b> Сум
+          
+          Полотенцесушитель: <b>{{ states('sensor.bath_radiator_cost_daily') }}</b> Сум
+          
+          Стиральная машинка: <b>{{ states('sensor.washer_cost_daily') }}</b> Сум
+          
+          Вчера было потрачено <b>{{ states('sensor.pzem04_energy_yesterday') }}</b> кВт
+          
+          Сумма: <b>{{ states('sensor.house_cost_yesterday') }}</b> Сум
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false  
+        
+    
+        

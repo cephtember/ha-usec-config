@@ -1,0 +1,40 @@
+- alias: "[ Стиральная машина ] - Отправлять приблизительный остаток времени до конца стирки"
+  id: send_notify_if_washer_sensor_changed
+  mode: single
+  trigger:
+      platform: state
+      entity_id: sensor.washer_completion_time
+  condition: []
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Стиральная машинка запущена</b>"
+        message: >
+          "Приблизительное время окончания: {{ states('sensor.washer_completion_time') }}"
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+    
+    - delay: 01:40:00
+    
+- alias: "[ Стиральная машина ] - Отправлять сообщение при окончании стирки"
+  id: send_notify_if_washer_job_sensor_changed
+  mode: single
+  trigger:
+      platform: state
+      entity_id: sensor.washer_job_state
+      to: 'finish'
+  condition: []
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Стирка закончена</b>"
+        message: >
+          "Готовьте тазики и сушилки"
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+    
+    - delay: 01:40:00

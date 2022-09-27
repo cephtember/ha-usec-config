@@ -1,0 +1,9 @@
+type: custom:mini-media-player
+entity: media_player.spotify
+icon: mdi:spotify
+hide:
+  power_state: true
+tts:
+  platform: google_translate
+  type: announce
+  entity_id: media_player.everywhere

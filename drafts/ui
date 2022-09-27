@@ -1,0 +1,1091 @@
+views:
+  - title: Home
+    type: custom:vertical-layout
+    path: home
+    visible:
+      - user: 2a9d05249ed643d3b6e6d8faccec04b9
+      - user: a4d182c7d39643dfb7b8443488d7bbdb
+      - user: bd6fbf749f5f4a0abd9192cfb1d99922
+    icon: hass:home
+    badges: []
+    cards:
+      - type: custom:button-card
+        name: Общая информация
+      - type: grid
+        cards:
+          - type: grid
+            cards:
+              - type: custom:button-card
+                entity: group.all_lights
+                icon: mdi:home
+                aspect_ratio: 1/1
+                name: Квартира
+                show_name: false
+              - type: custom:button-card
+                entity: climate.cabinet_midea_ac
+                icon: mdi:air-conditioner
+                aspect_ratio: 1/1
+                name: Детская кондиционер
+                show_state: true
+                styles:
+                  card:
+                    - font-size: 8px
+                  grid:
+                    - position: relative
+                  custom_fields:
+                    notification:
+                      - background-color: |
+                          [[[
+                            if (states['sensor.livingroom_temperature_temperature'].state > 21 && states['sensor.livingroom_temperature_temperature'].state < 28 ) return "green";
+                            if (states['sensor.livingroom_temperature_temperature'].state > 27) return "red";
+                            else return "blue";
+                          ]]]
+                      - border-radius: 50%
+                      - position: absolute
+                      - left: 60%
+                      - top: 10%
+                      - height: 20px
+                      - width: 20px
+                      - font-size: 8px
+                      - line-height: 20px
+                custom_fields:
+                  notification: >
+                    [[[ return 
+                    (states['climate.cabinet_midea_ac'].attributes.temperature
+                    )  ]]]
+                show_name: false
+              - type: custom:button-card
+                entity: vacuum.xiaomi_1c
+                icon: mdi:robot-vacuum
+                aspect_ratio: 1/1
+                name: Пылесос
+                show_name: false
+                show_state: true
+                styles:
+                  card:
+                    - font-size: 8px
+              - type: custom:button-card
+                entity: fan.zhimi_airpurifier_ma4
+                icon: mdi:air-humidifier
+                aspect_ratio: 1/1
+                name: Очиститель
+                show_name: false
+                show_label: true
+                label: |
+                  [[[
+                    return states['fan.zhimi_airpurifier_ma4'].attributes.speed; 
+                  ]]]
+                styles:
+                  card:
+                    - font-size: 8px
+                  grid:
+                    - position: relative
+                  custom_fields:
+                    notification:
+                      - background-color: |
+                          [[[
+                            if (states['sensor.zhimi_airpurifier_ma4_pm2_5'].state < 100)
+                              return "green";
+                            return "red";
+                          ]]]
+                      - border-radius: 50%
+                      - position: absolute
+                      - left: 60%
+                      - top: 10%
+                      - height: 20px
+                      - width: 20px
+                      - font-size: 8px
+                      - line-height: 20px
+                custom_fields:
+                  notification: >
+                    [[[ return 
+                    (states['sensor.zhimi_airpurifier_ma4_pm2_5'].state )  ]]]
+            columns: 2
+          - type: custom:button-card
+            entity: group.living_climate
+            icon: mdi:home-thermometer
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            double_tap_action:
+              action: none
+            aspect_ratio: 1/1
+            name: Температура
+            styles:
+              card:
+                - border-radius: 10%
+                - padding: 10%
+                - color: ivory
+                - font-size: 10px
+                - text-shadow: 0px 0px 5px black
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: >-
+                    "n n" "living living" "bar bar" "cabinet cabinet" "bedroom
+                    bedroom"
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr min-content min-content min-content min-content
+              name:
+                - font-weight: bold
+                - font-size: 13px
+                - color: white
+                - align-self: middle
+                - justify-self: start
+                - padding-bottom: 4px
+              custom_fields:
+                living:
+                  - padding-bottom: 2px
+                  - align-self: middle
+                  - justify-self: start
+                  - '--text-color-sensor': >-
+                      [[[ if
+                      (states["sensor.livingroom_temperature_temperature"].state
+                      > 27) return "red"; ]]]
+                bar:
+                  - padding-bottom: 2px
+                  - align-self: middle
+                  - justify-self: start
+                  - '--text-color-sensor': >-
+                      [[[ if (states["sensor.sonoff_bar_temperature"].state >
+                      27) return "red"; ]]]
+                cabinet:
+                  - align-self: middle
+                  - justify-self: start
+                  - '--text-color-sensor': >-
+                      [[[ if (states["sensor.aqara_cabinet_temperature"].state >
+                      27) return "red"; ]]]
+                bedroom:
+                  - align-self: middle
+                  - justify-self: start
+                  - '--text-color-sensor': >-
+                      [[[ if
+                      (states["sensor.bedroom_temperature_temperature"].state >
+                      27) return "red"; ]]]
+            custom_fields:
+              living: |
+                [[[
+                  return `<ha-icon
+                    icon="mdi:sofa"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span>Зал:  <span style="color: var(--text-color-sensor);">${states['sensor.livingroom_temperature_temperature'].state}°C</span></span>`
+                ]]]
+              bar: |
+                [[[
+                  return `<ha-icon
+                    icon="mdi:glass-mug"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span>Бар:  <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_bar_temperature'].state}°C</span></span>`
+                ]]]
+              cabinet: |
+                [[[
+                  return `<ha-icon
+                    icon="mdi:account-child-outline"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span>Детская:  <span style="color: var(--text-color-sensor);">${states['sensor.aqara_cabinet_temperature'].state}°C</span></span>`
+                ]]]
+              bedroom: |
+                [[[
+                  return `<ha-icon
+                    icon="mdi:door-closed"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span>Спальня:  <span style="color: var(--text-color-sensor);">${states['sensor.bedroom_temperature_temperature'].state}°C</span></span>`
+                ]]]
+          - type: grid
+            cards:
+              - type: custom:button-card
+                entity: climate.cabinet_thermostat
+                icon: mdi:thermostat
+                aspect_ratio: 1/1
+                name: Теплый пол
+                show_name: false
+                show_state: true
+                styles:
+                  card:
+                    - font-size: 8px
+                  grid:
+                    - position: relative
+                  custom_fields:
+                    notification:
+                      - background-color: |
+                          [[[
+                            if (states['sensor.cabinet_floor_temperature_temperature'].state > 21 && states['sensor.livingroom_temperature_temperature'].state < 31 ) return "green";
+                            if (states['sensor.cabinet_floor_temperature_temperature'].state > 30) return "red";
+                            else return "blue";
+                          ]]]
+                      - border-radius: 50%
+                      - position: absolute
+                      - left: 60%
+                      - top: 10%
+                      - height: 20px
+                      - width: 20px
+                      - font-size: 8px
+                      - line-height: 20px
+                custom_fields:
+                  notification: >
+                    [[[ return 
+                    (states['climate.cabinet_thermostat'].attributes.temperature
+                    )  ]]]
+              - type: custom:button-card
+                entity: group.entrace_lights
+                icon: mdi:door-open
+                aspect_ratio: 1/1
+                name: Подъезд
+                show_name: false
+              - type: custom:button-card
+                entity: group.bath_lights
+                icon: mdi:shield-outline
+                aspect_ratio: 1/1
+                name: Ванная
+                show_name: false
+              - type: custom:button-card
+                entity: camera.hikvision_ds_2cd1143g0_i_mainstream
+                icon: mdi:camera
+                aspect_ratio: 1/1
+                name: Камеры
+                show_name: false
+                tap_action:
+                  action: navigate
+                  navigation_path: cameras
+            columns: 2
+      - type: grid
+        columns: 2
+        cards:
+          - type: grid
+            cards:
+              - type: custom:button-card
+                entity: group.livingroom_lights
+                icon: mdi:sofa
+                aspect_ratio: 1/1
+                name: Зал
+                show_name: false
+                tap_action:
+                  action: navigate
+                  navigation_path: livingroom
+              - type: custom:button-card
+                entity: group.kitchen_lights
+                icon: mdi:table-chair
+                aspect_ratio: 1/1
+                name: Кухня
+                show_name: false
+                tap_action:
+                  action: navigate
+                  navigation_path: kitchen
+              - type: custom:button-card
+                entity: group.bedroom_lights
+                icon: mdi:bed
+                aspect_ratio: 1/1
+                name: Спальня
+                show_name: false
+                tap_action:
+                  action: navigate
+                  navigation_path: bedroom
+              - type: custom:button-card
+                entity: group.cabinet_lights
+                icon: mdi:account-child-outline
+                aspect_ratio: 1/1
+                name: Детская
+                show_name: false
+                tap_action:
+                  action: navigate
+                  navigation_path: cabinet
+            columns: 2
+          - type: grid
+            cards:
+              - type: custom:button-card
+                entity: group.bar_lights
+                icon: mdi:glass-mug
+                aspect_ratio: 1/1
+                name: Бар
+                show_name: false
+                tap_action:
+                  action: navigate
+                  navigation_path: bar
+              - type: custom:button-card
+                entity: group.hall_lights
+                icon: mdi:door-closed
+                aspect_ratio: 1/1
+                name: Прихожая
+                show_name: false
+                tap_action:
+                  action: navigate
+                  navigation_path: hall
+              - type: custom:button-card
+                entity: group.bath_lights
+                icon: mdi:shower
+                aspect_ratio: 1/1
+                name: Ванная
+                show_name: false
+                tap_action:
+                  action: navigate
+                  navigation_path: bath
+              - type: custom:button-card
+                entity: group.toilet_lights
+                icon: mdi:toilet
+                aspect_ratio: 1/1
+                name: Туалет
+                show_name: false
+                tap_action:
+                  action: navigate
+                  navigation_path: toilet
+            columns: 2
+      - type: glance
+        entities:
+          - entity: sensor.ac_cost_daily
+          - entity: sensor.bath_radiator_cost_daily
+          - entity: sensor.house_cost_daily
+        state_color: false
+        columns: 3
+        show_name: false
+        show_icon: true
+        show_state: true
+      - type: grid
+        cards:
+          - type: gauge
+            entity: sensor.aqara_cabinet_temperature
+            min: 0
+            max: 35
+            severity:
+              green: 22
+              yellow: 26
+              red: 28
+            name: Детская
+            needle: true
+          - type: gauge
+            entity: sensor.livingroom_xiaomi_purifier_temperature
+            min: 0
+            max: 35
+            name: Зал
+            needle: true
+            severity:
+              green: 22
+              yellow: 26
+              red: 28
+          - type: gauge
+            entity: sensor.bedroom_temperature_temperature
+            min: 0
+            max: 35
+            name: Спальня
+            needle: true
+            severity:
+              green: 22
+              yellow: 26
+              red: 28
+  - title: Зал
+    path: livingroom
+    type: custom:vertical-layout
+    visible: []
+    badges: []
+    cards:
+      - type: custom:button-card
+        name: Зал
+      - type: grid
+        cards:
+          - type: grid
+            cards:
+              - type: custom:button-card
+                icon: mdi:arrow-left-circle
+                aspect_ratio: 1/1
+                name: Назад
+                show_name: true
+                tap_action:
+                  action: navigate
+                  navigation_path: home
+              - type: custom:button-card
+                entity: light.living_room_secondary_lamp
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+              - type: custom:button-card
+                entity: light.living_room_bra
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+              - type: custom:button-card
+                entity: light.living_room_rail_lamps
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+            columns: 2
+            square: true
+          - type: custom:button-card
+            entity: light.living_room_main_lamp
+            aspect_ratio: 1/1
+            show_name: false
+            show_label: true
+          - type: grid
+            cards:
+              - type: custom:button-card
+                entity: vacuum.xiaomi_1c
+                icon: mdi:robot-vacuum
+                aspect_ratio: 1/1
+                name: Пылесос
+                show_name: false
+                show_state: true
+                styles:
+                  card:
+                    - font-size: 8px
+              - type: custom:button-card
+                entity: fan.zhimi_airpurifier_ma4
+                icon: mdi:air-humidifier
+                aspect_ratio: 1/1
+                name: Очиститель
+                show_name: false
+                show_label: true
+                label: |
+                  [[[
+                    return states['fan.zhimi_airpurifier_ma4'].attributes.speed; 
+                  ]]]
+                styles:
+                  card:
+                    - font-size: 8px
+                  grid:
+                    - position: relative
+                  custom_fields:
+                    notification:
+                      - background-color: |
+                          [[[
+                            if (states['sensor.zhimi_airpurifier_ma4_pm2_5'].state < 100)
+                              return "green";
+                            return "red";
+                          ]]]
+                      - border-radius: 50%
+                      - position: absolute
+                      - left: 60%
+                      - top: 10%
+                      - height: 20px
+                      - width: 20px
+                      - font-size: 8px
+                      - line-height: 20px
+                custom_fields:
+                  notification: >
+                    [[[ return 
+                    (states['sensor.zhimi_airpurifier_ma4_pm2_5'].state )  ]]]
+              - type: custom:button-card
+                entity: switch.living_room_xbox
+                aspect_ratio: 1/1
+                show_name: false
+                styles:
+                  card:
+                    - font-size: 8px
+              - type: custom:button-card
+                entity: switch.living_room_tv
+                aspect_ratio: 1/1
+                name: Телевизор
+                show_name: false
+                show_label: true
+            columns: 2
+            square: true
+        columns: 3
+        square: true
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.livingroom_temperature_humidity
+            line_color: blue
+            name: Влажность
+            line_width: 8
+            font_size: 75
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.livingroom_temperature_pressure
+            line_color: '#e74c3c'
+            name: Давление
+            line_width: 8
+            font_size: 75
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.livingroom_temperature_temperature
+            line_color: var(--accent-color)
+            name: Температура
+            line_width: 8
+            font_size: 75
+      - type: entities
+        entities:
+          - type: custom:mini-media-player
+            name: Spotify
+            entity: media_player.spotify_vladimir_filatov
+            group: true
+            hide:
+              controls: true
+  - title: Спальня
+    path: bedroom
+    type: custom:vertical-layout
+    visible: []
+    badges: []
+    cards:
+      - type: custom:button-card
+        name: Спальня
+      - type: grid
+        cards:
+          - type: grid
+            cards:
+              - type: custom:button-card
+                icon: mdi:arrow-left-circle
+                aspect_ratio: 1/1
+                name: Назад
+                show_name: true
+                tap_action:
+                  action: navigate
+                  navigation_path: home
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: light.bedroom_main_lamp_nightlight
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+            columns: 2
+            square: true
+          - type: custom:button-card
+            entity: light.bedroom_main_lamp
+            aspect_ratio: 1/1
+            hold_action:
+              action: none
+            double_tap_action:
+              action: none
+            name: ' '
+          - type: grid
+            cards:
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: switch.bedroom_tv
+                aspect_ratio: 1/1
+                name: Телевизор
+                show_name: false
+                show_label: true
+              - type: custom:button-card
+                entity: light.bedroom_rail_lamps
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+            columns: 2
+            square: true
+        columns: 3
+        square: true
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.bedroom_temperature_humidity
+            line_color: blue
+            name: Влажность
+            line_width: 8
+            font_size: 75
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.bedroom_temperature_pressure
+            line_color: '#e74c3c'
+            name: Давление
+            line_width: 8
+            font_size: 75
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.bedroom_temperature_temperature
+            line_color: var(--accent-color)
+            name: Температура
+            line_width: 8
+            font_size: 75
+      - type: horizontal-stack
+        cards:
+          - type: button
+            tap_action:
+              action: none
+            entity: binary_sensor.bedroom_left_window_contact
+            show_state: true
+            show_name: false
+            show_icon: true
+            hold_action:
+              action: none
+          - type: button
+            tap_action:
+              action: none
+            entity: binary_sensor.bedroom_right_window_contact
+            hold_action:
+              action: none
+            name: ' '
+            show_name: false
+            show_state: true
+          - type: button
+            tap_action:
+              action: none
+            entity: binary_sensor.aqara_bedroom_leak_water_leak
+            show_state: true
+            show_name: false
+            hold_action:
+              action: none
+  - title: Детская
+    path: cabinet
+    type: custom:vertical-layout
+    visible: []
+    badges: []
+    cards:
+      - type: custom:button-card
+        name: Детская
+      - type: grid
+        cards:
+          - type: grid
+            cards:
+              - type: custom:button-card
+                icon: mdi:arrow-left-circle
+                aspect_ratio: 1/1
+                name: Назад
+                show_name: true
+                tap_action:
+                  action: navigate
+                  navigation_path: home
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: climate.cabinet_midea_ac
+                icon: mdi:air-conditioner
+                aspect_ratio: 1/1
+                name: Детская кондиционер
+                show_state: true
+                styles:
+                  card:
+                    - font-size: 8px
+                  grid:
+                    - position: relative
+                  custom_fields:
+                    notification:
+                      - background-color: |
+                          [[[
+                            if (states['sensor.livingroom_temperature_temperature'].state > 21 && states['sensor.livingroom_temperature_temperature'].state < 28 ) return "green";
+                            if (states['sensor.livingroom_temperature_temperature'].state > 27) return "red";
+                            else return "blue";
+                          ]]]
+                      - border-radius: 50%
+                      - position: absolute
+                      - left: 60%
+                      - top: 10%
+                      - height: 20px
+                      - width: 20px
+                      - font-size: 8px
+                      - line-height: 20px
+                custom_fields:
+                  notification: >
+                    [[[ return 
+                    (states['climate.cabinet_midea_ac'].attributes.temperature
+                    )  ]]]
+                show_name: false
+              - type: custom:button-card
+                entity: light.cabinet_main_lamp_nightlight
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+            columns: 2
+            square: true
+          - type: custom:button-card
+            entity: light.cabinet_main_lamp
+            aspect_ratio: 1/1
+            hold_action:
+              action: none
+            double_tap_action:
+              action: none
+            name: ' '
+          - type: grid
+            cards:
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: light.cabinet_rail_lamps
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+              - type: custom:button-card
+                entity: climate.cabinet_thermostat
+                icon: mdi:thermostat
+                aspect_ratio: 1/1
+                name: Теплый пол
+                show_name: false
+                show_state: true
+                styles:
+                  card:
+                    - font-size: 8px
+                  grid:
+                    - position: relative
+                  custom_fields:
+                    notification:
+                      - background-color: |
+                          [[[
+                            if (states['sensor.cabinet_floor_temperature_temperature'].state > 21 && states['sensor.livingroom_temperature_temperature'].state < 31 ) return "green";
+                            if (states['sensor.cabinet_floor_temperature_temperature'].state > 30) return "red";
+                            else return "blue";
+                          ]]]
+                      - border-radius: 50%
+                      - position: absolute
+                      - left: 60%
+                      - top: 10%
+                      - height: 20px
+                      - width: 20px
+                      - font-size: 8px
+                      - line-height: 20px
+                custom_fields:
+                  notification: >
+                    [[[ return 
+                    (states['climate.cabinet_thermostat'].attributes.temperature
+                    )  ]]]
+            columns: 2
+            square: true
+        columns: 3
+        square: true
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.aqara_cabinet_temperature_humidity
+            line_color: blue
+            name: Влажность
+            line_width: 8
+            font_size: 75
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.aqara_cabinet_temperature_pressure
+            line_color: '#e74c3c'
+            name: Давление
+            line_width: 8
+            font_size: 75
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.aqara_cabinet_temperature
+            line_color: var(--accent-color)
+            name: Температура
+            line_width: 8
+            font_size: 75
+      - type: horizontal-stack
+        cards:
+          - type: button
+            tap_action:
+              action: none
+            entity: binary_sensor.cabinet_left_window_contact
+            show_name: false
+            show_state: true
+            hold_action:
+              action: none
+          - type: button
+            tap_action:
+              action: none
+            entity: binary_sensor.cabinet_right_window_contact
+            show_name: false
+            show_state: true
+            hold_action:
+              action: none
+  - title: Кухня
+    path: kitchen
+    type: custom:vertical-layout
+    visible: []
+    badges: []
+    cards:
+      - type: custom:button-card
+        name: Кухня
+      - type: grid
+        cards:
+          - type: grid
+            cards:
+              - type: custom:button-card
+                icon: mdi:arrow-left-circle
+                aspect_ratio: 1/1
+                name: Назад
+                show_name: true
+                tap_action:
+                  action: navigate
+                  navigation_path: home
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: light.kitchen_main_lamp_nightlight
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+            columns: 2
+            square: true
+          - type: custom:button-card
+            entity: light.kitchen_main_lamp
+            aspect_ratio: 1/1
+            hold_action:
+              action: none
+            double_tap_action:
+              action: none
+            name: ' '
+          - type: grid
+            cards:
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: light.kitchen_underlight
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+            columns: 2
+            square: true
+        columns: 3
+        square: true
+      - type: horizontal-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: button
+                tap_action:
+                  action: none
+                entity: binary_sensor.kitchen_smoke_sensor
+                show_state: true
+                show_name: false
+                show_icon: true
+                hold_action:
+                  action: none
+              - type: button
+                tap_action:
+                  action: none
+                entity: binary_sensor.kitchen_gas_sensor
+                hold_action:
+                  action: none
+                name: ' '
+                show_name: false
+                show_state: true
+              - type: button
+                tap_action:
+                  action: none
+                entity: binary_sensor.aqara_kitchen_leak_water_leak
+                show_state: true
+                show_name: false
+                hold_action:
+                  action: none
+  - title: Бар
+    path: bar
+    type: custom:vertical-layout
+    visible: []
+    badges: []
+    cards:
+      - type: custom:button-card
+        name: Бар
+      - type: grid
+        cards:
+          - type: grid
+            cards:
+              - type: custom:button-card
+                icon: mdi:arrow-left-circle
+                aspect_ratio: 1/1
+                name: Назад
+                show_name: true
+                tap_action:
+                  action: navigate
+                  navigation_path: home
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: light.bar_underlight
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+            columns: 2
+            square: true
+          - type: custom:button-card
+            entity: light.bar_main_lamp
+            aspect_ratio: 1/1
+            hold_action:
+              action: none
+            double_tap_action:
+              action: none
+            name: ' '
+          - type: grid
+            cards:
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: null
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                styles:
+                  card:
+                    - filter: opacity(0%)
+              - type: custom:button-card
+                entity: cover.ikea_blinds
+                aspect_ratio: 1/1
+                show_name: false
+                show_label: true
+                tap_action:
+                  action: call-service
+                  service: cover.set_cover_position
+                  service_data:
+                    position: >
+                      [[[ if
+                      (states['cover.ikea_blinds'].attributes.current_position >
+                      94) return 30; else return 95; ]]]
+                    entity_id: cover.ikea_blinds
+                icon: >
+                  [[[ if
+                  (states['cover.ikea_blinds'].attributes.current_position > 94)
+                  return "mdi:blinds-open"; else return "mdi:blinds"; ]]]
+            columns: 2
+            square: true
+        columns: 3
+        square: true
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.sonoff_bar_temperature_humidity
+            line_color: blue
+            name: Влажность
+            line_width: 8
+            font_size: 75
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.aqara_cabinet_temperature_pressure
+            line_color: '#e74c3c'
+            name: Давление
+            line_width: 8
+            font_size: 75
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.sonoff_bar_temperature
+            line_color: var(--accent-color)
+            name: Температура
+            line_width: 8
+            font_size: 75
+      - type: horizontal-stack
+        cards:
+          - type: button
+            tap_action:
+              action: none
+            entity: binary_sensor.aqara_bar_left_window_contact
+            show_state: true
+            show_name: false
+            show_icon: true
+            hold_action:
+              action: none
+          - type: button
+            tap_action:
+              action: none
+            entity: binary_sensor.aqara_bar_big_window_contact
+            hold_action:
+              action: none
+            name: ' '
+            show_name: false
+            show_state: true
+  - title: Камеры
+    path: cameras
+    type: custom:vertical-layout
+    visible: []
+    badges: []
+    cards:
+      - type: picture-entity
+        entity: light.entrace_light
+        camera_image: camera.embedded_net_vis_mainstream
+        camera_view: live
+        tap_action:
+          action: toggle
+        hold_action:
+          action: none
+      - type: picture-entity
+        camera_image: camera.hikvision_ds_2cd1143g0_i_substream
+        entity: script.photo_hikvision_telegram
+        show_state: false
+        tap_action:
+          action: call-service
+          service: script.photo_hikvision_telegram
+          service_data: {}
+          target: {}
+        hold_action:
+          action: none
+        camera_view: live

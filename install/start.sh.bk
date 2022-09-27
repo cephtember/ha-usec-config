@@ -1,0 +1,15 @@
+docker run --name="mosquitto" --net=host -v /shares/Volume_1/Nas_Prog/ha/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf -v /shares/Volume_1/Nas_Prog/ha/mosquitto/data:/mosquitto/data -v /shares/Volume_1/Nas_Prog/ha/mosquitto/log:/mosquitto/log eclipse-mosquitto
+#https://registry.hub.docker.com/r/gists/pure-ftpd
+docker run \
+    -d \
+    --name pure-ftpd \
+    --net=host \
+    --restart=always \
+    -p 30000-30009:30000-30009 \
+    -v $(pwd)/pureftpd:/etc/pureftpd \
+    -v /mnt/HD/HD_a2/Doorbell:/home/ftpuser \
+    gists/pure-ftpd
+
+docker exec -it pure-ftpd chown ftpuser:ftpuser -R /home/ftpuser
+docker exec -it pure-ftpd pure-pw useradd doorbell -m -u ftpuser -d /home/ftpuser
+docker exec -it pure-ftpd pure-pw mkdb

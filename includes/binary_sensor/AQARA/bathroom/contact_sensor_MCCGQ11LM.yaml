@@ -1,0 +1,27 @@
+- platform: template
+  sensors:
+    aqara_bath_door_availability_problem:
+      friendly_name: "Дверь (Ванная)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.aqara_bath_door_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.aqara_bath_door_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+  
+- platform: "mqtt"
+  unique_id: aqara_bath_door_contact
+  name: Дверь(Ванная)
+  state_topic: "zigbee2mqtt/bath_door"
+  availability_topic: "zigbee2mqtt/bath_door/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "door"

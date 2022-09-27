@@ -1,0 +1,43 @@
+- platform: template
+  sensors:
+    hall_thermostat_state:
+      friendly_name: 'Теплый пол (Ванная)_status'
+      value_template: >-
+        {% set state_status = states('climate.hall_thermostat') %}
+        {% if state_status == 'heat' %}
+          Обогрев
+        {% elif state_status == 'on' %}
+          Включен
+        {% elif state_status == 'off' %}
+          Выключен
+        {% endif %}
+      icon_template: >-
+        {% set state_status = states('climate.hall_thermostat') %}
+        {% if state_status == 'heat' %}
+          mdi:home-thermometer
+        {% elif state_status == 'on' %}
+          mdi:home-thermometer
+        {% elif state_status == 'off' %}
+          mdi:home-thermometer-outline
+        {% endif %}
+
+    cabinet_thermostat_state:
+      friendly_name: 'Теплый пол (Детская)_status'
+      value_template: >-
+        {% set state_status = states('climate.cabinet_thermostat') %}
+        {% if state_status == 'heat' %}
+          Обогрев
+        {% elif state_status == 'on' %}
+          Включен
+        {% elif state_status == 'off' %}
+          Выключен
+        {% endif %}
+      icon_template: >-
+        {% set state_status = states('climate.cabinet_thermostat') %}
+        {% if state_status == 'heat' %}
+          mdi:home-thermometer
+        {% elif state_status == 'on' %}
+          mdi:home-thermometer
+        {% elif state_status == 'off' %}
+          mdi:home-thermometer-outline
+        {% endif %}

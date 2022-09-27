@@ -1,0 +1,9 @@
+You must compile ffmpeg with 
+apt install libgnutlsxx28 libgnutls28-dev build-essential pkg-config libx264-dev
+./configure --enable-gnutls --enable-libx264 --enable-gpl
+make
+make install
+
+Than start it`s with
+ffmpeg -i rtsp://admin:password@10.23.31.3:554/ISAPI/Streaming/Channels/102 -c:v libx264 -preset veryfast -b:v 3500k -maxrate 3500k -bufsize 7000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -f flv  'rtmps://dc4-1.rtmp.t.me/s/Key'
+

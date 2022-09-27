@@ -1,0 +1,17 @@
+- platform: template
+  sensors:
+    cabinet_thermostat_availability_problem:
+      friendly_name: "Теплый пол (Детская)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.cabinet_thermostat_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.cabinet_thermostat_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"

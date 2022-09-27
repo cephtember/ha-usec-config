@@ -1,0 +1,81 @@
+#db_url: !secret db_url
+include:
+  domains:
+      - updater
+  entities:
+    ### БАР
+    - cover.ikea_blinds
+    - sensor.sonoff_bar_temperature
+    - sensor.sonoff_bar_temperature_humidity
+    - binary_sensor.bar_left_window_contact
+    - binary_sensor.bar_big_window_contact
+    - binary_sensor.bar_small_window_contact
+    - binary_sensor.bar_motion
+
+    ### ВАННАЯ
+    - binary_sensor.aqara_bathroom_leak_water_leak
+    - binary_sensor.aqara_bathroom_2_leak_water_leak
+    - binary_sensor.bath_door_contact
+
+    ### ЗАЛ
+    - sensor.livingroom_xiaomi_purifier_temperature
+    - binary_sensor.aqara_livingroom_leak_water_leak
+    - sensor.zhimi_airpurifier_ma4_pm2_5
+    - sensor.livingroom_temperature_temperature
+    - sensor.livingroom_temperature_humidity
+    - binary_sensor.livingroom_motion
+
+    ### ДЕТСКАЯ
+    - sensor.aqara_cabinet_temperature
+    - sensor.aqara_cabinet_temperature_humidity
+    - binary_sensor.cabinet_left_window_contact
+    - binary_sensor.cabinet_right_window_contact
+    - sensor.cabinet_floor_temperature_temperature
+    - sensor.cabinet_floor_temperature_humidity
+    - binary_sensor.cabinet_motion
+
+    ### Кухня
+    - binary_sensor.kitchen_gas_sensor
+    - binary_sensor.kitchen_smoke_sensor
+    - binary_sensor.aqara_kitchen_leak_water_leak
+    - binary_sensor.kitchen_motion
+
+    ### Серверная
+    - binary_sensor.storage_failure
+    - binary_sensor.hikvision_custom_cell_motion_detection
+    - sensor.pzem04_energy_voltage
+    - sensor.pzem04_energy_today
+    - sensor.pzem04_energy_yesterday
+    - sensor.pzem04_energy_total
+    - sensor.no_electricity
+    - sensor.pzem04_energy_frequency
+
+    ### Подъезд
+    - binary_sensor.entrace_door_contact
+
+    ### Спальня
+    - binary_sensor.bedroom_left_window_contact
+    - binary_sensor.bedroom_right_window_contact
+    - binary_sensor.aqara_bedroom_leak_water_leak
+    - sensor.bedroom_temperature_temperature
+    - sensor.bedroom_temperature_humidity
+    - binary_sensor.bedroom_door_contact
+    - binary_sensor.bedroom_motion
+
+    ### Туалет
+    - binary_sensor.toilet_door_contact
+    
+    ### Разное
+    - sensor.ikea_blinds_state
+    - sensor.sony_bravia_tv_state
+    - sensor.xiaomi_humidifier_state
+    - sensor.xiaomi_purifier_3_state
+    - vacuum.xiaomi_1c
+
+    ### Электричество
+    - sensor.elektrichestvo_den
+    - sensor.elektrichestvo_den_cost
+    - sensor.konditsioner_v_detskoi_energiia_den
+    - sensor.polotentsesushitel_energiia_den
+    - sensor.stiralnaia_mashina_energiia_den
+    - sensor.konditsioner_v_spalne_energiia_den

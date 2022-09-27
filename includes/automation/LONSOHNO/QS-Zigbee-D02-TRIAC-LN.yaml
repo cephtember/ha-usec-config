@@ -1,0 +1,39 @@
+- alias: "[Подсветка (Бар)] - Переключать состояние Dimmer в баре через MQTT"
+  id: dimm_bar_dimmer
+  trigger:
+    - platform: mqtt
+      topic: "bar/stat/tuya_light/BUTTON2"
+      # Optional
+      payload: "{\"ACTION\":\"DOUBLE\"}"
+      encoding: "utf-8"
+  action:
+    - service: light.turn_on
+      entity_id: light.bar_underlight
+      data_template:
+        brightness: >
+          {% set step_size = 55 %}
+          {% if (state_attr('light.bar_underlight', 'brightness') != None)%}
+            {% set current_brightness = (state_attr('light.bar_underlight', 'brightness') | int) %}
+          {% else %}
+            {% set current_brightness = 0 %}
+          {% endif %}
+          {% set new_brightness = current_brightness | int + step_size %}
+          {% if new_brightness > 255 %}
+            0
+          {% else %}
+            {{ new_brightness }}
+          {% endif %}
+
+
+       
+- alias: "[Подсветка (Бар)] - Включать dimmer в баре через MQTT"
+  id: toggle_bar_dimmer
+  trigger:
+    - platform: mqtt
+      topic: "bar/stat/tuya_light/BUTTON2"
+      # Optional
+      payload: "{\"ACTION\":\"SINGLE\"}"
+      encoding: "utf-8"
+  action:
+    - service: light.toggle
+      entity_id: light.bar_underlight

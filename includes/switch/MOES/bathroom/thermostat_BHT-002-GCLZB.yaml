@@ -1,0 +1,38 @@
+- platform: mqtt
+  name: "Теплый пол (Ванная)_sensor"
+  unique_id: hall_thermostat_sensor
+  icon: mdi:dome-light
+  command_topic: "zigbee2mqtt/hall_thermostat/set/sensor"
+  state_topic: "zigbee2mqtt/hall_thermostat"
+  value_template: "{{ value_json.sensor }}"
+  state_on: "OU"
+  state_off: "IN"
+  qos: 1
+  payload_on: "OU"
+  payload_off: "IN"
+  retain: false
+  
+- platform: mqtt
+  name: "Теплый пол (Ванная)_Авто"
+  unique_id: hall_thermostat_preset_program
+  command_topic: "zigbee2mqtt/hall_thermostat/set/preset"
+  state_topic: "zigbee2mqtt/hall_thermostat"
+  value_template: "{{ value_json.preset }}"
+  state_on: "program"
+  state_off: "hold"
+  payload_on: "program"
+  payload_off: "hold"
+  retain: false
+  
+- platform: mqtt
+  name: "Теплый пол (Ванная)_Вручную"
+  unique_id: hall_thermostat_preset_hold
+  command_topic: "zigbee2mqtt/hall_thermostat/set/preset"
+  state_topic: "zigbee2mqtt/hall_thermostat"
+  value_template: "{{ value_json.preset }}"
+  state_on: "hold"
+  state_off: "program"
+  payload_on: "hold"
+  payload_off: "program"
+  qos: 1
+  retain: false

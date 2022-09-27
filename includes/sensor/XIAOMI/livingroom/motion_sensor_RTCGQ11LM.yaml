@@ -1,0 +1,56 @@
+- platform: "mqtt"
+  unique_id: livingroom_motion_availability
+  name: Датчик движения (Зал)_availability
+  state_topic: "zigbee2mqtt/livingroom_motion/availability"
+
+# - platform: "mqtt"
+#   unique_id: livingroom_motion_temperature
+#   name: Датчик движения (Зал)_temperature
+#   state_topic: "zigbee2mqtt/livingroom_motion"
+#   availability_topic: "zigbee2mqtt/livingroom_motion/availability"
+#   value_template: "{{ value_json.temperature }}"
+#   unit_of_measurement: "°C"
+#   device_class: "temperature"
+
+# - platform: "mqtt"
+#   unique_id: livingroom_motion_voltage
+#   name: Датчик движения (Зал)_voltage
+#   state_topic: "zigbee2mqtt/livingroom_motion"
+#   availability_topic: "zigbee2mqtt/livingroom_motion/availability"
+#   value_template: "{{ value_json.voltage }}"
+#   unit_of_measurement: "mV"
+#   device_class: "voltage"
+
+# - platform: "mqtt"
+#   unique_id: livingroom_motion_signal
+#   name: Датчик движения (Зал)_signal
+#   state_topic: "zigbee2mqtt/livingroom_motion"
+#   availability_topic: "zigbee2mqtt/livingroom_motion/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   icon: "mdi:signal"
+  
+- platform: "mqtt"
+  unique_id: livingroom_motion_battery
+  name: Датчик движения (Зал)_battery
+  state_topic: "zigbee2mqtt/livingroom_motion"
+  availability_topic: "zigbee2mqtt/livingroom_motion/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+- platform: "mqtt"
+  unique_id: livingroom_motion_Illuminance_lux
+  name: Датчик движения (Зал)_Illuminance_lux
+  state_topic: "zigbee2mqtt/livingroom_motion"
+  availability_topic: "zigbee2mqtt/livingroom_motion/availability"
+  value_template: "{{ value_json.illuminance_lux }}"
+  unit_of_measurement: "1x"
+
+- platform: "mqtt"
+  unique_id: livingroom_motion_Illuminance
+  name: Датчик движения (Зал)_Illuminance
+  state_topic: "zigbee2mqtt/livingroom_motion"
+  availability_topic: "zigbee2mqtt/livingroom_motion/availability"
+  value_template: "{{ value_json.illuminance }}"
+  unit_of_measurement: "1x"

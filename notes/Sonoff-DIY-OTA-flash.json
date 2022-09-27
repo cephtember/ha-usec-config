@@ -1,0 +1,91 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Sonoff DIY - OTA flash",
+		"_postman_id": "74f654fd-c33f-ab82-e3cc-45fc64c3db57",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Enable DIY mode",
+			"request": {
+				"url": "http://{{baseURL}}/zeroconf/ota_unlock",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"deviceid\": \"\",\n\t\"data\": { }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Device Info",
+			"request": {
+				"url": "http://{{baseURL}}/zeroconf/info",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"deviceid\": \"\",\n\t\"data\": { }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Upload firmware",
+			"request": {
+				"url": "http://{{baseURL}}/zeroconf/ota_flash",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceid\": \"\",\n\t\"data\": {\n\t\t\"downloadUrl\": \"http://FILE_SERVER_IP:8000/files/tasmota-lite.bin\",\n\t\t\"sha256sum\": \"FIRMWARE_SHA256_HASH\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Switch state",
+			"request": {
+				"url": "http://{{baseURL}}/zeroconf/switch",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"deviceid\": \"\",\n    \"data\": {\n        \"switch\": \"on\"\n} }"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

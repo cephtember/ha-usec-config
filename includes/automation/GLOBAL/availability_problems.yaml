@@ -1,0 +1,36 @@
+- id: send_notify_if_availability_sensor_triggered
+  alias: "[ GLOBAL ] - Обнаружение отвалившихся устройств"
+  initial_state: true
+  trigger:
+    - event_data: {}
+      event_type: state_changed
+      platform: event
+  condition:
+    - condition: template
+      value_template: '{{ trigger.event.data.new_state.attributes.device_class == "problem" }}'
+    - condition: template
+      value_template: '{{ trigger.event.data.new_state.state == "on" }}'
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>ВНИМАНИЕ!!! Потеря связи с устройством</b>"
+        message: "*{{ trigger.event.data.new_state.attributes.friendly_name }}*"
+        target:
+          - !secret telegram_id_1
+        disable_notification: false
+    
+    
+    - delay: 00:00:5
+    
+      
+
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: "ВНИМАНИЕ!!! Потеря связи с устройством"
+        message: "{{ trigger.event.data.new_state.attributes.friendly_name }}"
+        data:
+          push:
+            sound:
+              name: default
+              critical: 0
+              volume: 0

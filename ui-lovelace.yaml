@@ -1,0 +1,9 @@
+title: Home Assistant - server
+views: !include_dir_list includes/ui-lovelace/
+      
+ 
+
+
+      
+
+       

@@ -1,0 +1,25 @@
+- alias: "[ LOCATION ] - Выключать весь свет, когда никого нет дома"
+  id: turn_off_light_when_noone_at_home
+  mode: single
+  trigger:
+      platform: state
+      entity_id: group.my_device_trackers
+      from: 'home'
+      to: 'not_home'
+  condition: []
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Кажется никого не осталось дома</b>"
+        message: "*Выключаю свет через 15 секунд*"
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+    
+    - delay: 00:00:15
+    
+    - service: light.turn_off
+      entity_id: group.all_lights
+      
+    - delay: 00:30:00

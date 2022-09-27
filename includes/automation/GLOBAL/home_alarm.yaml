@@ -1,0 +1,121 @@
+- alias: '[ Alarm ] - Detected'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.entrace_door_contact
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.bedroom_door_contact
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.toilet_door_contact
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.bath_door_contact
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.bar_left_window_contact
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.bar_small_window_contact
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.bar_big_window_contact
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.cabinet_left_window_contact
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.cabinet_right_window_contact
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.bedroom_left_window_contact
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.bedroom_right_window_contact
+    to: 'on'
+
+  - platform: state
+    entity_id: binary_sensor.kitchen_motion
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.bedroom_motion
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.bar_motion
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.livingroom_motion
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.cabinet_motion
+    to: 'on'
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: armed_home
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: armed_away
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: armed_night
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.home_alarm
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: Сигнализация
+        message: "Запущен таймер сигнализации"
+        
+        data:
+          timeout: 600
+          url: "/lovelace-alarm/0" 
+          actions:
+            - action: "URI"
+              title: "Open Disarm Panel"
+              uri: "/lovelace-alarm/0"
+
+- alias: '[ Alarm ] - Triggered'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.home_alarm
+    to: triggered
+  action:
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: Сигнализация
+        message: "Сработала сигнализация"
+        data:
+          push:
+            sound:
+              name: "default"
+              critical: 1
+          actions:
+            - action: "URI"
+              title: "Open Disarm Panel"
+              uri: "/lovelace-alarm/0"
+            - action: "ALARM"
+              title: "Sound Alarm"
+              icon: "sfsymbols:bell"
+            - action: "SILENCE"
+              title: "Silence Alarm"
+              icon: "sfsymbols:bell.slash"
+              destructable: true
+
+    - service: script.flick_red_lights
+
+- alias: '[ Alarm ] - Disarmed'
+  id: 118afb36f63a4d8390330c3cf9593d91
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.home_alarm
+    to: disarmed
+  action:
+  - service: notify.mobile_app_iphone_amnezia
+    data:
+      title: "Сигнализация"
+      message: "Выключена"
+      
+ 

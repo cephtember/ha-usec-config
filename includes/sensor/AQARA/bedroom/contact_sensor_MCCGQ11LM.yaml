@@ -1,0 +1,126 @@
+- platform: "mqtt"
+  unique_id: aqara_bedroom_left_window_availability
+  name: Левое окно (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_left_window/availability"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bedroom_left_window_temperature
+#   name: Левое окно (Спальня)_temperature
+#   state_topic: "zigbee2mqtt/bedroom_left_window"
+#   availability_topic: "zigbee2mqtt/bedroom_left_window/availability"
+#   value_template: "{{ value_json.temperature }}"
+#   unit_of_measurement: "°C"
+#   device_class: "temperature"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bedroom_left_window_voltage
+#   name: Левое окно (Спальня)_voltage
+#   state_topic: "zigbee2mqtt/bedroom_left_window"
+#   availability_topic: "zigbee2mqtt/bedroom_left_window/availability"
+#   value_template: "{{ value_json.voltage }}"
+#   unit_of_measurement: "mV"
+#   device_class: "voltage"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bedroom_left_window_signal
+#   name: Левое окно (Спальня)_signal
+#   state_topic: "zigbee2mqtt/bedroom_left_window"
+#   availability_topic: "zigbee2mqtt/bedroom_left_window/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   icon: "mdi:signal"
+  
+- platform: "mqtt"
+  unique_id: aqara_bedroom_left_window_battery
+  name: Левое окно (Спальня)_battery
+  state_topic: "zigbee2mqtt/bedroom_left_window"
+  availability_topic: "zigbee2mqtt/bedroom_left_window/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+####################
+
+- platform: "mqtt"
+  unique_id: aqara_bedroom_right_window_availability
+  name: Правое окно (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_right_window/availability"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bedroom_right_window_temperature
+#   name: Правое окно (Спальня)_temperature
+#   state_topic: "zigbee2mqtt/bedroom_right_window"
+#   availability_topic: "zigbee2mqtt/bedroom_right_window/availability"
+#   value_template: "{{ value_json.temperature }}"
+#   unit_of_measurement: "°C"
+#   device_class: "temperature"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bedroom_right_window_voltage
+#   name: Правое окно (Спальня)_voltage
+#   state_topic: "zigbee2mqtt/bedroom_right_window"
+#   availability_topic: "zigbee2mqtt/bedroom_right_window/availability"
+#   value_template: "{{ value_json.voltage }}"
+#   unit_of_measurement: "mV"
+#   device_class: "voltage"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bedroom_right_window_signal
+#   name: Правое окно (Спальня)_signal
+#   state_topic: "zigbee2mqtt/bedroom_right_window"
+#   availability_topic: "zigbee2mqtt/bedroom_right_window/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   icon: "mdi:signal"
+  
+- platform: "mqtt"
+  unique_id: aqara_bedroom_right_window_battery
+  name: Правое окно (Спальня)_battery
+  state_topic: "zigbee2mqtt/bedroom_right_window"
+  availability_topic: "zigbee2mqtt/bedroom_right_window/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+####################
+
+- platform: "mqtt"
+  unique_id: aqara_bedroom_door_availability
+  name: Дверь (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_door/availability"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bedroom_door_temperature
+#   name: Дверь (Спальня)_temperature
+#   state_topic: "zigbee2mqtt/bedroom_door"
+#   availability_topic: "zigbee2mqtt/bedroom_door/availability"
+#   value_template: "{{ value_json.temperature }}"
+#   unit_of_measurement: "°C"
+#   device_class: "temperature"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bedroom_door_voltage
+#   name: Дверь (Спальня)_voltage
+#   state_topic: "zigbee2mqtt/bedroom_door"
+#   availability_topic: "zigbee2mqtt/bedroom_door/availability"
+#   value_template: "{{ value_json.voltage }}"
+#   unit_of_measurement: "mV"
+#   device_class: "voltage"
+
+# - platform: "mqtt"
+#   unique_id: aqara_bedroom_door_signal
+#   name: Дверь (Спальня)_signal
+#   state_topic: "zigbee2mqtt/bedroom_door"
+#   availability_topic: "zigbee2mqtt/bedroom_door/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   icon: "mdi:signal"
+  
+- platform: "mqtt"
+  unique_id: aqara_bedroom_door_battery
+  name: Дверь (Спальня)_battery
+  state_topic: "zigbee2mqtt/bedroom_door"
+  availability_topic: "zigbee2mqtt/bedroom_door/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"

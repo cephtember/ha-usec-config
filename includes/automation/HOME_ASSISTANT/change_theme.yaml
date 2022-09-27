@@ -1,0 +1,21 @@
+- alias: "[ Home Assistant ] - Изменять тему HA из MQTT"
+  id: change_hatheme_from_mqtt
+  trigger:
+    - platform: mqtt
+      topic: "homeassistant/ha_theme"
+  action:
+    - service: frontend.set_theme
+      data_template:
+        name: "{{ states.sensor.ha_theme.state }}"
+        
+- alias: "[ Home Assistant ] - Отправлять значение выбранной темы в UI в MQTT"
+  id: send_hatheme_from_ui_to_mqtt
+  trigger:
+    platform: state
+    entity_id: input_select.themes
+  action:
+    service: mqtt.publish
+    data:
+      topic: "homeassistant/ha_theme"
+      retain: false
+      payload: "{{ states('input_select.themes') }}"

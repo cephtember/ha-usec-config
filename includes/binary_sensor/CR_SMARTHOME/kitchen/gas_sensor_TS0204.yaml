@@ -1,0 +1,46 @@
+- platform: template
+  sensors:
+    kitchen_gas_sensor_availability_problem:
+      friendly_name: "Датчик газа (Кухня)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.kitchen_gas_sensor_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.kitchen_gas_sensor_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+      
+- platform: "mqtt"
+  unique_id: kitchen_gas_sensor
+  name: Датчик газа (Кухня)
+  state_topic: "zigbee2mqtt/kitchen_gas_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_gas_sensor/availability"
+  value_template: "{{ value_json.gas }}"
+  payload_on: true
+  payload_off: false
+  device_class: "gas"
+
+- platform: "mqtt"
+  unique_id: kitchen_gas_sensor_battery_low
+  name: Датчик утечки газа (Кухня_полоток)_battery_low
+  state_topic: "zigbee2mqtt/kitchen_gas_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_gas_sensor/availability"
+  value_template: "{{ value_json.battery_low }}"
+  payload_on: true
+  payload_off: false
+  device_class: "battery"
+
+- platform: "mqtt"
+  unique_id: kitchen_gas_sensor_tamper
+  name: Датчик утечки газа (Кухня_полоток)_tamper
+  state_topic: "zigbee2mqtt/kitchen_gas_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_gas_sensor/availability"
+  value_template: "{{ value_json.tamper }}"
+  payload_on: true
+  payload_off: false

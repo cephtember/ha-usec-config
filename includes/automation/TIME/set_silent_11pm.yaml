@@ -1,0 +1,42 @@
+- alias: "[ TIME ] - Переводить все устройства в бесшумный режим в 11 вечера"
+  id: set_device_silent_mode_at_11pm
+  trigger:
+    platform: time
+    at: "23:00:00"
+  condition: []
+  action:
+    - service: fan.set_preset_mode
+      entity_id: fan.zhimi_airpurifier_ma4
+      data:
+        preset_mode: Silent
+    - service: vacuum.set_fan_speed
+      entity_id: vacuum.xiaomi_1c
+      data:
+        fan_speed: Silent
+    - service: climate.set_fan_mode
+      target:
+        entity_id: climate.cabinet_midea_ac
+      data:
+        fan_mode: Silent
+        
+- alias: "[ TIME ] - Переводить все устройства в нормальный режим в 11 утра"
+  id: set_device_normal_mode_at_11am
+  trigger:
+    platform: time
+    at: "11:00:00"
+  condition: []
+  action:
+    - service: fan.set_preset_mode
+      entity_id: fan.zhimi_airpurifier_ma4
+      data:
+        preset_mode: Auto
+    - service: vacuum.set_fan_speed
+      entity_id: vacuum.xiaomi_1c
+      data:
+        fan_speed: Standard
+    - service: climate.set_fan_mode
+      target:
+        entity_id: climate.cabinet_midea_ac
+      data:
+        fan_mode: Auto
+        

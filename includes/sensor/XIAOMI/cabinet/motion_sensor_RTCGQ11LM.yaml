@@ -1,0 +1,56 @@
+- platform: "mqtt"
+  unique_id: cabinet_motion_availability
+  name: Датчик движения (Детская)_availability
+  state_topic: "zigbee2mqtt/cabinet_motion/availability"
+
+# - platform: "mqtt"
+#   unique_id: cabinet_motion_temperature
+#   name: Датчик движения (Детская)_temperature
+#   state_topic: "zigbee2mqtt/cabinet_motion"
+#   availability_topic: "zigbee2mqtt/cabinet_motion/availability"
+#   value_template: "{{ value_json.temperature }}"
+#   unit_of_measurement: "°C"
+#   device_class: "temperature"
+
+# - platform: "mqtt"
+#   unique_id: cabinet_motion_voltage
+#   name: Датчик движения (Детская)_voltage
+#   state_topic: "zigbee2mqtt/cabinet_motion"
+#   availability_topic: "zigbee2mqtt/cabinet_motion/availability"
+#   value_template: "{{ value_json.voltage }}"
+#   unit_of_measurement: "mV"
+#   device_class: "voltage"
+
+# - platform: "mqtt"
+#   unique_id: cabinet_motion_signal
+#   name: Датчик движения (Детская)_signal
+#   state_topic: "zigbee2mqtt/cabinet_motion"
+#   availability_topic: "zigbee2mqtt/cabinet_motion/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   icon: "mdi:signal"
+  
+- platform: "mqtt"
+  unique_id: cabinet_motion_battery
+  name: Датчик движения (Детская)_battery
+  state_topic: "zigbee2mqtt/cabinet_motion"
+  availability_topic: "zigbee2mqtt/cabinet_motion/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+- platform: "mqtt"
+  unique_id: cabinet_motion_Illuminance_lux
+  name: Датчик движения (Детская)_Illuminance_lux
+  state_topic: "zigbee2mqtt/cabinet_motion"
+  availability_topic: "zigbee2mqtt/cabinet_motion/availability"
+  value_template: "{{ value_json.illuminance_lux }}"
+  unit_of_measurement: "1x"
+
+- platform: "mqtt"
+  unique_id: cabinet_motion_Illuminance
+  name: Датчик движения (Детская)_Illuminance
+  state_topic: "zigbee2mqtt/cabinet_motion"
+  availability_topic: "zigbee2mqtt/cabinet_motion/availability"
+  value_template: "{{ value_json.illuminance }}"
+  unit_of_measurement: "1x"

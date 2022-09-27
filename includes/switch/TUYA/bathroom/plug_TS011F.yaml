@@ -1,0 +1,21 @@
+- platform: "mqtt"
+  name: "Розетка Полотенцесушитель (Ванная)"
+  unique_id: bath_radiator_switch
+  state_topic: "zigbee2mqtt/bathroom_radiator_switch"
+  availability_topic: "zigbee2mqtt/bathroom_radiator_switch/availability"
+  payload_off: "OFF"
+  payload_on: "ON"
+  value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/bathroom_radiator_switch/set"
+
+####################
+  
+- platform: "mqtt"
+  name: "Розетка Стиральная машина (Ванная)"
+  unique_id: bath_washer_switch
+  state_topic: "zigbee2mqtt/bathroom_washer_switch"
+  availability_topic: "zigbee2mqtt/bathroom_washer_switch/availability"
+  payload_off: "OFF"
+  payload_on: "ON"
+  value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/bathroom_washer_switch/set"

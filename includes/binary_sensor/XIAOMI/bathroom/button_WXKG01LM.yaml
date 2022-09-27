@@ -1,0 +1,17 @@
+- platform: template
+  sensors:
+    xiaomi_bathroom_underlight_button_availability_problem:
+      friendly_name: " Кнопка подсветки (Ванная)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.xiaomi_bathroom_underlight_button_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.xiaomi_bathroom_underlight_button_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"

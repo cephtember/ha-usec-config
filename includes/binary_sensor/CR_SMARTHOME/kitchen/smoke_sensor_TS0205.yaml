@@ -1,0 +1,46 @@
+- platform: template
+  sensors:
+    kitchen_smoke_sensor_availability_problem:
+      friendly_name: "Датчик дыма (Кухня)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.kitchen_smoke_sensor_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.kitchen_smoke_sensor_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+
+- platform: "mqtt"
+  unique_id: kitchen_smoke_sensor
+  name: Датчик дыма (Кухня)
+  state_topic: "zigbee2mqtt/kitchen_smoke_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+  value_template: "{{ value_json.smoke }}"
+  payload_on: true
+  payload_off: false
+  device_class: "smoke"
+
+- platform: "mqtt"
+  unique_id: kitchen_smoke_sensor_battery_low
+  name: Датчик дыма (Кухня_полоток)_battery_low
+  state_topic: "zigbee2mqtt/kitchen_smoke_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+  value_template: "{{ value_json.battery_low }}"
+  payload_on: true
+  payload_off: false
+  device_class: "battery"
+
+- platform: "mqtt"
+  unique_id: kitchen_smoke_sensor_tamper
+  name: Датчик дыма (Кухня_полоток)_tamper
+  state_topic: "zigbee2mqtt/kitchen_smoke_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+  value_template: "{{ value_json.tamper }}"
+  payload_on: true
+  payload_off: false

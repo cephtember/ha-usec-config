@@ -1,0 +1,146 @@
+- alias: "[Кнопка жалюзи (Бар)] - Открывать жалюзи IKEA по нажатию на IKEA Button"
+  id: open_ikea_blinds
+  trigger:
+    - platform: mqtt
+      topic: "zigbee2mqtt/ikea_button/action"
+      # Optional
+      payload: "open"
+      encoding: "utf-8"
+  condition:  
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: "binary_sensor.bar_big_window_contact"
+        state: "on"
+      - condition: state
+        entity_id: "binary_sensor.bar_small_window_contact"
+        state: "on"
+      - condition: state
+        entity_id: "binary_sensor.bar_left_window_contact"
+        state: "on"
+  action:
+     - service: cover.set_cover_position
+       entity_id: cover.ikea_blinds
+       data:
+        position: 95
+        
+- alias: "[Кнопка жалюзи (Бар)] - Закрывать жалюзи IKEA по нажатию на IKEA Button"
+  id: close_ikea_blinds
+  trigger:
+    - platform: mqtt
+      topic: "zigbee2mqtt/ikea_button/action"
+      # Optional
+      payload: "close"
+      encoding: "utf-8"
+  condition:  
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: "binary_sensor.bar_big_window_contact"
+        state: "on"
+      - condition: state
+        entity_id: "binary_sensor.bar_small_window_contact"
+        state: "on"
+      - condition: state
+        entity_id: "binary_sensor.bar_left_window_contact"
+        state: "on"
+  action:
+     - service: cover.set_cover_position
+       entity_id: cover.ikea_blinds
+       data:
+        position: 0
+
+- alias: "[Кнопка жалюзи (Бар)] - Остановливать жалюзи IKEA по зажатию IKEA Button"
+  id: stop_ikea_blinds
+  trigger:
+    - platform: mqtt
+      topic: "zigbee2mqtt/ikea_button/action"
+      # Optional
+      payload: "stop"
+      encoding: "utf-8"
+  action:
+     - service: cover.stop_cover
+       entity_id: cover.ikea_blinds
+
+- alias: "[Кнопка жалюзи (Бар)] - Ошибка закрытия-открытия жалюзи IKEA по нажатию на IKEA Button"
+  id: error_ikea_blinds
+  mode: single
+  trigger:
+    - platform: mqtt
+      topic: "zigbee2mqtt/ikea_button/action"
+      # Optional
+      payload: "close"
+      encoding: "utf-8"
+    - platform: mqtt
+      topic: "zigbee2mqtt/ikea_button/action"
+      # Optional
+      payload: "open"
+      encoding: "utf-8"
+  condition:  
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: "binary_sensor.bar_big_window_contact"
+        state: "on"
+      - condition: state
+        entity_id: "binary_sensor.bar_small_window_contact"
+        state: "on"
+      - condition: state
+        entity_id: "binary_sensor.bar_left_window_contact"
+        state: "on"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Ошибка открытия-закрытия жалюзи</b>"
+        message: >-
+          Форточка: {% if states('binary_sensor.bar_small_window_contact') == 'on' %} открыта {% else %} закрыта {% endif %}
+
+          Правое окно: {% if states('binary_sensor.bar_big_window_contact') == 'on' %} открыто {% else %} закрыта {% endif %}
+
+          Левое окно: {% if states('binary_sensor.bar_left_window_contact') == 'on' %} открыто {% else %} закрыта {% endif %}
+          
+          Закройте открытые окна.
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+
+- alias: "[Кнопка жалюзи (Бар)] - Ошибка закрытия-открытия жалюзи IKEA по изменению позиции"
+  id: error_ikea_blinds_position
+  mode: single
+  trigger:
+    - platform: mqtt
+      topic: "zigbee2mqtt/ikea_blinds/set"
+      payload: "{ \"error\": \"yes\" }"
+      encoding: "utf-8"
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.bar_left_window_contact
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.bar_big_window_contact
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.bar_small_window_contact
+      state: 'on'
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Ошибка открытия-закрытия жалюзи</b>"
+        message: >-
+          Форточка: {% if states('binary_sensor.bar_small_window_contact') == 'on' %} открыта {% else %} закрыта {% endif %}
+
+          Правое окно: {% if states('binary_sensor.bar_big_window_contact') == 'on' %} открыто {% else %} закрыта {% endif %}
+
+          Левое окно: {% if states('binary_sensor.bar_left_window_contact') == 'on' %} открыто {% else %} закрыта {% endif %}
+          
+          Закройте открытые окна.
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+
+
+    - delay: '00:30:00'

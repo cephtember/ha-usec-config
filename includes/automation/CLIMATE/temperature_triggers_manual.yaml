@@ -1,0 +1,949 @@
+# Детская #######################################
+- alias: "[Температура (Детская)] - низкая alert (окна закрыты)"
+  id: bb3a7df3-3g20-4ebe-8b49-bc9ba69ad2b6
+  mode: single
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.aqara_cabinet_temperature') | float) < 22 }}"
+      for:
+        minutes: 30
+  condition:  
+    - condition: state
+      entity_id: binary_sensor.cabinet_left_window_contact
+      state: "off"
+    - condition: state
+      entity_id: binary_sensor.cabinet_right_window_contact
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.auto_climate
+      state: "off"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в детской</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: Датчик температуры воздуха
+        message: "{{ '\ud83d\udca7' }} Температура в детской изменилась, и составляет:  {{ states('sensor.aqara_cabinet_temperature') }} градусов"
+        data:
+          actions:
+            - action: ACANDFLOORONHEAT
+              title: "Включить AC и пол"
+              destructive: no
+            - action: ACANDFLOORONHEAT1H
+              title: "Включить AC и пол на 1 час"
+              destructive: no
+            - action: ACONHEAT
+              title: "Включить AC"
+              destructive: no
+            - action: ACONHEAT1H
+              title: "Включить AC на 1 час"
+              destructive: no
+            
+    - delay: 9000
+            
+- alias: "[Температура (Детская)] - низкая alert (окна открыты)"
+  mode: single
+  id: bb3a7df3-3e20-4ebe-8b49-bc9ba69ad2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.aqara_cabinet_temperature') | float) < 22 }}"
+      for:
+        minutes: 30
+  condition:  
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: "binary_sensor.cabinet_left_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: "binary_sensor.cabinet_right_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.auto_climate
+        state: "on"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в детской</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+          
+          Закройте окна
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - delay: 9000
+        
+- alias: "[Температура (Детская)] - высокая alert (окна открыты)"
+  mode: single
+  id: bb3a7df3-3e20-4ebe-8b49-bc9b88sad2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.aqara_cabinet_temperature') | float) > 31 }}"
+      for:
+        minutes: 30       
+  condition:  
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: "binary_sensor.cabinet_left_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: "binary_sensor.cabinet_right_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.auto_climate
+        state: "on"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в детской</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+          
+          Закройте окна
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - delay: 9000
+
+            
+- alias: "[Температура (Детская)] - высокая alert (окна закрыты)"
+  mode: single
+  id: bb3a8df3-3e20-4ebe-8b49-bc9b88sad2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.aqara_cabinet_temperature') | float) > 31 }}"
+      for:
+        minutes: 30       
+  condition:  
+    - condition: state
+      entity_id: "binary_sensor.cabinet_left_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: "binary_sensor.cabinet_right_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.auto_climate
+      state: "off"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в детской</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: Датчик температуры воздуха
+        message: "{{ '\ud83d\udca7' }} Температура в детской изменилась, и составляет:  {{ states('sensor.aqara_cabinet_temperature') }} градусов"
+        data:
+          actions:
+            - action: ACONCOOL
+              title: "Включить AC"
+              destructive: no
+            - action: ACONCOOL1H
+              title: "Включить AC на 1 час"
+              destructive: no
+            
+    - delay: 9000
+        
+- alias: "[Температура (Детская)] - Выключать теплый пол если температура пола 40C"
+  id: kq917df3-3e20-4ebe-9fsl-bc9ba69ad2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.cabinet_floor_temperature_temperature') | float) > 39 }}"
+      for:
+        minutes: 15
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Теплый пол в детской</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 39 -%} Пол нагрелся,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C, произвожу экстренное выключение</b>
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+
+    - delay: 00:00:03
+    
+    - service: climate.turn_off
+      target:
+        entity_id: climate.cabinet_thermostat
+
+# Зал #######################################   
+- alias: "[Температура (Зал)] - низкая alert (окна закрыты)"
+  mode: single
+  id: bb3a7df3-3e20-4ebe-8b49-bcddd69ad2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.livingroom_temperature_temperature') | float) < 22 }}"
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: "binary_sensor.cabinet_left_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: "binary_sensor.cabinet_right_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.auto_climate
+      state: "off"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в зале</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+    
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: Датчик температуры воздуха
+        message: "{{ '\ud83d\udca7' }} Температура в зале изменилась, и составляет:  {{ states('sensor.livingroom_temperature_temperature') }} градусов"
+        data:
+          push:
+            actions:
+              - action: ACANDFLOORONHEAT
+                title: "Включить AC и пол"
+                destructive: no
+              - action: ACANDFLOORONHEAT1H
+                title: "Включить AC и пол на 1 час"
+                destructive: no
+              - action: ACONHEAT
+                title: "Включить AC"
+                destructive: no
+              - action: ACONHEAT1H
+                title: "Включить AC на 1 час"
+                destructive: no
+    
+    - delay: 9000
+            
+- alias: "[Температура (Зал)] - низкая alert (окна открыты)"
+  mode: single
+  id: bb3a7df3-3e20-4ebe-8c49-bcddd69ad2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.livingroom_temperature_temperature') | float) < 22 }}"
+      for:
+        minutes: 30
+  condition:  
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: "binary_sensor.cabinet_left_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: "binary_sensor.cabinet_right_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.auto_climate
+        state: "on"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в зале</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+          
+          Закройте окна
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - delay: 9000
+    
+            
+- alias: "[Температура (Зал)] - высокая alert (окна закрыты)"
+  mode: single
+  id: bb3a7df3-3e20-4ebe-8b49-bcddd69ad2d6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.livingroom_temperature_temperature') | float) > 31 }}"
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: "binary_sensor.cabinet_left_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: "binary_sensor.cabinet_right_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.auto_climate
+      state: "off"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в зале</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+    
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: Датчик температуры воздуха
+        message: "{{ '\ud83d\udca7' }} Температура в зале изменилась, и составляет:  {{ states('sensor.livingroom_temperature_temperature') }} градусов"
+        data:
+          actions:
+            - action: ACONCOOL
+              title: "Включить AC"
+              destructive: no
+            - action: ACONCOOL1H
+              title: "Включить AC на 1 час"
+              destructive: no
+            
+    - delay: 9000
+            
+- alias: "[Температура (Зал)] - высокая alert (окна открыты)"
+  mode: single
+  id: bb3a03f3-3e20-4ebe-8b49-bcddd69ad2d6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.livingroom_temperature_temperature') | float) > 31 }}"
+      for:
+        minutes: 30
+  condition:  
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: "binary_sensor.cabinet_left_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: "binary_sensor.cabinet_right_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.auto_climate
+        state: "on"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в зале</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+          
+          Закройте окна
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+    
+    - delay: 9000
+        
+# Бар #######################################        
+- alias: "[Температура (Бар)] - низкая alert (окна открыты)"
+  mode: single
+  id: bb3a7df3-k3jd-4ebe-8b49-bcddd69ad2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.sonoff_bar_temperature') | float) < 22 }}"
+      for:
+        minutes: 30
+  condition:  
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: "binary_sensor.bar_big_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: "binary_sensor.bar_left_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.auto_climate
+        state: "on"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в баре</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+          
+          Закройте окна
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+    
+    - delay: 9000
+    
+    
+- alias: "[Температура (Бар)] - высокая alert (окна открыты)"
+  mode: single
+  id: bb3a7df3-k3jd-4ebe-8b49-bcddd89jd2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.sonoff_bar_temperature') | float) > 31 }}"
+      for:
+        minutes: 30
+  condition:  
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: "binary_sensor.bar_big_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: "binary_sensor.bar_left_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.auto_climate
+        state: "on"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в баре</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+          
+          Закройте окна
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - delay: 9000
+        
+- alias: "[Температура (Бар)] - низкая alert (окна закрыты)"
+  mode: single
+  id: bb3a7df3-k3jd-5f0k-8b49-bcddd69ad2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.sonoff_bar_temperature') | float) < 22 }}"
+      for:
+        minutes: 30
+  condition:  
+    - condition: state
+      entity_id: "binary_sensor.bar_big_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: "binary_sensor.bar_left_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.auto_climate
+      state: "off"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в баре</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - delay: 9000
+        
+- alias: "[Температура (Бар)] - высокая alert (окна закрыты)"
+  mode: single
+  id: bb3a7df3-k3jd-4ebe-9u7y-bcddd89jd2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.sonoff_bar_temperature') | float) > 31 }}"
+      for:
+        minutes: 30
+  condition:  
+    - condition: state
+      entity_id: "binary_sensor.bar_big_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: "binary_sensor.bar_left_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.auto_climate
+      state: "off"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в баре</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - delay: 9000
+        
+ # Спальня #######################################         
+
+- alias: "[Температура (Спальня)] - низкая alert (окна закрыты)"
+  mode: single
+  id: bb3a7df3-3g20-4ebe-8b49-bcy3k7f6d2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.bedroom_temperature_temperature') | float) < 22 }}"
+      for:
+        minutes: 30
+  condition:  
+    - condition: state
+      entity_id: "binary_sensor.bedroom_right_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: "binary_sensor.bedroom_left_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.auto_climate
+      state: "off"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в спальне</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: Датчик температуры воздуха
+        message: "{{ '\ud83d\udca7' }} Температура в спальне изменилась, и составляет:  {{ states('sensor.bedroom_temperature_temperature') }} градусов"
+        data:
+          actions:
+            - action: ACONHEATBEDROOM
+              title: "Включить AC"
+              destructive: no
+            - action: ACON1HBEDROOM
+              title: "Включить AC на 1 час"
+              destructive: no
+            
+    - delay: 9000
+            
+- alias: "[Температура (Спальня)] - низкая alert (окна открыты)"
+  mode: single
+  id: a78skwq9-3e20-4ebe-8b49-bc9ba69ad2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.bedroom_temperature_temperature') | float) < 22 }}"
+      for:
+        minutes: 30
+  condition:  
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: "binary_sensor.bedroom_right_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: "binary_sensor.bedroom_left_window_contact"
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.auto_climate
+        state: "off"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в спальне</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+          
+          Закройте окна
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - delay: 9000
+        
+- alias: "[Температура (Спальня)] - высокая alert (окна закрыты)"
+  mode: single
+  id: bb3a7df3-k3jd-4ebe-9u7y-bfdfs89jd2b6
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.bedroom_temperature_temperature') | float) > 31 }}"
+      for:
+        minutes: 30
+  condition:  
+    - condition: state
+      entity_id: "binary_sensor.bedroom_right_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: "binary_sensor.bedroom_left_window_contact"
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.auto_climate
+      state: "off"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Температура в спальне</b>"
+        message: >-
+          {% if (trigger.to_state.state | float) > 27 -%} Жарко,
+          {% elif (trigger.to_state.state | float) < 23 -%} Холодно,
+          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C</b>
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: Датчик температуры воздуха
+        message: "{{ '\ud83d\udca7' }} Температура в спальне изменилась, и составляет:  {{ states('sensor.bedroom_temperature_temperature') }} градусов"
+        data:
+          actions:
+            - action: ACONCOOLBEDROOM
+              title: "Включить AC"
+              destructive: no
+            - action: ACONCOOL1HBEDROOM
+              title: "Включить AC на 1 час"
+              destructive: no
+
+            
+    - delay: 9000
+        
+################# ACTIONABLE NOTIFICATIONS ########################       
+
+- id: push_notify_ac_heat_bedroom  
+  alias: '[Push Notify (Спальня)] - Включить кондиционер (обогрев)'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: ACONHEATBEDROOM
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.hall_thermostat ## Заменить на кондиционер
+
+    - service: climate.set_temperature
+      data:
+        temperature: 28
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.hall_thermostat ## Заменить на кондиционер
+          
+
+          
+- id: push_notify_ac_heat_bedroom_1h  
+  alias: '[Push Notify (Спальня)] - Включить кондиционер на час (обогрев)'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: ACONHEAT1HBEDROOM
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.hall_thermostat ## Заменить на кондиционер
+
+    - service: climate.set_temperature
+      data:
+        temperature: 28
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.hall_thermostat ## Заменить на кондиционер
+  
+    - delay: '01:00:00'
+    
+    - service: climate.turn_off
+      data: {}
+      target:
+        entity_id:
+          - climate.hall_thermostat ## Заменить на кондиционер
+
+
+
+
+
+
+## 
+- id: push_notify_ac_and_floor_heat_1h_cabinet  
+  alias: '[Push Notify (Детская)] - Включить кондиционер и теплый пол на час (обогрев)'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: ACANDFLOORONHEAT1H
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+          - climate.cabinet_thermostat
+
+    - service: climate.set_temperature
+      data:
+        temperature: 28
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+          - climate.cabinet_thermostat
+  
+    - delay: '01:00:00'
+    
+    - service: climate.turn_off
+      data: {}
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+          - climate.cabinet_thermostat
+          
+- id: push_notify_ac_and_floor_heat_cabinet  
+  alias: '[Push Notify (Детская)] - Включить кондиционер и теплый пол (обогрев)'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: ACANDFLOORONHEAT
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+          - climate.cabinet_thermostat
+
+    - service: climate.set_temperature
+      data:
+        temperature: 28
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+          - climate.cabinet_thermostat
+          
+- id: push_notify_ac_heat_cabinet  
+  alias: '[Push Notify (Детская)] - Включить кондиционер (обогрев)'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: ACONHEAT
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+
+    - service: climate.set_temperature
+      data:
+        temperature: 28
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+          
+          
+- id: push_notify_ac_heat_cabinet_1h  
+  alias: '[Push Notify (Детская)] - Включить кондиционер на час (обогрев)'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: ACONHEAT1H
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+
+    - service: climate.set_temperature
+      data:
+        temperature: 28
+        hvac_mode: heat
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+  
+    - delay: '01:00:00'
+    
+    - service: climate.turn_off
+      data: {}
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+          
+          
+
+############### Охлаждение
+
+- id: push_notify_ac_cool_cabinet  
+  alias: '[Push Notify (Детская)] - Включить кондиционер (охлаждение)'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: ACONCOOL
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: cool
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+
+    - service: climate.set_temperature
+      data:
+        temperature: 18
+        hvac_mode: cool
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+          
+
+- id: push_notify_ac_cool_cabinet_1h  
+  alias: '[Push Notify (Детская)] - Включить кондиционер на час (охлаждение)'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: ACONCOOL1H
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: cool
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+
+    - service: climate.set_temperature
+      data:
+        temperature: 18
+        hvac_mode: cool
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+  
+    - delay: '01:00:00'
+    
+    - service: climate.turn_off
+      data: {}
+      target:
+        entity_id:
+          - climate.cabinet_midea_ac
+          
+          
+- id: push_notify_ac_cool_bedroom  
+  alias: '[Push Notify (Спальня)] - Включить кондиционер (охлаждение)'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: ACONCOOLBEDROOM
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: cool
+      target:
+        entity_id:
+          - climate.hall_thermostat ## Заменить на кондиционер
+
+    - service: climate.set_temperature
+      data:
+        temperature: 18
+        hvac_mode: cool
+      target:
+        entity_id:
+          - climate.hall_thermostat ## Заменить на кондиционер
+          
+- id: push_notify_ac_cool_bedroom_1h  
+  alias: '[Push Notify (Спальня)] - Включить кондиционер на час (охлаждение)'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: ACONCOOL1HBEDROOM
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: cool
+      target:
+        entity_id:
+          - climate.hall_thermostat ## Заменить на кондиционер
+
+    - service: climate.set_temperature
+      data:
+        temperature: 18
+        hvac_mode: cool
+      target:
+        entity_id:
+          - climate.hall_thermostat ## Заменить на кондиционер
+  
+    - delay: '01:00:00'
+    
+    - service: climate.turn_off
+      data: {}
+      target:
+        entity_id:
+          - climate.hall_thermostat ## Заменить на кондиционер

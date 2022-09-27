@@ -1,0 +1,15 @@
+- platform: mqtt
+  name: "Вытяжка (Туалет)"
+  unique_id: toilet_fan
+  icon: mdi:fan
+  command_topic: "toilet/cmnd/sonoff_switch_fan/power"
+  state_topic: "toilet/stat/sonoff_switch_fan/RESULT"
+  value_template: "{{ value_json.POWER }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  state_on: "ON"
+  state_off: "OFF"
+  retain: false

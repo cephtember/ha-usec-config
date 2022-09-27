@@ -1,0 +1,8 @@
+
+  - platform: mqtt
+    state_topic: "vf/status/heartRate"
+    name: vf_heartrate
+    
+  - platform: mqtt
+    state_topic: "vf/status/steps"
+    name: vf_steps

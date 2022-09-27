@@ -1,0 +1,341 @@
+title: Мониторинг электро-энергии 
+icon: mdi:alpha-v-circle-outline
+panel: true    
+cards:
+  - type: custom:layout-card
+    layout_type: horizontal
+    layout_options:
+      width: 300
+      max_cols: 3
+    cards:
+      - type: custom:layout-card
+        layout_type: vertical
+        cards:
+          - type: vertical-stack
+            title: Параметры электросети
+            cards:
+              - type: horizontal-stack
+                cards:      
+                  - type: entities
+                    show_header_toggle: false
+                    # title: Параметры электросети
+                    entities:
+                       - entity: sensor.pzem04_status
+                         name: Статус
+                         icon: mdi:power
+                #         secondary_info: last-changed
+
+                       - type: section
+
+                       - entity: sensor.pzem04_energy_voltage
+                         name: Напряжение в сети *Вольт*
+                         icon: mdi:alpha-v-circle-outline
+                         secondary_info: last-changed
+
+                       - entity: sensor.pzem04_energy_power
+                         name: Потребляемая мощность *Ватт*
+                         icon: hass:flash
+                #         secondary_info: last-changed 
+
+                       - entity: sensor.pzem04_energy_current
+                         name: Потребляемый ток *Ампер*
+                         icon: mdi:alpha-a-circle-outline
+                #         secondary_info: last-changed
+
+                       - entity: sensor.pzem04_energy_frequency
+                         name: Частота в сети *Hz*
+                         icon: mdi:current-ac
+                #         secondary_info: last-changed
+
+                       - type: section
+                            
+                       - entity: sensor.pzem04_energy_apparentpower
+                         name: Полная мощность *VA*
+                         icon: mdi:flash-auto
+                #         secondary_info: last-changed 
+
+                       - entity: sensor.pzem04_energy_reactivepower
+                         name: Реактивная мощность *VAr*
+                         icon: mdi:flash-auto
+                #         secondary_info: last-changed
+
+                       - type: section
+
+                       - entity: sensor.pzem04_energy_today
+                         name: Потребление за сегодня *кВт*
+                         icon: mdi:clock-check-outline
+                #         secondary_info: last-changed
+                            
+                       - entity: sensor.pzem04_energy_yesterday
+                         name: Потребление за вчера *кВт*
+                         icon: mdi:clock-check-outline
+                #         secondary_info: last-changed
+
+                       - type: section            
+                          
+                       - entity: sensor.pzem04_energy_total
+                         name: Потребление всего *кВт*
+                         icon: mdi:progress-clock
+                #         secondary_info: last-changed
+              
+              # - type: horizontal-stack
+                # cards:      
+                  # - type: entities
+                    # show_header_toggle: false
+                    # # title: Параметры электросети
+                    # entities:                
+                       # - entity: sensor.energy_cost_all_quarter
+                         # name: С начала года
+                         # icon: mdi:cash-multiple
+
+      
+      # - type: conditional
+        # condition: or
+        # conditions:
+          # - entity: sensor.energy_cost_january
+            # state_not: "0"
+          # - entity: sensor.energy_cost_february
+            # state_not: "0"
+          # - entity: sensor.energy_cost_march
+            # state_not: "0"
+          # - entity: sensor.energy_cost_april
+            # state_not: "0"
+          # - entity: sensor.energy_cost_may
+            # state_not: "0"
+          # - entity: sensor.energy_cost_june
+            # state_not: "0"
+          # - entity: sensor.energy_cost_july
+            # state_not: "0"
+        # card:  
+
+####### DEPRECATED ###########        
+      # - type: custom:layout-card
+        # layout_type: vertical
+        # title: Первое полугодие
+        # cards:        
+          # - type: vertical-stack
+            # title: Первое полугодие
+            # cards:
+
+              # - type: conditional
+                # conditions:
+                  # - entity: sensor.energy_cost_january
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_january
+                      # name: Январь
+                      # icon: mdi:cash
+                      
+              # - type: conditional
+                # conditions:
+                  # - entity: sensor.energy_cost_february
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_february
+                      # name: Февраль
+                      # icon: mdi:cash
+                      
+              # - type: conditional
+                # conditions:
+                  # - entity: sensor.energy_cost_march
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_march
+                      # name: Март
+                      # icon: mdi:cash
+
+              # - type: conditional
+                # conditions:
+                  # - entity: sensor.energy_cost_january
+                    # state_not: "0"                
+                  # - entity: sensor.energy_cost_february
+                    # state_not: "0" 
+                  # - entity: sensor.energy_cost_march
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_1_quarter
+                      # name: Первый квартал
+                      # icon: mdi:cash-multiple
+                  
+
+# ################### 
+
+          # - type: conditional
+            # conditions:
+              # - entity: sensor.energy_cost_april
+                # state_not: "0"
+            # card:
+              # type: entities
+              # entities:
+                # - entity: sensor.energy_cost_april
+                  # name: Апрель
+                  # icon: mdi:cash
+
+
+          # - type: conditional
+            # conditions:
+              # - entity: sensor.energy_cost_may
+                # state_not: "0"
+            # card:
+              # type: entities
+              # entities:
+                # - entity: sensor.energy_cost_may
+                  # name: Май
+                  # icon: mdi:cash
+
+          # - type: conditional
+            # conditions:
+              # - entity: sensor.energy_cost_june
+                # state_not: "0"
+            # card:
+              # type: entities
+              # entities:
+                # - entity: sensor.energy_cost_june
+                  # name: Июнь
+                  # icon: mdi:cash
+
+          # - type: conditional
+            # conditions:
+              # - entity: sensor.energy_cost_april
+                # state_not: "0"                
+              # - entity: sensor.energy_cost_may
+                # state_not: "0" 
+              # - entity: sensor.energy_cost_june
+                # state_not: "0"
+            # card:
+              # type: entities
+              # entities:
+                # - entity: sensor.energy_cost_2_quarter
+                  # name: Второй квартал
+                  # icon: mdi:cash-multiple
+                    
+
+                                     
+ # ###################
+ 
+      # - type: custom:layout-card
+        # layout_type: vertical
+        # title: Второе полугодие
+        # cards: 
+        
+          # - type: vertical-stack
+            # title: Второе полугодие
+            # cards:
+ 
+              # - type: conditional
+                # conditions:
+                  # - entity: sensor.energy_cost_july
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_july
+                      # name: Июль
+                      # icon: mdi:cash
+                      
+              # - type: conditional
+                # conditions:
+                  # - entity: sensor.energy_cost_august
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_august
+                      # name: Август
+                      # icon: mdi:cash
+
+     
+              # - type: conditional
+                # conditions:
+                  # - entity: sensor.energy_cost_september
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_september
+                      # name: Сентябрь
+                      # icon: mdi:cash
+                      
+              # - type: conditional
+                # conditions:     
+                  # - entity: sensor.energy_cost_july
+                    # state_not: "0" 
+                  # - entity: sensor.energy_cost_august
+                    # state_not: "0"
+                  # - entity: sensor.energy_cost_september
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_3_quarter
+                      # name: Третий квартал
+                      # icon: mdi:cash-multiple
+ # ################### 
+                      
+              # - type: conditional
+                # conditions:
+                  # - entity: sensor.energy_cost_october
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_october
+                      # name: Октябрь
+                      # icon: mdi:cash
+                      
+              # - type: conditional
+                # conditions:
+                  # - entity: sensor.energy_cost_november
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_november
+                      # name: Ноябрь
+                      # icon: mdi:cash
+                      
+              # - type: conditional
+                # conditions:
+                  # - entity: sensor.energy_cost_december
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_december
+                      # name: Декабрь
+                      # icon: mdi:cash
+
+
+              # - type: conditional
+                # conditions:     
+                  # - entity: sensor.energy_cost_october
+                    # state_not: "0" 
+                  # - entity: sensor.energy_cost_november
+                    # state_not: "0"
+                  # - entity: sensor.energy_cost_december
+                    # state_not: "0"
+                # card:
+                  # type: entities
+                  # entities:
+                    # - entity: sensor.energy_cost_4_quarter
+                      # name: Четвертый квартал
+                      # icon: mdi:cash-multiple
+      
+   
+
+
+       # - entity: sensor.
+         # name: Ноябрь
+         # icon: mdi:cash
+         
+       # - entity: sensor.energy_cost_december
+         # name: Декабрь
+         # icon: mdi:cash

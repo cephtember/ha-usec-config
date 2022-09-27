@@ -1,0 +1,29 @@
+- platform: group
+  unique_id: bar_color_lights
+  name: "Бар цветные"
+  entities:
+    - light.bar_philips_cbulb_light_x1
+    - light.bar_philips_cbulb_light_x2
+    - light.bar_philips_cbulb_light_x3
+
+- platform: group
+  unique_id: livingroom_color_lights_add
+  name: "Зал цветные"
+  entities:
+    - light.livingroom_cbulb_light_x1
+    - light.livingroom_cbulb_light_x2
+    - light.livingroom_cbulb_light_x3
+    - light.livingroom_cbulb_light_x4
+
+- platform: group
+  unique_id: livingroom_color_lights_main 
+  name: "Зал цветные маленькие"
+  entities:
+    - light.livingroom_cbuld_add_light_x1
+    - light.livingroom_cbuld_add_light_x2
+
+- platform: group
+  unique_id: strips_color
+  name: "Цветные ленты"
+  entities:
+    - light.kitchen_underlight

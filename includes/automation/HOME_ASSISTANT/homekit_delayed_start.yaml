@@ -1,0 +1,7 @@
+# - alias: 'HomeKit Delayed Start'
+#   trigger:
+#     - platform: homeassistant
+#       event: start
+#   action:
+#     - delay: 00:30
+#     - service: homekit.start

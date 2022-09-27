@@ -1,0 +1,13 @@
+- alias: "[Кнопка подсветки (Ванная)] - Переключать Ванную подсветку по нажатию на Aqara Button"
+  id: toggle_bathroom_underlight
+  trigger:
+    - platform: mqtt
+      topic: "zigbee2mqtt/bathroom_underlight_button/action"
+      # Optional
+      #payload: "single"
+      encoding: "utf-8"
+  mode: single
+  action:
+     - service: light.toggle
+       entity_id: light.bathroom_underlight
+     - delay: '00:00:02'

@@ -1,0 +1,15 @@
+- platform: "mqtt"
+  unique_id: kitchen_underlight_brightness
+  name: Подсветка (Кухня)_brightness
+  state_topic: "kitchen/stat/yeelight/brightness2"
+  #availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:brightness-7"
+  #state_value_template: "{{ value_json.brightness }}"
+
+- platform: "mqtt"
+  unique_id: kitchen_underlight_color_temp
+  name: Подсветка (Кухня)_color_temp
+  state_topic: "kitchen/stat/yeelight/color_temp2"
+  #availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:temperature-kelvin"
+  #state_value_template: "{{ value_json.color_temp }}"

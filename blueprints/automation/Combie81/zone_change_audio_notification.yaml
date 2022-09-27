@@ -1,0 +1,46 @@
+blueprint:
+  name: 1 Person Multi-Zone Change - Audio Notification
+  description: Send a notification to a device when a person enters a different zone.
+  domain: automation
+  input:
+# Person/Device that will be tracked
+    person_entity:
+      name: Person
+      description: Person/Device that will be tracked.
+      selector:
+        entity:
+          domain: person
+# Service to call for device that will be notified - have to type manually as can't select from a dropdown yet
+    notify_device_1_1:
+      name: Media Player Notification Service
+      description: "Notifier service for Media Player to receive audio/tts notifications.  Example: notify.alexa_media_living_room_echo_dot"
+# Media device that will be notified
+    notify_device_1_2:
+      name: Media Player to notify
+      description: Media Player to receive audio/tts notifications.
+      selector:
+        entity:
+          domain: media_player
+
+trigger:
+  platform: state
+  entity_id: !input person_entity
+
+variables:
+# This is the state of the person when it's in this zone
+  person_entity: !input person_entity
+  person_name: "{{ states[person_entity].name }}"
+
+condition:
+# Check that the old and new states(zones) are different
+  condition: template
+  value_template: "{{ trigger.from_state.state != trigger.to_state.state }}"
+
+action:
+# Send the message to the media device with the chosen settings using tts
+  - service: !input notify_device_1_1
+    data:
+      data:
+        type: tts
+      message: "{{ person_name }} has entered {{ trigger.to_state.state }}"
+      target: !input notify_device_1_2

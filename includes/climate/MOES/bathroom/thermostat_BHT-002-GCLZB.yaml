@@ -1,0 +1,31 @@
+  - platform: "mqtt"
+    unique_id: hall_thermostat
+    name: "Теплый пол (Ванная)"
+    #state_topic: "zigbee2mqtt/hall_thermostat"
+    #availability_topic: "zigbee2mqtt/bridge/state"
+    temperature_unit: "C"
+    temp_step: 1
+    min_temp: "17"
+    max_temp: "30"
+    current_temperature_topic: zigbee2mqtt/hall_thermostat
+    current_temperature_template: "{{ value_json.local_temperature }}"
+    mode_state_topic: zigbee2mqtt/hall_thermostat
+    mode_state_template: "{{ value_json.system_mode }}"
+    modes: 
+      - "off"
+      - "heat"
+    mode_command_topic: zigbee2mqtt/hall_thermostat/set/system_mode
+    action_topic: zigbee2mqtt/hall_thermostat
+    #action_template: "{% set values = {'idle':'off','heat':'heating','cool':'cooling','fan only':'fan'} %}{{ values[value_json.running_state] }}"
+    temperature_command_topic: zigbee2mqtt/hall_thermostat/set/current_heating_setpoint
+    temperature_command_template: >
+      "{{ value_json.current_heating_setpoint }}"
+    temperature_state_template: "{{ value_json.current_heating_setpoint }}"
+    temperature_state_topic: zigbee2mqtt/hall_thermostat
+    preset_modes: 
+      - "hold"
+      - "program"
+    preset_mode_command_topic: zigbee2mqtt/hall_thermostat/set/preset
+    preset_mode_command_template: "{{ value_json.preset }}"
+    preset_mode_state_topic: zigbee2mqtt/hall_thermostat
+    retain: false

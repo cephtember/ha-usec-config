@@ -1,0 +1,52 @@
+- alias: '[Качество воздуха (Зал)] - alert with notify' 
+  initial_state: 'on'
+  mode: single
+  trigger:
+    - platform: template
+      value_template: "{{ (states('sensor.zhimi_airpurifier_ma4_pm2_5') | float) > 100 }}"
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: input_boolean.auto_climate
+      state: "off"
+  action:
+    - service: notify.mobile_app_iphone_amnezia
+      data:
+        title: Датчик качества воздуха
+        message: "{{ '\ud83d\udca7' }} Качество воздуха в зале ухудшилось, и составляет:  {{ states('sensor.zhimi_airpurifier_ma4_pm2_5') }} PM2.5"
+        data:
+          actions:
+            - action: PURIFIER1H
+              title: "Включить очиститель на 1 час"
+              destructive: no
+            - action: PURIFIERPASS
+              title: "Пропустить"
+              activationMode: "background"
+              destructive: true
+            
+    - delay: 9000
+
+
+- id: push_notify_pur_on_1h   #Вкл очиститель на 1 час по ссылке в уведомлении
+  alias: '[Push Notify (Зал)] - Включить очиститель на час'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: PURIFIER1H
+  action:
+    - service: fan.set_percentage
+      target:
+        entity_id: fan.zhimi_airpurifier_ma4
+      data:
+        percentage: 100
+    
+    - delay: '01:00:00'
+    
+    - service: fan.set_preset_mode
+      data:
+        preset_mode: Auto
+      target:
+        device_id: 2bac38223c02a1671b947caeddbbc180

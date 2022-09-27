@@ -1,0 +1,15 @@
+- platform: "mqtt"
+  unique_id: bedroom_main_lamp_brightness
+  name: Основной свет (Спальня)_brightness
+  state_topic: "bedroom/stat/yeelight/brightness"
+  #availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:brightness-7"
+  #state_value_template: "{{ value_json.brightness }}"
+
+- platform: "mqtt"
+  unique_id: bedroom_main_lamp_color_temp
+  name: Основной свет (Спальня)_color_temp
+  state_topic: "bedroom/stat/yeelight/color_temp"
+  #availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:temperature-kelvin"
+  #state_value_template: "{{ value_json.color_temp }}"

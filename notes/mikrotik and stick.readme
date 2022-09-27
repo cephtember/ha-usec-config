@@ -1,0 +1,24 @@
+Настройка Микротика
+ 
+Вставляем стик. 
+System → Ports. Видим usb1
+ 
+Вкладка Ports → usb1 
+Name: usb1 
+Baud Rate: 115200 
+Data Bits: 8 bits 
+Partly: none 
+Stop Bits: 1 bit 
+Flow Control: none
+ 
+Вкладка Remote Access → usb1
+Port: usb
+Channel: 0 
+Allowed Addresses: 10.23.31.0/24 
+TCP Port: 4040 
+Protocol: raw
+
+Настройка конфига zigbee2mqtt
+ 
+serial:
+  port: 'tcp://10.23.31.1:4040'

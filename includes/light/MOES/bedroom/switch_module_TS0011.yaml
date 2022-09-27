@@ -1,0 +1,9 @@
+- platform: "mqtt"
+  unique_id: bedroom_rail_lamps
+  name: Трекинговый свет (Спальня)
+  state_topic: "zigbee2mqtt/bedroom_raillight"
+  availability_topic: "zigbee2mqtt/bedroom_raillight/availability"
+  payload_off: "OFF"
+  payload_on: "ON"
+  state_value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/bedroom_raillight/set"

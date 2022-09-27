@@ -1,0 +1,52 @@
+- platform: "mqtt"
+  unique_id: hall_thermostat_availability
+  name: Теплый пол (Ванная)_availability
+  state_topic: "zigbee2mqtt/hall_thermostat/availability"
+  
+- platform: "mqtt"
+  unique_id: hall_thermostat_deadzone_temp
+  name: Теплый пол (Ванная)_deadzone_temp
+  state_topic: "zigbee2mqtt/hall_thermostat"
+  availability_topic: "zigbee2mqtt/hall_thermostat/availability"
+  value_template: "{{ value_json.deadzone_temperature }}"
+  unit_of_measurement: "°C"
+
+- platform: "mqtt"
+  unique_id: hall_thermostat_max_temperature_limit
+  name: Теплый пол (Ванная)_max_temperature_limit
+  state_topic: "zigbee2mqtt/hall_thermostat"
+  availability_topic: "zigbee2mqtt/hall_thermostat/availability"
+  value_template: "{{ value_json.max_temperature_limit }}"
+  unit_of_measurement: "°C"
+
+# - platform: "mqtt"
+#   unique_id: hall_thermostat_signal
+#   name: Теплый пол (Ванная)_signal
+#   state_topic: "zigbee2mqtt/hall_thermostat"
+#   availability_topic: "zigbee2mqtt/hall_thermostat/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   icon: "mdi:signal"
+    
+- platform: "mqtt"
+  unique_id: hall_thermostat_sensor
+  name: Теплый пол (Ванная)_sensor
+  state_topic: "zigbee2mqtt/hall_thermostat"
+  availability_topic: "zigbee2mqtt/hall_thermostat/availability"
+  value_template: "{{ value_json.sensor }}"
+  icon: "mdi:leak"
+    
+- platform: "mqtt"
+  unique_id: hall_thermostat_temperature
+  name: Теплый пол (Ванная)_temperature
+  state_topic: "zigbee2mqtt/hall_thermostat"
+  availability_topic: "zigbee2mqtt/hall_thermostat/availability"
+  value_template: "{{ value_json.local_temperature | round(0) }}"
+  unit_of_measurement: "°C"  
+    
+- platform: "mqtt"
+  unique_id: hall_thermostat_status
+  name: Теплый пол (Ванная)_status
+  state_topic: "zigbee2mqtt/hall_thermostat"
+  availability_topic: "zigbee2mqtt/hall_thermostat/availability"
+  value_template: "{{ value_json.heat }}"

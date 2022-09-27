@@ -1,0 +1,58 @@
+- platform: "mqtt"
+  unique_id: aqara_livingroom_temperature_availability
+  name: Датчик температуры (Зал)_availability
+  state_topic: "zigbee2mqtt/livingroom_temperature/availability"
+    
+- platform: "mqtt"
+  unique_id: aqara_livingroom_temperature_battery
+  name: Датчик температуры (Зал)_battery
+  state_topic: "zigbee2mqtt/livingroom_temperature"
+  availability_topic: "zigbee2mqtt/livingroom_temperature/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+
+- platform: "mqtt"
+  unique_id: aqara_livingroom_temperature
+  name: Датчик температуры (Зал)_temperature
+  state_topic: "zigbee2mqtt/livingroom_temperature"
+  availability_topic: "zigbee2mqtt/livingroom_temperature/availability"
+  value_template: "{{ value_json.temperature | round(0) }}"
+  unit_of_measurement: "°C"
+  device_class: "temperature"
+
+- platform: "mqtt"
+  unique_id: aqara_livingroom_temperature_humidity
+  name: Датчик температуры (Зал)_humidity
+  state_topic: "zigbee2mqtt/livingroom_temperature"
+  availability_topic: "zigbee2mqtt/livingroom_temperature/availability"
+  value_template: "{{ value_json.humidity | round(0) }}"
+  unit_of_measurement: "%"
+  device_class: "humidity"
+
+# - platform: "mqtt"
+#   unique_id: aqara_livingroom_temperature_pressure
+#   name: Датчик температуры (Зал)_pressure
+#   state_topic: "zigbee2mqtt/livingroom_temperature"
+#   availability_topic: "zigbee2mqtt/livingroom_temperature/availability"
+#   value_template: "{{ value_json.pressure }}"
+#   unit_of_measurement: "hPa"
+#   device_class: "pressure"
+
+# - platform: "mqtt"
+#   unique_id: aqara_livingroom_temperature_voltage
+#   name: Датчик температуры (Зал)_voltage
+#   state_topic: "zigbee2mqtt/livingroom_temperature"
+#   availability_topic: "zigbee2mqtt/livingroom_temperature/availability"
+#   value_template: "{{ value_json.voltage }}"
+#   unit_of_measurement: "mV"
+#   device_class: "voltage"
+
+# - platform: "mqtt"
+#   unique_id: aqara_livingroom_temperature_signal
+#   name: Датчик температуры (Зал)_signal
+#   state_topic: "zigbee2mqtt/livingroom_temperature"
+#   availability_topic: "zigbee2mqtt/livingroom_temperature/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   icon: "mdi:signal"

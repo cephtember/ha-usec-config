@@ -1,0 +1,95 @@
+# Детская #######################################
+- alias: "[Температура (Детская)] - Выключение кондиционера если открыты окна"
+  id: bb3a7df3-3e20-4fds-8b49-bc9ba69ad2b6
+  mode: single
+  trigger:
+    - event_data: {}
+      event_type: state_changed
+      platform: event
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.new_state.state == "on" }}'
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.entity_id == "binary_sensor.cabinet_right_window_contact" }}'
+          - condition: template
+            value_template: '{{ trigger.event.data.entity_id == "binary_sensor.cabinet_left_window_contact" }}'
+  action:
+    - service: scene.create
+      data:
+        scene_id: before_window_open
+        snapshot_entities:
+          - climate.cabinet_midea_ac
+          - climate.cabinet_thermostat
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Было открыто окно</b>"
+        message: >-
+          {% if is_state('climate.cabinet_midea_ac', 'off') %}
+            {% if is_state('climate.cabinet_thermostat', 'off') %}
+              {{ trigger.event.data.new_state.attributes.friendly_name }} 
+            {% else %}
+              {{ trigger.event.data.new_state.attributes.friendly_name }}
+              
+          Теплый пол в детской будет выключен через 3 секунды.
+            {% endif %}
+          {% else %}
+            {% if is_state('climate.cabinet_thermostat', 'off') %}
+              {{ trigger.event.data.new_state.attributes.friendly_name }}
+              
+          Кондиционер в детской будет выключен через 3 секунды.
+            {% else %}
+              {{ trigger.event.data.new_state.attributes.friendly_name }}
+              
+          Кондиционер в детской будет выключен через 3 секунды.
+              
+          Теплый пол в детской будет выключен через 3 секунды.
+            {% endif %}
+          {% endif %}
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+        
+    - delay: 00:00:03
+    
+    - service: climate.turn_off
+      target:
+        area_id: detskaia
+        
+    
+    
+- alias: "[Температура (Детская)] - Возвращает статус кондиционера при закрытии окна"
+  id: bb34ff3-3e20-4fds-8b49-bc9ba69ad2b6
+  mode: single
+  trigger:
+    - event_data: {}
+      event_type: state_changed
+      platform: event
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.new_state.state == "off" }}'
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.entity_id == "group.cabinet_contact_sensors" }}'
+  action:
+  - service: telegram_bot.send_message
+    data:
+      title: "<b>Все окна в детской закрыты</b>"
+      message: >-
+        Возвращаю теплый пол и кондиционер в детской в предыдущее состояние через 3 секунды.
+      target:
+        - !secret telegram_id_1
+        - !secret telegram_id_2
+      disable_notification: false
+  - delay: 00:00:03
+  - service: scene.turn_on
+    target:
+      entity_id: scene.before_window_open
+      

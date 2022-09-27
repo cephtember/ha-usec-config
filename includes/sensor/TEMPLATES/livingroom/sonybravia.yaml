@@ -1,0 +1,23 @@
+- platform: template
+  sensors:
+    sony_bravia_tv_state:
+      friendly_name: 'Телевизор (Зал)_status'
+      #unit_of_measurement: 'Mbit/s'
+      value_template: >-
+        {% set state_status = states('media_player.sony_chromecast') %}
+        {% if state_status == 'playing'  %}
+          Воспроизведение
+        {% elif state_status == 'on' %}
+          Включен
+        {% elif state_status == 'off' %}
+          Выключен
+        {% endif %}
+      icon_template: >-
+        {% set state_status = states('media_player.sony_chromecast') %}
+        {% if state_status == 'playing'  %}
+          mdi:television-play
+        {% elif state_status == 'on' %}
+          mdi:television
+        {% elif state_status == 'off' %}
+          mdi:television-off
+        {% endif %}

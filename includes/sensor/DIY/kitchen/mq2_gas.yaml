@@ -1,0 +1,7 @@
+  - platform: "mqtt"
+    unique_id: diy_kitchen_gas
+    name: Аналоговый датчик газа (Кухня)
+    state_topic: "kitchen/tele/tasmota_gas/SENSOR"
+    value_template: "{{ value_json.ANALOG.A0 }}"
+    #unit_of_measurement: "%"
+    #device_class: "battery"

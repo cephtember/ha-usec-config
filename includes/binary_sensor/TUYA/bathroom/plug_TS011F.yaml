@@ -1,0 +1,35 @@
+- platform: template
+  sensors:
+    bathroom_radiator_switch_availability_problem:
+      friendly_name: "Розетка Полотенцесушитель (Ванная)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.bathroom_radiator_switch_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.bathroom_radiator_switch_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"
+ 
+ ####################
+ 
+    bathroom_washer_switch_availability_problem:
+      friendly_name: "Розетка Стиральная машина (Ванная)_availability_problem"
+      icon_template: > 
+        {% if is_state('sensor.bathroom_washer_switch_availability', 'offline') %}
+          mdi:car-brake-alert 
+        {% else %}
+          mdi:car-brake-worn-linings
+        {% endif %}
+      value_template: >
+        {% if is_state('sensor.bathroom_washer_switch_availability', 'offline') %}
+          ON
+        {% else %}
+          OFF
+        {% endif %}
+      device_class: "problem"

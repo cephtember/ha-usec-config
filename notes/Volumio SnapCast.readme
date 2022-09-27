@@ -1,0 +1,18 @@
+Steps:
+
+    Install Volumio.
+    Install the Spotify and Spotify Connect plugins.
+    Toggle the Spotify Connect plugin for Multi-User on/off. This triggers the multi-user session to open up on the network.
+    Reboot the device.
+    Install Snapcast from the Github repository. This is critical.
+    a) git clone https://github.com/Saiyato/volumio-snapcast-plugin
+    b) cd volumio-snapcast-plugin
+    c) rm volumio-snapcast-plugin.zip
+    d) volumio plugin install
+    e) Once you see #ENDOFSNAPCAST<br> <br>Finalizing installation<br>Finalizing installation, wait approximately 60s, and press Ctrl+C to exit the installation process. It is complete, it just doesn't exit the process naturally.
+    In the Spotify Integration Settings, select Spotify for Volumio 2. Leave the "Dedicated Stream" switch off.
+    Reload the Snapcast configuration page and ensure the Patch Spotify Configuration Templates changes to spop.
+    SSH into the Volumio server, and edit the /etc/default/snapserver file. Remove the &codec=2 portion, restart the service.
+    Tie your clients into the Snapcast server: /etc/default/snapclient --> SNAPCLIENT_OPTS="--host <IPv4 Address>
+
+Substitute <IPv4 Address> for the full 32-bit IP address of your host. Do not leave the "< >" remaining, replace these too so all you have is the address.

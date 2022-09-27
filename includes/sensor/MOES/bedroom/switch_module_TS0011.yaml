@@ -1,0 +1,15 @@
+- platform: "mqtt"
+  unique_id: bedroom_rail_lamps_availability
+  name: Трекинговый свет (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_underlight/availability"
+  
+# - platform: "mqtt"
+#   unique_id: bedroom_rail_lamps_signal
+#   name: Трекинговый свет (Спальня)_signal
+#   state_topic: "zigbee2mqtt/bedroom_underlight"
+#   availability_topic: "zigbee2mqtt/bedroom_underlight/availability"
+#   value_template: "{{ value_json.linkquality }}"
+#   unit_of_measurement: "lqi"
+#   enabled_by_default: false
+#   icon: "mdi:signal"
+#   state_class: "measurement"

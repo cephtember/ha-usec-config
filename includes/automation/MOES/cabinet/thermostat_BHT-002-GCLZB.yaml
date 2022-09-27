@@ -1,0 +1,15 @@
+- alias: "[Теплый пол (Детская)] - Принудительно менять датчик температуры теплого пола на внешний"
+  id: change_cabinet_thermostat_sensor_to_OU
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: time_pattern
+    minutes: "/30"
+  action:
+  - service: mqtt.publish
+    data_template:
+        topic: "zigbee2mqtt/cabinet_thermostat/set/sensor"
+        payload: "OU"
+        retain: false
+        #qos: 2
