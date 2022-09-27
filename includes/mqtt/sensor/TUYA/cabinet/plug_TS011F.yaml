@@ -1,0 +1,41 @@
+- unique_id: konditsioner_detskaia_availability
+  name: Розетка Кондиционер (Детская)_availability
+  state_topic: "zigbee2mqtt/cabinet_ac_switch/availability"
+
+- unique_id: konditsioner_detskaia_power
+  name: "Кондиционер (Детская)_power"
+  state_topic: "zigbee2mqtt/cabinet_ac_switch"
+  availability_topic: "zigbee2mqtt/cabinet_ac_switch/availability"
+  value_template: "{{ value_json.power }}"
+  unit_of_measurement: "W"
+  device_class: "power"
+
+- unique_id: konditsioner_detskaia_current
+  name: "Кондиционер (Детская)_current"
+  state_topic: "zigbee2mqtt/cabinet_ac_switch"
+  availability_topic: "zigbee2mqtt/cabinet_ac_switch/availability"
+  value_template: "{{ value_json.current }}"
+  unit_of_measurement: "A"
+  device_class: "current"
+
+- unique_id: konditsioner_detskaia_voltage
+  name: "Кондиционер (Детская)_voltage"
+  state_topic: "zigbee2mqtt/cabinet_ac_switch"
+  availability_topic: "zigbee2mqtt/cabinet_ac_switch/availability"
+  value_template: "{{ value_json.voltage }}"
+  unit_of_measurement: "V"
+  device_class: "voltage"
+
+- unique_id: konditsioner_detskaia_energy
+  name: "Кондиционер (Детская)_energy"
+  state_topic: "zigbee2mqtt/cabinet_ac_switch"
+  availability_topic: "zigbee2mqtt/cabinet_ac_switch/availability"
+  value_template: "{{ value_json.energy }}"
+  unit_of_measurement: "kWh"
+  device_class: "energy"
+
+- unique_id: konditsioner_detskaia_power_outage_memory
+  name: "Кондиционер (Детская)_power_outage_memory"
+  state_topic: "zigbee2mqtt/cabinet_ac_switch"
+  availability_topic: "zigbee2mqtt/cabinet_ac_switch/availability"
+  value_template: "{{ value_json.power_outage_memory }}"

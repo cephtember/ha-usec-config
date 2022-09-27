@@ -21,6 +21,4 @@
       data: {}
       target:
         entity_id: group.all_lights
-    # - service: notify.ALL_DEVICES
-      # data:
-       # message: "Home Assistant Starting up"
+

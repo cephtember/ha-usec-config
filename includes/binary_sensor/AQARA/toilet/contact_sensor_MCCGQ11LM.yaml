@@ -1,27 +1,17 @@
 - platform: template
   sensors:
-    aqara_toilet_door_availability_problem:
+    dver_tualet_availability_problem:
       friendly_name: "Дверь (Туалет)_availability_problem"
       icon_template: > 
-        {% if is_state('sensor.aqara_toilet_door_availability', 'offline') %}
+        {% if is_state('sensor.dver_tualet_availability', 'offline') %}
           mdi:car-brake-alert 
         {% else %}
           mdi:car-brake-worn-linings
         {% endif %}
       value_template: >
-        {% if is_state('sensor.aqara_toilet_door_availability', 'offline') %}
+        {% if is_state('sensor.dver_tualet_availability', 'offline') %}
           ON
         {% else %}
           OFF
         {% endif %}
       device_class: "problem"
-
-- platform: "mqtt"
-  unique_id: aqara_toilet_door_contact
-  name: Дверь (Туалет)
-  state_topic: "zigbee2mqtt/toilet_door"
-  availability_topic: "zigbee2mqtt/toilet_door/availability"
-  value_template: "{{ value_json.contact }}"
-  payload_on: false
-  payload_off: true
-  device_class: "door"

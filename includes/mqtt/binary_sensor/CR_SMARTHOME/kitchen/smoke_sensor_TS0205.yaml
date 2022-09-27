@@ -1,0 +1,25 @@
+- unique_id: datchik_dyma_kukhnia
+  name: "Датчик дыма (Кухня)"
+  state_topic: "zigbee2mqtt/kitchen_smoke_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+  value_template: "{{ value_json.smoke }}"
+  payload_on: true
+  payload_off: false
+  device_class: "smoke"
+
+- unique_id: datchik_dyma_kukhnia_battery_low
+  name: "Датчик дыма (Кухня_полоток)_battery_low"
+  state_topic: "zigbee2mqtt/kitchen_smoke_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+  value_template: "{{ value_json.battery_low }}"
+  payload_on: true
+  payload_off: false
+  device_class: "battery"
+
+- unique_id: datchik_dyma_kukhnia_tamper
+  name: "Датчик дыма (Кухня_полоток)_tamper"
+  state_topic: "zigbee2mqtt/kitchen_smoke_sensor"
+  availability_topic: "zigbee2mqtt/kitchen_smoke_sensor/availability"
+  value_template: "{{ value_json.tamper }}"
+  payload_on: true
+  payload_off: false

@@ -1,15 +1,15 @@
 - platform: template
   sensors:
-    sonoff_bar_temperature_availability_problem:
+    datchik_temperatury_bar_availability_problem:
       friendly_name: "Датчик температуры (Бар)_availability_problem"
       icon_template: > 
-        {% if is_state('sensor.sonoff_bar_temperature_availability', 'offline') %}
+        {% if is_state('sensor.datchik_temperatury_bar_availability', 'offline') %}
           mdi:car-brake-alert 
         {% else %}
           mdi:car-brake-worn-linings
         {% endif %}
       value_template: >
-        {% if is_state('sensor.sonoff_bar_temperature_availability', 'offline') %}
+        {% if is_state('sensor.datchik_temperatury_bar_availability', 'offline') %}
           ON
         {% else %}
           OFF

@@ -1,0 +1,37 @@
+- unique_id: teplyi_pol_detskaia_availability
+  name: Теплый пол (Детская)_availability
+  state_topic: "zigbee2mqtt/cabinet_thermostat/availability"
+  
+- unique_id: teplyi_pol_detskaia_deadzone_temp
+  name: Теплый пол (Детская)_deadzone_temp
+  state_topic: "zigbee2mqtt/cabinet_thermostat"
+  availability_topic: "zigbee2mqtt/cabinet_thermostat/availability"
+  value_template: "{{ value_json.deadzone_temperature }}"
+  unit_of_measurement: "°C"
+
+- unique_id: teplyi_pol_detskaia_max_temperature_limit
+  name: Теплый пол (Детская)_max_temperature_limit
+  state_topic: "zigbee2mqtt/cabinet_thermostat"
+  availability_topic: "zigbee2mqtt/cabinet_thermostat/availability"
+  value_template: "{{ value_json.max_temperature_limit }}"
+  unit_of_measurement: "°C"
+    
+- unique_id: teplyi_pol_detskaia_sensor
+  name: Теплый пол (Детская)_sensor
+  state_topic: "zigbee2mqtt/cabinet_thermostat"
+  availability_topic: "zigbee2mqtt/cabinet_thermostat/availability"
+  value_template: "{{ value_json.sensor }}"
+  icon: "mdi:leak"
+    
+- unique_id: teplyi_pol_detskaia_temperature
+  name: Теплый пол (Детская)_temperature
+  state_topic: "zigbee2mqtt/cabinet_thermostat"
+  availability_topic: "zigbee2mqtt/cabinet_thermostat/availability"
+  value_template: "{{ value_json.local_temperature | round(0) }}"
+  unit_of_measurement: "°C"
+       
+- unique_id: teplyi_pol_detskaia_status
+  name: Теплый пол (Детская)_status
+  state_topic: "zigbee2mqtt/cabinet_thermostat"
+  availability_topic: "zigbee2mqtt/cabinet_thermostat/availability"
+  value_template: "{{ value_json.heat }}"

@@ -7,9 +7,11 @@ cards:
     show_header_toggle: false
     title: Квартира
     entities:
+      
       - entity: input_boolean.auto_lights
         state_color: true
         icon: mdi:fan-auto
+      
       - type: divider
         style:
           height: 1px
@@ -17,11 +19,14 @@ cards:
           margin-left: auto
           margin-right: auto
           background: '#62717b'
+      
       - entity: group.all_lights
         name: Весь свет в квартире
         state_color: true
-      - entity: light.entrace_light
+      
+      - entity: light.svet_podezd
         state_color: true
+      
       - type: divider
         style:
           height: 1px
@@ -29,16 +34,16 @@ cards:
           margin-left: auto
           margin-right: auto
           background: '#62717b'
-      - entity: binary_sensor.entrace_door_contact
+      
+      - entity: binary_sensor.dver_podezd
         state_color: true
     
+
   - type: entities
     show_header_toggle: false
     title: Зал
     entities:
-    
-      
-      
+
       - entity: group.livingroom_lights
         name: Весь свет
         state_color: true
@@ -51,33 +56,29 @@ cards:
           margin-right: auto
           background: '#62717b'
       
-      - entity: light.livingroom_color_lights_main
+      - entity: light.zal_tsvetnye
         name: Основной свет
         state_color: true
       
-      - entity: light.livingroom_color_lights
+      - entity: light.zal_tsvetnye_malenkie
         name: Дополнительный свет
         state_color: true
 
-      - entity: light.living_room_rail_lamps
+      - entity: light.trekingovyi_svet_zal
         name: Трекинговый свет
         state_color: true
 
-      - entity: light.living_room_bra
+      - entity: light.bra_zal
         name: Бра 
         state_color: true
 
       - type: section
 
-      # - entity: switch.living_room_bra_right
-        # name: Бра правая
-        # state_color: true
-
-      - entity: switch.living_room_tv
+      - entity: switch.rozetka_televizor_zal
         name: Розетка телевизор
         state_color: true
 
-      - entity: switch.living_room_xbox
+      - entity: switch.rozetka_xbox_zal
         name: Розетка XBOX
         state_color: true
 
@@ -91,25 +92,23 @@ cards:
         name: Пылесос
         state_color: true
         
-      - entity: sensor.xiaomi_purifier_3_state
+      - entity: sensor.zhimi_ma4_39fd_air_purifier_state
         name: Очиститель воздуха
         state_color: true       
 
-      - entity: sensor.xiaomi_humidifier_state
+      - entity: sensor.deerma_jsq5_dbeb_humidifier_state
         name: Увлажнитель воздуха   
         state_color: true        
 
       - type: section  
-      - entity: binary_sensor.livingroom_motion
+      - entity: binary_sensor.datchik_dvizheniia_zal
         name: Датчик движения
         state_color: true
 
-      - entity: binary_sensor.aqara_livingroom_leak_water_leak
+      - entity: binary_sensor.datchik_utechki_vody_zal
         name: Под батареей
         state_color: true
         
-  
-     
 
   - type: entities
     show_header_toggle: false
@@ -128,28 +127,32 @@ cards:
           margin-right: auto
           background: '#62717b'
           
-      - entity: light.kitchen_main_lamp
+      - entity: light.yeelight_ceila_0x1a5b20e7
         name: Основной свет
         state_color: true
 
-      - entity: light.kitchen_underlight
+      - entity: light.yeelight_strip6_0x12ed5ce2
         name: Подсветка
         state_color: true
+
       - type: section
-      - entity: binary_sensor.kitchen_smoke_sensor
+      
+      - entity: binary_sensor.datchik_dyma_kukhnia
         name: Датчик задымления
         state_color: true
-      - entity: binary_sensor.kitchen_gas_sensor
+      
+      - entity: binary_sensor.datchik_gaza_kukhnia
         name: Датчик газа
         state_color: true
+      
       - type: section  
-      - entity: binary_sensor.kitchen_motion
+      - entity: binary_sensor.datchik_dvizheniia_kukhnia
         name: Датчик движения
         state_color: true
-      - entity: binary_sensor.aqara_kitchen_leak_water_leak
+      
+      - entity: binary_sensor.datchik_utechki_vody_pod_posudomoikoi_kukhnia
         name: Под посудомойкой
         state_color: true
-
 
 
   - type: entities
@@ -169,39 +172,39 @@ cards:
           margin-right: auto
           background: '#62717b'
           
-      - entity: light.bar_color_lights
+      - entity: light.bar_tsvetnye
         name: Основной свет
         state_color: true
 
-      - entity: light.bar_underlight
+      - entity: light.svet_nad_stolom_bar
         name: Свет над столом
         state_color: true
 
       - type: section      
       
-      - entity: binary_sensor.bar_motion
+      - entity: binary_sensor.datchik_dvizheniia_bar
         name: Датчик движения
         state_color: true
       
-      - entity: binary_sensor.bar_big_window_contact
+      - entity: binary_sensor.pravoe_okno_bar
         name: Правое окно
         state_color: true
         
-      - entity: binary_sensor.bar_left_window_contact
+      - entity: binary_sensor.levoe_okno_bar
         name: Левое окно
         state_color: true
 
-      - entity: binary_sensor.bar_small_window_contact
+      - entity: binary_sensor.levoe_okno_fortochka_bar
         name: Левая форточка
         state_color: true
         
-      - entity: sensor.ikea_blinds_state
+      - entity: sensor.zhaliuzi_bar_state
         unit_of_measurement: "%"
         name: Жалюзи в баре
         style: |
               :host { 
                 --paper-item-icon-color:
-                  {% if states('sensor.ikea_blinds_state') == 'Открыты' %}
+                  {% if states('sensor.zhaliuzi_bar_state') == 'Открыты' %}
                     var(--paper-item-icon-active-color)
                   {% else %}
                     var()
@@ -209,7 +212,8 @@ cards:
               }
 
       - type: section
-        label: Жалюзи    
+        label: Жалюзи
+
       - type: buttons
         entities:
           - type: custom:button-card
@@ -223,7 +227,7 @@ cards:
             style: |
               :host { 
                 --paper-item-icon-color:
-                  {% if states('sensor.ikea_blinds_state') == 'Открыты' %}
+                  {% if states('sensor.zhaliuzi_bar_state') == 'Открыты' %}
                     var(--paper-item-icon-active-color)
                   {% else %}
                     var()
@@ -241,7 +245,7 @@ cards:
             style: |
               :host { 
                 --paper-item-icon-color:
-                  {% if states('sensor.ikea_blinds_state') == 'Полуоткрыты' %}
+                  {% if states('sensor.zhaliuzi_bar_state') == 'Полуоткрыты' %}
                     var(--paper-item-icon-active-color)
                   {% else %}
                     var()
@@ -257,9 +261,6 @@ cards:
               service: cover.set_cover_position
               service_data: {"entity_id": "cover.ikea_blinds", "position": 0}
             
-          
-
-
 
   - type: entities
     show_header_toggle: false
@@ -268,6 +269,7 @@ cards:
    
       - entity: group.cabinet_lights
         name: Весь свет
+        state_color: true
       
       - type: divider
         style:
@@ -277,35 +279,34 @@ cards:
           margin-right: auto
           background: '#62717b'
           
-      - entity: light.cabinet_main_lamp
+      - entity: light.yeelight_ceiling15_0x12ee89e4
         name: Основной свет
         state_color: true
 
-      - entity: light.cabinet_rail_lamps
+      - entity: light.trekingovyi_svet_detskaia
         name: Трекинговый свет
         state_color: true
       
       - type: section
+
       - entity: sensor.cabinet_thermostat_state
-        name: Теплый пол      
+        name: Теплый пол  
+        state_color: true    
       
       - type: section     
       
-      - entity: binary_sensor.cabinet_motion
+      - entity: binary_sensor.datchik_dvizheniia_detskaia
         name: Датчик движения 
         state_color: true
       
-      - entity: binary_sensor.cabinet_right_window_contact
+      - entity: binary_sensor.pravoe_okno_detskaia
         name: Правое окно
         state_color: true
       
-      - entity: binary_sensor.cabinet_left_window_contact
+      - entity: binary_sensor.levoe_okno_detskaia
         name: Левое окно
         state_color: true
         
-
-        
-
 
   - type: entities
     show_header_toggle: false
@@ -316,34 +317,38 @@ cards:
         name: Весь свет
         state_color: true
     
-      - entity: light.bedroom_main_lamp
+      - entity: light.yeelight_ceiling14_0x12ada382
         name: Основной свет
         state_color: true
         
-      - entity: light.bedroom_rail_lamps
+      - entity: light.trekingovyi_svet_spalnia
         name: Трекинговый свет
         state_color: true
       
-      - entity: light.bedroom_underlight
-        name: Подсветка
-        state_color: true
-      
-      - entity: switch.bedroom_tv
+      - entity: switch.rozetka_televizor_spalnia
         name: Розетка телевизор
         state_color: true
         
       - type: section   
-      - entity: binary_sensor.bedroom_door_contact
+
+      - entity: binary_sensor.dver_spalnia
         name: Дверь
+        state_color: true
               
-      - entity: binary_sensor.bedroom_right_window_contact
+      - entity: binary_sensor.pravoe_okno_spalnia
         name: Правое окно
-      - entity: binary_sensor.bedroom_left_window_contact
+        state_color: true
+
+      - entity: binary_sensor.levoe_okno_spalnia
         name: Левое окно
+        state_color: true
 
       - type: section  
-      - entity: binary_sensor.aqara_bedroom_leak_water_leak
+      
+      - entity: binary_sensor.datchik_utechki_vody_spalnia
         name: Под батареей
+        state_color: true
+
 
   - type: entities
     show_header_toggle: false
@@ -362,26 +367,33 @@ cards:
           margin-right: auto
           background: '#62717b'
           
-      - entity: light.bath_main_lamp
+      - entity: light.svet_vannaia
         name: Свет
         state_color: true
         
-      - entity: light.bathroom_underlight
+      - entity: light.podsvetka_vannaia
         name: Подсветка (Ванная)
         state_color: true
         
-      - entity: switch.bath_radiator_switch
+      - entity: switch.rozetka_polotentsesushitel_vannaia
         name: Полотенцесушитель
         state_color: true
 
       - type: section
-      - entity: binary_sensor.bath_door_contact
+
+      - entity: binary_sensor.dver_vannaia
         name: Дверь
-      - entity: binary_sensor.aqara_bathroom_leak_water_leak
+        state_color: true
+      
+      - entity: binary_sensor.datchik_utechki_vody_pod_vannoi_vannaia
         name: Под ванной
-      - entity: binary_sensor.aqara_bathroom_2_leak_water_leak
+        state_color: true
+      
+      - entity: binary_sensor.datchik_utechki_vody_pod_rakovinoi_vannaia
         name: Под раковиной
+        state_color: true
         
+
   - type: entities
     show_header_toggle: false
     title: Туалет
@@ -399,35 +411,25 @@ cards:
           margin-right: auto
           background: '#62717b'
 
-      - entity: light.toilet_main_lamp
+      - entity: light.svet_tualet
         name: Свет
         state_color: true
         
-      - entity: switch.toilet_fan
+      - entity: switch.vytiazhka_tualet
         name: Вытяжка
         state_color: true
-      - type: section
-      - entity: binary_sensor.toilet_door_contact
-        name: Дверь
-      
 
-        
-        
-  # - type: entities
-    # show_header_toggle: false
-    # title: Инфо
-    # #type: entity-filter
-    # entities:
-      # - entity: input_select.themes
-      # - entity: sensor.time
-        # name: Текущее время
-        # icon: mdi:clock-outline
+      - type: section
+      - entity: binary_sensor.dver_tualet
+        name: Дверь
+        state_color: true
    
     
   - type: entities
     show_header_toggle: false
     title: Прихожая
     entities:
+      
       - entity: group.hall_lights
         name: Весь свет
         state_color: true
@@ -440,29 +442,19 @@ cards:
           margin-right: auto
           background: '#62717b'
           
-      - entity: light.hall_main_lamp
+      - entity: light.osnovnoi_svet_prikhozhaia
         name: Основной свет
         state_color: true
-      - entity: light.hall_entrace
+
+      - entity: light.svet_nad_porogom_prikhozhaia
         name: Свет над порогом
         state_color: true
   
-  # - type: horizontal-stack
-    # cards:   
-      # - entity: sensor.livingroom_xiaomi_purifier_temperature
-        # name: Зал
-        # type: entity
-      # - entity: sensor.sonoff_bar_temperature
-        # name: Бар
-        # type: entity
-  # - type: horizontal-stack
-    # cards:   
-      # - entity: sensor.aqara_cabinet_temperature
-        # name: Детская
-        # type: entity
-      # - entity: sensor.hall_thermostat_temperature
-        # name: Коридор
-        # type: entity
+      - type: section     
+      
+      - entity: binary_sensor.datchik_dvizheniia_prikhozhaia
+        name: Датчик движения 
+        state_color: true
 
         
         

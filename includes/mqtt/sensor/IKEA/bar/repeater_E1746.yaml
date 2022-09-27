@@ -1,0 +1,3 @@
+- unique_id: ikea_ripiter_obshchee_availability
+  name: IKEA Рипитер (Общее)_availability
+  state_topic: "zigbee2mqtt/ikea_repeater/availability"

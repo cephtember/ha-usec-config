@@ -1,0 +1,8 @@
+- unique_id: datchik_dvizheniia_kukhnia
+  name: "Датчик движения (Кухня)"
+  state_topic: "zigbee2mqtt/kitchen_motion"
+  availability_topic: "zigbee2mqtt/kitchen_motion/availability"
+  value_template: "{{ value_json.occupancy }}"
+  payload_on: true
+  payload_off: false
+  device_class: "motion"

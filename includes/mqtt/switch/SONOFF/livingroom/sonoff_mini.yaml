@@ -1,0 +1,31 @@
+- name: "Розетка телевизор (Зал)"
+  unique_id: rozetka_televizor_zal
+  icon: mdi:television
+  command_topic: "livingroom/cmnd/sonoff_switch_tv/power"
+  state_topic: "livingroom/stat/sonoff_switch_tv/RESULT"
+  value_template: "{{ value_json.POWER }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  state_on: "ON"
+  state_off: "OFF" 
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+
+####################
+
+- name: "Розетка XBOX (Зал)"
+  unique_id: rozetka_xbox_zal
+  icon: mdi:microsoft-xbox
+  command_topic: "livingroom/cmnd/sonoff_switch_xbox/power"
+  state_topic: "livingroom/stat/sonoff_switch_xbox/RESULT"
+  value_template: "{{ value_json.POWER }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  state_on: "ON"
+  state_off: "OFF"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false

@@ -1,0 +1,86 @@
+- unique_id: polotentsesushitel_vannaia_availability
+  name: Розетка Полотенцесушитель (Ванная)_availability
+  state_topic: "zigbee2mqtt/bathroom_radiator_switch/availability"
+    
+- unique_id: polotentsesushitel_vannaia_power
+  name: "Полотенцесушитель (Ванная)_power"
+  state_topic: "zigbee2mqtt/bathroom_radiator_switch"
+  availability_topic: "zigbee2mqtt/bathroom_radiator_switch/availability"
+  value_template: "{{ value_json.power }}"
+  unit_of_measurement: "W"
+  device_class: "power"
+
+- unique_id: polotentsesushitel_vannaia_current
+  name: "Полотенцесушитель (Ванная)_current"
+  state_topic: "zigbee2mqtt/bathroom_radiator_switch"
+  availability_topic: "zigbee2mqtt/bathroom_radiator_switch/availability"
+  value_template: "{{ value_json.current }}"
+  unit_of_measurement: "A"
+  device_class: "current"
+
+- unique_id: polotentsesushitel_vannaia_voltage
+  name: "Полотенцесушитель (Ванная)_voltage" 
+  state_topic: "zigbee2mqtt/bathroom_radiator_switch"
+  availability_topic: "zigbee2mqtt/bathroom_radiator_switch/availability"
+  value_template: "{{ value_json.voltage }}"
+  unit_of_measurement: "V"
+  device_class: "voltage"
+
+
+- unique_id: polotentsesushitel_vannaia_energy
+  name: "Полотенцесушитель (Ванная)_energy"
+  state_topic: "zigbee2mqtt/bathroom_radiator_switch"
+  availability_topic: "zigbee2mqtt/bathroom_radiator_switch/availability"
+  value_template: "{{ value_json.energy }}"
+  unit_of_measurement: "kWh"
+  device_class: "energy"
+
+- unique_id: polotentsesushitel_vannaia_power_outage_memory 
+  name: "Полотенцесушитель (Ванная)_power_outage_memory"
+  state_topic: "zigbee2mqtt/bathroom_radiator_switch"
+  availability_topic: "zigbee2mqtt/bathroom_radiator_switch/availability"
+  value_template: "{{ value_json.power_outage_memory }}"
+    
+####################
+
+- unique_id: rozetka_stiralnaia_mashina_vannaia_availability
+  name: Розетка Стиральная машина (Ванная)_availability
+  state_topic: "zigbee2mqtt/bathroom_washer_switch/availability"
+  
+- unique_id: rozetka_stiralnaia_mashina_vannaia_power
+  name: "Стиральная машина (Ванная)_power"
+  state_topic: "zigbee2mqtt/bathroom_washer_switch"
+  availability_topic: "zigbee2mqtt/bathroom_washer_switch/availability"
+  value_template: "{{ value_json.power }}"
+  unit_of_measurement: "W"
+  device_class: "power"
+
+- unique_id: rozetka_stiralnaia_mashina_vannaia_current
+  name: "Стиральная машина (Ванная)_current"
+  state_topic: "zigbee2mqtt/bathroom_washer_switch"
+  availability_topic: "zigbee2mqtt/bathroom_washer_switch/availability"
+  value_template: "{{ value_json.current }}"
+  unit_of_measurement: "A"
+  device_class: "current"
+
+- unique_id: rozetka_stiralnaia_mashina_vannaia_voltage
+  name: "Стиральная машина (Ванная)_voltage"
+  state_topic: "zigbee2mqtt/bathroom_washer_switch"
+  availability_topic: "zigbee2mqtt/bathroom_washer_switch/availability"
+  value_template: "{{ value_json.voltage }}"
+  unit_of_measurement: "V"
+  device_class: "voltage"
+
+- unique_id: rozetka_stiralnaia_mashina_vannaia_energy
+  name: "Стиральная машина (Ванная)_energy"
+  state_topic: "zigbee2mqtt/bathroom_washer_switch"
+  availability_topic: "zigbee2mqtt/bathroom_washer_switch/availability"
+  value_template: "{{ value_json.energy }}"
+  unit_of_measurement: "kWh"
+  device_class: "energy"
+
+- unique_id: rozetka_stiralnaia_mashina_vannaia_power_outage_memory
+  name: "Стиральная машина (Ванная)_power_outage_memory"
+  state_topic: "zigbee2mqtt/bathroom_washer_switch"
+  availability_topic: "zigbee2mqtt/bathroom_washer_switch/availability"
+  value_template: "{{ value_json.power_outage_memory }}"

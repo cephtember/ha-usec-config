@@ -10,17 +10,17 @@
     condition: not
     conditions:
       - condition: state
-        entity_id: "binary_sensor.bar_big_window_contact"
+        entity_id: "binary_sensor.pravoe_okno_bar"
         state: "on"
       - condition: state
-        entity_id: "binary_sensor.bar_small_window_contact"
+        entity_id: "binary_sensor.levoe_okno_bar"
         state: "on"
       - condition: state
-        entity_id: "binary_sensor.bar_left_window_contact"
+        entity_id: "binary_sensor.levoe_okno_fortochka_bar"
         state: "on"
   action:
      - service: cover.set_cover_position
-       entity_id: cover.ikea_blinds
+       entity_id: cover.zhaliuzi_bar
        data:
         position: 95
         
@@ -36,17 +36,17 @@
     condition: not
     conditions:
       - condition: state
-        entity_id: "binary_sensor.bar_big_window_contact"
+        entity_id: "binary_sensor.pravoe_okno_bar"
         state: "on"
       - condition: state
-        entity_id: "binary_sensor.bar_small_window_contact"
+        entity_id: "binary_sensor.levoe_okno_bar"
         state: "on"
       - condition: state
-        entity_id: "binary_sensor.bar_left_window_contact"
+        entity_id: "binary_sensor.levoe_okno_fortochka_bar"
         state: "on"
   action:
      - service: cover.set_cover_position
-       entity_id: cover.ikea_blinds
+       entity_id: cover.zhaliuzi_bar
        data:
         position: 0
 
@@ -60,7 +60,7 @@
       encoding: "utf-8"
   action:
      - service: cover.stop_cover
-       entity_id: cover.ikea_blinds
+       entity_id: cover.zhaliuzi_bar
 
 - alias: "[Кнопка жалюзи (Бар)] - Ошибка закрытия-открытия жалюзи IKEA по нажатию на IKEA Button"
   id: error_ikea_blinds
@@ -80,24 +80,24 @@
     condition: or
     conditions:
       - condition: state
-        entity_id: "binary_sensor.bar_big_window_contact"
+        entity_id: "binary_sensor.pravoe_okno_bar"
         state: "on"
       - condition: state
-        entity_id: "binary_sensor.bar_small_window_contact"
+        entity_id: "binary_sensor.levoe_okno_bar"
         state: "on"
       - condition: state
-        entity_id: "binary_sensor.bar_left_window_contact"
+        entity_id: "binary_sensor.levoe_okno_fortochka_bar"
         state: "on"
   action:
     - service: telegram_bot.send_message
       data:
         title: "<b>Ошибка открытия-закрытия жалюзи</b>"
         message: >-
-          Форточка: {% if states('binary_sensor.bar_small_window_contact') == 'on' %} открыта {% else %} закрыта {% endif %}
+          Форточка: {% if states('binary_sensor.levoe_okno_fortochka_bar') == 'on' %} открыта {% else %} закрыта {% endif %}
 
-          Правое окно: {% if states('binary_sensor.bar_big_window_contact') == 'on' %} открыто {% else %} закрыта {% endif %}
+          Правое окно: {% if states('binary_sensor.pravoe_okno_bar') == 'on' %} открыто {% else %} закрыта {% endif %}
 
-          Левое окно: {% if states('binary_sensor.bar_left_window_contact') == 'on' %} открыто {% else %} закрыта {% endif %}
+          Левое окно: {% if states('binary_sensor.levoe_okno_bar') == 'on' %} открыто {% else %} закрыта {% endif %}
           
           Закройте открытые окна.
         target:
@@ -116,25 +116,25 @@
   condition:
     condition: or
     conditions:
-    - condition: state
-      entity_id: binary_sensor.bar_left_window_contact
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.bar_big_window_contact
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.bar_small_window_contact
-      state: 'on'
+      - condition: state
+        entity_id: "binary_sensor.pravoe_okno_bar"
+        state: "on"
+      - condition: state
+        entity_id: "binary_sensor.levoe_okno_bar"
+        state: "on"
+      - condition: state
+        entity_id: "binary_sensor.levoe_okno_fortochka_bar"
+        state: "on"
   action:
     - service: telegram_bot.send_message
       data:
         title: "<b>Ошибка открытия-закрытия жалюзи</b>"
         message: >-
-          Форточка: {% if states('binary_sensor.bar_small_window_contact') == 'on' %} открыта {% else %} закрыта {% endif %}
+          Форточка: {% if states('binary_sensor.levoe_okno_fortochka_bar') == 'on' %} открыта {% else %} закрыта {% endif %}
 
-          Правое окно: {% if states('binary_sensor.bar_big_window_contact') == 'on' %} открыто {% else %} закрыта {% endif %}
+          Правое окно: {% if states('binary_sensor.pravoe_okno_bar') == 'on' %} открыто {% else %} закрыта {% endif %}
 
-          Левое окно: {% if states('binary_sensor.bar_left_window_contact') == 'on' %} открыто {% else %} закрыта {% endif %}
+          Левое окно: {% if states('binary_sensor.levoe_okno_bar') == 'on' %} открыто {% else %} закрыта {% endif %}
           
           Закройте открытые окна.
         target:

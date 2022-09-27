@@ -1,0 +1,8 @@
+- name: "Розетка Кондиционер (Спальня)"
+  unique_id: rozetka_konditsioner_spalnia
+  state_topic: "zigbee2mqtt/bedroom_ac_switch"
+  availability_topic: "zigbee2mqtt/bedroom_ac_switch/availability"
+  payload_off: "OFF"
+  payload_on: "ON"
+  value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/bedroom_ac_switch/set"

@@ -1,0 +1,39 @@
+- unique_id: levoe_okno_bar_availability
+  name: Левое окно (Бар)_availability
+  state_topic: "zigbee2mqtt/bar_left_window/availability"
+  
+- unique_id: levoe_okno_bar_battery
+  name: Левое окно (Бар)_battery
+  state_topic: "zigbee2mqtt/bar_left_window"
+  availability_topic: "zigbee2mqtt/bar_left_window/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+####################
+
+- unique_id: pravoe_okno_bar_availability
+  name: Правое окно (Бар)_availability
+  state_topic: "zigbee2mqtt/bar_big_window/availability"
+
+- unique_id: pravoe_okno_bar_battery
+  name: Правое окно (Бар)_battery
+  state_topic: "zigbee2mqtt/bar_big_window"
+  availability_topic: "zigbee2mqtt/bar_big_window/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+####################
+
+- unique_id: levoe_okno_fortochka_bar_availability
+  name: Левое окно форточка (Бар)_availability
+  state_topic: "zigbee2mqtt/bar_small_window/availability"
+
+- unique_id: levoe_okno_fortochka_bar_battery
+  name: Левое окно форточка (Бар)_battery
+  state_topic: "zigbee2mqtt/bar_small_window"
+  availability_topic: "zigbee2mqtt/bar_small_window/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"

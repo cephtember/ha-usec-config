@@ -1,0 +1,30 @@
+- unique_id: levoe_okno_spalnia
+  name: Левое окно (Спальня)
+  state_topic: "zigbee2mqtt/bedroom_left_window"
+  availability_topic: "zigbee2mqtt/bedroom_left_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"
+
+####################
+
+- unique_id: pravoe_okno_spalnia
+  name: "Правое окно (Спальня)"
+  state_topic: "zigbee2mqtt/bedroom_right_window"
+  availability_topic: "zigbee2mqtt/bedroom_right_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"
+
+####################
+
+- unique_id: dver_spalnia
+  name: Дверь (Спальня)
+  state_topic: "zigbee2mqtt/bedroom_door"
+  availability_topic: "zigbee2mqtt/bedroom_door/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "door"

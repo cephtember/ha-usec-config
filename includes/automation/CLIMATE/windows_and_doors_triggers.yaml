@@ -14,22 +14,22 @@
       - condition: or
         conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.entity_id == "binary_sensor.cabinet_right_window_contact" }}'
+            value_template: '{{ trigger.event.data.entity_id == "binary_sensor.pravoe_okno_detskaia" }}'
           - condition: template
-            value_template: '{{ trigger.event.data.entity_id == "binary_sensor.cabinet_left_window_contact" }}'
+            value_template: '{{ trigger.event.data.entity_id == "binary_sensor.levoe_okno_detskaia" }}'
   action:
     - service: scene.create
       data:
         scene_id: before_window_open
         snapshot_entities:
-          - climate.cabinet_midea_ac
-          - climate.cabinet_thermostat
+          - climate.midea_ac_30786326300484
+          - climate.teplyi_pol_detskaia
     - service: telegram_bot.send_message
       data:
         title: "<b>Было открыто окно</b>"
         message: >-
-          {% if is_state('climate.cabinet_midea_ac', 'off') %}
-            {% if is_state('climate.cabinet_thermostat', 'off') %}
+          {% if is_state('climate.midea_ac_30786326300484', 'off') %}
+            {% if is_state('climate.teplyi_pol_detskaia', 'off') %}
               {{ trigger.event.data.new_state.attributes.friendly_name }} 
             {% else %}
               {{ trigger.event.data.new_state.attributes.friendly_name }}
@@ -37,7 +37,7 @@
           Теплый пол в детской будет выключен через 3 секунды.
             {% endif %}
           {% else %}
-            {% if is_state('climate.cabinet_thermostat', 'off') %}
+            {% if is_state('climate.teplyi_pol_detskaia', 'off') %}
               {{ trigger.event.data.new_state.attributes.friendly_name }}
               
           Кондиционер в детской будет выключен через 3 секунды.

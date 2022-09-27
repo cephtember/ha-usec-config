@@ -1,0 +1,9 @@
+- unique_id: osnovnoi_svet_detskaia_brightness
+  name: Основной свет (Детская)_brightness
+  state_topic: "cabinet/stat/yeelight/brightness"
+  icon: "mdi:brightness-7"
+
+- unique_id: osnovnoi_svet_detskaia_color_temp
+  name: Основной свет (Детская)_color_temp
+  state_topic: "cabinet/stat/yeelight/color_temp"
+  icon: "mdi:temperature-kelvin"

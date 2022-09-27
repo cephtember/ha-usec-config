@@ -18,19 +18,3 @@
         target:
           - !secret telegram_id_1
         disable_notification: false
-    
-    
-    - delay: 00:00:5
-    
-      
-
-    - service: notify.mobile_app_iphone_amnezia
-      data:
-        title: "ВНИМАНИЕ!!! Потеря связи с устройством"
-        message: "{{ trigger.event.data.new_state.attributes.friendly_name }}"
-        data:
-          push:
-            sound:
-              name: default
-              critical: 0
-              volume: 0

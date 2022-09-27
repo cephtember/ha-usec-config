@@ -10,12 +10,12 @@
       encoding: "utf-8"
   action:
     - service: light.turn_on
-      entity_id: group.bar_lights_color
+      entity_id: light.bar_tsvetnye
       data_template:
         brightness: >
           {% set step_size = 55 %}
-          {% if (state_attr('group.bar_lights_color', 'brightness') != None)%}
-            {% set current_brightness = (state_attr('group.bar_lights_color', 'brightness') | int) %}
+          {% if (state_attr('light.bar_tsvetnye', 'brightness') != None)%}
+            {% set current_brightness = (state_attr('light.bar_tsvetnye', 'brightness') | int) %}
           {% else %}
             {% set current_brightness = 0 %}
           {% endif %}
@@ -38,4 +38,4 @@
       encoding: "utf-8"
   action:
     - service: light.toggle
-      entity_id: group.bar_lights_color
+      entity_id: light.bar_tsvetnye

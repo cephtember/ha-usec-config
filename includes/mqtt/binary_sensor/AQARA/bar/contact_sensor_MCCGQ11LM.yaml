@@ -1,0 +1,30 @@
+- unique_id: pravoe_okno_bar
+  name: "Правое окно (Бар)"
+  state_topic: "zigbee2mqtt/bar_big_window"
+  availability_topic: "zigbee2mqtt/bar_big_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"
+
+####################
+
+- unique_id: levoe_okno_bar
+  name: "Левое окно (Бар)"
+  state_topic: "zigbee2mqtt/bar_left_window"
+  availability_topic: "zigbee2mqtt/bar_left_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"
+
+####################
+
+- unique_id: levoe_okno_fortochka_bar
+  name: "Левое окно форточка (Бар)"
+  state_topic: "zigbee2mqtt/bar_small_window"
+  availability_topic: "zigbee2mqtt/bar_small_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"

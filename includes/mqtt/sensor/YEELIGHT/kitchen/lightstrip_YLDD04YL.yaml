@@ -1,0 +1,9 @@
+- unique_id: podsvetka_kukhnia_brightness
+  name: Подсветка (Кухня)_brightness
+  state_topic: "kitchen/stat/yeelight/brightness2"
+  icon: "mdi:brightness-7"
+
+- unique_id: podsvetka_kukhnia_color_temp
+  name: Подсветка (Кухня)_color_temp
+  state_topic: "kitchen/stat/yeelight/color_temp2"
+  icon: "mdi:temperature-kelvin"

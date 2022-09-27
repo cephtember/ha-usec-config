@@ -1,53 +1,56 @@
 - alias: '[ Alarm ] - Detected'
   trigger:
   - platform: state
-    entity_id: binary_sensor.entrace_door_contact
+    entity_id: binary_sensor.datchik_dvizheniia_detskaia
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.bedroom_door_contact
+    entity_id: binary_sensor.datchik_dvizheniia_bar
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.toilet_door_contact
+    entity_id: binary_sensor.datchik_dvizheniia_zal
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.bath_door_contact
+    entity_id: binary_sensor.datchik_dvizheniia_kukhnia
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.bar_left_window_contact
+    entity_id: binary_sensor.datchik_dvizheniia_spalnia
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.bar_small_window_contact
+    entity_id: binary_sensor.datchik_dvizheniia_prikhozhaia
+    to: 'on'
+  
+  - platform: state
+    entity_id: binary_sensor.pravoe_okno_detskaia
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.bar_big_window_contact
+    entity_id: binary_sensor.levoe_okno_detskaia
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.cabinet_left_window_contact
+    entity_id: binary_sensor.levoe_okno_bar
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.cabinet_right_window_contact
+    entity_id: binary_sensor.pravoe_okno_bar
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.bedroom_left_window_contact
+    entity_id: binary_sensor.levoe_okno_fortochka_bar
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.bedroom_right_window_contact
-    to: 'on'
-
-  - platform: state
-    entity_id: binary_sensor.kitchen_motion
+    entity_id: binary_sensor.levoe_okno_spalnia
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.bedroom_motion
+    entity_id: binary_sensor.pravoe_okno_spalnia
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.bar_motion
+    entity_id: binary_sensor.dver_spalnia
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.livingroom_motion
+    entity_id: binary_sensor.dver_tualet
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.cabinet_motion
+    entity_id: binary_sensor.dver_vannaia
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.dver_podezd
     to: 'on'
   condition:
     condition: or
@@ -64,18 +67,14 @@
   action:
     - service: alarm_control_panel.alarm_trigger
       entity_id: alarm_control_panel.home_alarm
-    - service: notify.mobile_app_iphone_amnezia
+    - service: telegram_bot.send_message
       data:
-        title: Сигнализация
-        message: "Запущен таймер сигнализации"
-        
-        data:
-          timeout: 600
-          url: "/lovelace-alarm/0" 
-          actions:
-            - action: "URI"
-              title: "Open Disarm Panel"
-              uri: "/lovelace-alarm/0"
+        title: "<b>ВНИМАНИЕ!!! Запущен таймер сигнализации</b>"
+        message: "*У вас есть 30-секунд *"
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
 
 - alias: '[ Alarm ] - Triggered'
   trigger:
@@ -83,27 +82,14 @@
     entity_id: alarm_control_panel.home_alarm
     to: triggered
   action:
-    - service: notify.mobile_app_iphone_amnezia
+    - service: telegram_bot.send_message
       data:
-        title: Сигнализация
-        message: "Сработала сигнализация"
-        data:
-          push:
-            sound:
-              name: "default"
-              critical: 1
-          actions:
-            - action: "URI"
-              title: "Open Disarm Panel"
-              uri: "/lovelace-alarm/0"
-            - action: "ALARM"
-              title: "Sound Alarm"
-              icon: "sfsymbols:bell"
-            - action: "SILENCE"
-              title: "Silence Alarm"
-              icon: "sfsymbols:bell.slash"
-              destructable: true
-
+        title: "<b>ВНИМАНИЕ!!! Сработала сигнализация</b>"
+        message: "*Выключите если это вы*"
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
     - service: script.flick_red_lights
 
 - alias: '[ Alarm ] - Disarmed'
@@ -113,9 +99,14 @@
     entity_id: alarm_control_panel.home_alarm
     to: disarmed
   action:
-  - service: notify.mobile_app_iphone_amnezia
-    data:
-      title: "Сигнализация"
-      message: "Выключена"
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Сигнализация</b>"
+        message: "*Выключена*"
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+    - service: script.flick_red_lights
       
  

@@ -1,0 +1,41 @@
+- unique_id: konditsioner_spalnia_availability
+  name: Розетка Кондиционер (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_ac_switch/availability"
+
+- unique_id: konditsioner_spalnia_power
+  name: "Кондиционер (Спальня)_power"
+  state_topic: "zigbee2mqtt/bedroom_ac_switch"
+  availability_topic: "zigbee2mqtt/bedroom_ac_switch/availability"
+  value_template: "{{ value_json.power }}"
+  unit_of_measurement: "W"
+  device_class: "power"
+
+- unique_id: konditsioner_spalnia_current
+  name: "Кондиционер (Спальня)_current"
+  state_topic: "zigbee2mqtt/bedroom_ac_switch"
+  availability_topic: "zigbee2mqtt/bedroom_ac_switch/availability"
+  value_template: "{{ value_json.current }}"
+  unit_of_measurement: "A"
+  device_class: "current"
+
+- unique_id: konditsioner_spalnia_voltage
+  name: "Кондиционер (Спальня)_voltage"
+  state_topic: "zigbee2mqtt/bedroom_ac_switch"
+  availability_topic: "zigbee2mqtt/bedroom_ac_switch/availability"
+  value_template: "{{ value_json.voltage }}"
+  unit_of_measurement: "V"
+  device_class: "voltage"
+
+- unique_id: konditsioner_spalnia_energy
+  name: "Кондиционер (Спальня)_energy"
+  state_topic: "zigbee2mqtt/bedroom_ac_switch"
+  availability_topic: "zigbee2mqtt/bedroom_ac_switch/availability"
+  value_template: "{{ value_json.energy }}"
+  unit_of_measurement: "kWh"
+  device_class: "energy"
+
+- unique_id: konditsioner_spalnia_power_outage_memory
+  name: "Кондиционер (Спальня)_power_outage_memory"
+  state_topic: "zigbee2mqtt/bedroom_ac_switch"
+  availability_topic: "zigbee2mqtt/bedroom_ac_switch/availability"
+  value_template: "{{ value_json.power_outage_memory }}"

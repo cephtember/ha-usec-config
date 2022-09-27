@@ -1,0 +1,25 @@
+- unique_id: knopka_podsvetki_kukhnia_availability
+  name: Кнопка подсветки (Кухня)_availability
+  state_topic: "zigbee2mqtt/kitchen_underlight_button/availability"
+  
+- unique_id: knopka_podsvetki_kukhnia_click
+  name: Кнопка подсветки (Кухня)_click
+  state_topic: "zigbee2mqtt/kitchen_underlight_button"
+  availability_topic: "zigbee2mqtt/kitchen_underlight_button/availability"
+  icon: "mdi:toggle-switch"
+  value_template: "{{ value_json.click }}"
+
+- unique_id: knopka_podsvetki_kukhnia_battery
+  name: Кнопка подсветки (Кухня)_battery
+  state_topic: "zigbee2mqtt/kitchen_underlight_button"
+  availability_topic: "zigbee2mqtt/kitchen_underlight_button/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+
+- unique_id: knopka_podsvetki_kukhnia_action
+  name: Кнопка подсветки (Кухня)_action
+  state_topic: "zigbee2mqtt/kitchen_underlight_button"
+  availability_topic: "zigbee2mqtt/kitchen_underlight_button/availability"
+  value_template: "{{ value_json.action }}"
+  icon: "mdi:gesture-double-tap"

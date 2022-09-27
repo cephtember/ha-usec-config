@@ -9,51 +9,14 @@
   action:
     - service: homeassistant.toggle
       target:
-        entity_id: group.livingroom_color_lights
+        entity_id: light.zal_tsvetnye_malenkie
     - delay: 0.5
     - service: mqtt.publish
       data:
         topic: "livingroom/stat/xiaomi_philips_light/RESULT"
         retain: false
-        payload: "{\"POWER\":\"{{ states('group.livingroom_color_lights') }}\"}"
-         
-- alias: "[Дополнительный свет (Зал)] - Включать состояние Philips в зале через MQTT"
-  id: on_livingroom_philips
-  trigger:
-    - platform: mqtt
-      topic: "livingroom/cmnd/xiaomi_philips_light/power"
-      # Optional
-      payload: "ON"
-      encoding: "utf-8"
-  action:
-    - service: homeassistant.turn_on
-      target:
-        entity_id: group.livingroom_color_lights
-    - delay: 0.5
-    - service: mqtt.publish
-      data:
-        topic: "livingroom/stat/xiaomi_philips_light/RESULT"
-        retain: false
-        payload: "{\"POWER\":\"{{ states('group.livingroom_color_lights') }}\"}"
-        
-- alias: "[Дополнительный свет (Зал)] - Выключать состояние Philips в зале через MQTT"
-  trigger:
-    - platform: mqtt
-      topic: "livingroom/cmnd/xiaomi_philips_light/power"
-      # Optional
-      payload: "OFF"
-      encoding: "utf-8"
-  action:
-    - service: homeassistant.turn_off
-      target:
-        entity_id: group.livingroom_color_lights
-    - delay: 2
-    - service: mqtt.publish
-      data:
-        topic: "livingroom/stat/xiaomi_philips_light/RESULT"
-        retain: false
-        payload: "{\"POWER\":\"{{ states('group.livingroom_color_lights') }}\"}"
-        
+        payload: "{\"POWER\":\"{{ states('light.zal_tsvetnye_malenkie') }}\"}"
+                
 #################
 
 - alias: "[Основной свет (Зал)] - Переключать состояние Philips в зале через MQTT"
@@ -67,48 +30,11 @@
   action:
     - service: homeassistant.toggle
       target:
-        entity_id: group.livingroom_color_lights_main
+        entity_id: light.zal_tsvetnye
     - delay: 0.5
     - service: mqtt.publish
       data:
         topic: "livingroom/stat/xiaomi_philips_light_main/RESULT"
         retain: false
-        payload: "{\"POWER\":\"{{ states('group.livingroom_color_lights_main') }}\"}"
-         
-- alias: "[Основной свет (Зал)] - Включать состояние Philips в зале через MQTT"
-  id: on_livingroom_philips_main
-  trigger:
-    - platform: mqtt
-      topic: "livingroom/cmnd/xiaomi_philips_light_main/power"
-      # Optional
-      payload: "ON"
-      encoding: "utf-8"
-  action:
-    - service: homeassistant.turn_on
-      target:
-        entity_id: group.livingroom_color_lights_main
-    - delay: 0.5
-    - service: mqtt.publish
-      data:
-        topic: "livingroom/stat/xiaomi_philips_light_main/RESULT"
-        retain: false
-        payload: "{\"POWER\":\"{{ states('group.livingroom_color_lights_main') }}\"}"
-        
-- alias: "[Основной свет (Зал)] - Выключать состояние Philips в зале через MQTT"
-  trigger:
-    - platform: mqtt
-      topic: "livingroom/cmnd/xiaomi_philips_light_main/power"
-      # Optional
-      payload: "OFF"
-      encoding: "utf-8"
-  action:
-    - service: homeassistant.turn_off
-      target:
-        entity_id: group.livingroom_color_lights_main
-    - delay: 2
-    - service: mqtt.publish
-      data:
-        topic: "livingroom/stat/xiaomi_philips_light_main/RESULT"
-        retain: false
-        payload: "{\"POWER\":\"{{ states('group.livingroom_color_lights_main') }}\"}"
+        payload: "{\"POWER\":\"{{ states('light.zal_tsvetnye') }}\"}"
         

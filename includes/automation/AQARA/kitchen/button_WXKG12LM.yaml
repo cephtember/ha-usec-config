@@ -1,5 +1,5 @@
 - alias: "[Кнопка подсветки (Кухня)] - Переключать Кухонную подсветку по нажатию на Aqara Button"
-  id: toggle_kitchen_underlight
+  id: toggle_yeelight_strip6_0x12ed5ce2
   trigger:
     - platform: mqtt
       topic: "zigbee2mqtt/kitchen_underlight_button/action"
@@ -8,28 +8,4 @@
       encoding: "utf-8"
   action:
      - service: light.toggle
-       entity_id: light.kitchen_underlight
-       
-# - alias: "[Кнопка подсветки (Кухня)] - Переключать Яркость подсветки по двойному нажатию на Aqara Button"
-  # id: toggle_kitchen_underlight_brightness
-  # trigger:
-    # - platform: mqtt
-      # topic: "zigbee2mqtt/kitchen_underlight_button/action"
-      # # Optional
-      # payload: "double"
-      # encoding: "utf-8"
-  # action:
-     # - service: light.toggle
-       # entity_id: light.kitchen_underlight
-       
-# - alias: "[Кнопка подсветки (Кухня)] - Переключать Цвет подсветки по тройному нажатию на Aqara Button"
-  # id: toggle_kitchen_underlight_color
-  # trigger:
-    # - platform: mqtt
-      # topic: "zigbee2mqtt/kitchen_underlight_button/action"
-      # # Optional
-      # payload: "double"
-      # encoding: "utf-8"
-  # action:
-     # - service: light.toggle
-       # entity_id: light.kitchen_underlight
+       entity_id: light.yeelight_strip6_0x12ed5ce2

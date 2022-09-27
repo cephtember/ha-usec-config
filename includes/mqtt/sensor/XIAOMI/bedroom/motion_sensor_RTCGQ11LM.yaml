@@ -1,0 +1,26 @@
+- unique_id: datchik_dvizheniia_spalnia_availability
+  name: Датчик движения (Спальня)_availability
+  state_topic: "zigbee2mqtt/bedroom_motion/availability"
+
+
+- unique_id: datchik_dvizheniia_spalnia_battery
+  name: Датчик движения (Спальня)_battery
+  state_topic: "zigbee2mqtt/bedroom_motion"
+  availability_topic: "zigbee2mqtt/bedroom_motion/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+- unique_id: datchik_dvizheniia_spalnia_Illuminance_lux
+  name: Датчик движения (Спальня)_Illuminance_lux
+  state_topic: "zigbee2mqtt/bedroom_motion"
+  availability_topic: "zigbee2mqtt/bedroom_motion/availability"
+  value_template: "{{ value_json.illuminance_lux }}"
+  unit_of_measurement: "1x"
+
+- unique_id: datchik_dvizheniia_spalnia_Illuminance
+  name: Датчик движения (Спальня)_Illuminance
+  state_topic: "zigbee2mqtt/bedroom_motion"
+  availability_topic: "zigbee2mqtt/bedroom_motion/availability"
+  value_template: "{{ value_json.illuminance }}"
+  unit_of_measurement: "1x"

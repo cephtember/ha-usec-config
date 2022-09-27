@@ -1,0 +1,25 @@
+- unique_id: datchik_utechki_vody_pod_vannoi_vannaia_availability
+  name: "Датчик утечки воды под ванной (Ванная)_availability"
+  state_topic: "zigbee2mqtt/bathroom_leak/availability"
+
+- unique_id: datchik_utechki_vody_pod_vannoi_vannaia_battery
+  name: "Датчик утечки воды под ванной (Ванная)_battery"
+  state_topic: "zigbee2mqtt/bathroom_leak"
+  availability_topic: "zigbee2mqtt/bathroom_leak/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  
+######################
+
+- unique_id: datchik_utechki_vody_pod_rakovinoi_vannaia_availability
+  name: Датчик утечки воды под раковиной (Ванная)_availability
+  state_topic: "zigbee2mqtt/bathroom_2_leak/availability"
+
+- unique_id: datchik_utechki_vody_pod_rakovinoi_vannaia_battery
+  name: "Датчик утечки воды под раковиной (Ванная)_battery"
+  state_topic: "zigbee2mqtt/bathroom_2_leak"
+  availability_topic: "zigbee2mqtt/bathroom_2_leak/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"

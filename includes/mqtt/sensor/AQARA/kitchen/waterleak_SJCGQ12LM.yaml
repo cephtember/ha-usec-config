@@ -1,0 +1,11 @@
+- unique_id: datchik_utechki_vody_pod_posudomoikoi_kukhnia_availability
+  name: Датчик утечки воды под посудомойкой (Кухня)_availability
+  state_topic: "zigbee2mqtt/kitchen_leak/availability"
+
+- unique_id: datchik_utechki_vody_pod_posudomoikoi_kukhnia_battery
+  name: Датчик утечки воды под посудомойкой (Кухня)_battery
+  state_topic: "zigbee2mqtt/kitchen_leak"
+  availability_topic: "zigbee2mqtt/kitchen_leak/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"

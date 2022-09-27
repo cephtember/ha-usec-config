@@ -1,0 +1,27 @@
+- unique_id: datchik_temperatury_zal_availability
+  name: Датчик температуры (Зал)_availability
+  state_topic: "zigbee2mqtt/livingroom_temperature/availability"
+    
+- unique_id: datchik_temperatury_zal_battery
+  name: Датчик температуры (Зал)_battery
+  state_topic: "zigbee2mqtt/livingroom_temperature"
+  availability_topic: "zigbee2mqtt/livingroom_temperature/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+
+- unique_id: datchik_temperatury_zal_temperature
+  name: Датчик температуры (Зал)_temperature
+  state_topic: "zigbee2mqtt/livingroom_temperature"
+  availability_topic: "zigbee2mqtt/livingroom_temperature/availability"
+  value_template: "{{ value_json.temperature | round(0) }}"
+  unit_of_measurement: "°C"
+  device_class: "temperature"
+
+- unique_id: datchik_temperatury_zal_humidity
+  name: Датчик температуры (Зал)_humidity
+  state_topic: "zigbee2mqtt/livingroom_temperature"
+  availability_topic: "zigbee2mqtt/livingroom_temperature/availability"
+  value_template: "{{ value_json.humidity | round(0) }}"
+  unit_of_measurement: "%"
+  device_class: "humidity"

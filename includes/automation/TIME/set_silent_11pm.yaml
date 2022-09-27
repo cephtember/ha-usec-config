@@ -6,7 +6,7 @@
   condition: []
   action:
     - service: fan.set_preset_mode
-      entity_id: fan.zhimi_airpurifier_ma4
+      entity_id: fan.zhimi_ma4_39fd_air_purifier
       data:
         preset_mode: Silent
     - service: vacuum.set_fan_speed
@@ -15,9 +15,14 @@
         fan_speed: Silent
     - service: climate.set_fan_mode
       target:
-        entity_id: climate.cabinet_midea_ac
+        entity_id: climate.midea_ac_30786326300484
       data:
         fan_mode: Silent
+    - service: climate.set_fan_mode
+      target:
+        entity_id: climate.midea_ac_30786325663901
+      data:
+        fan_mode: Auto
         
 - alias: "[ TIME ] - Переводить все устройства в нормальный режим в 11 утра"
   id: set_device_normal_mode_at_11am
@@ -27,7 +32,7 @@
   condition: []
   action:
     - service: fan.set_preset_mode
-      entity_id: fan.zhimi_airpurifier_ma4
+      entity_id: fan.zhimi_ma4_39fd_air_purifier
       data:
         preset_mode: Auto
     - service: vacuum.set_fan_speed
@@ -36,7 +41,12 @@
         fan_speed: Standard
     - service: climate.set_fan_mode
       target:
-        entity_id: climate.cabinet_midea_ac
+        entity_id: climate.midea_ac_30786326300484
+      data:
+        fan_mode: Auto
+    - service: climate.set_fan_mode
+      target:
+        entity_id: climate.midea_ac_30786325663901
       data:
         fan_mode: Auto
         

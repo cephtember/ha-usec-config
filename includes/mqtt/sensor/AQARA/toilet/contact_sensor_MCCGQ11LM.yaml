@@ -1,0 +1,11 @@
+- unique_id: dver_tualet_availability
+  name: Дверь (Туалет)_availability
+  state_topic: "zigbee2mqtt/toilet_door/availability"
+  
+- unique_id: dver_tualet_battery
+  name: Дверь (Туалет)_battery
+  state_topic: "zigbee2mqtt/toilet_door"
+  availability_topic: "zigbee2mqtt/toilet_door/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"

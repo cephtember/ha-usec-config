@@ -1,0 +1,19 @@
+- unique_id: levoe_okno_detskaia
+  name: "Левое окно (Детская)"
+  state_topic: "zigbee2mqtt/cabinet_left_window"
+  availability_topic: "zigbee2mqtt/cabinet_left_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"
+
+####################
+
+- unique_id: pravoe_okno_detskaia
+  name: "Правое окно (Детская)"
+  state_topic: "zigbee2mqtt/cabinet_right_window"
+  availability_topic: "zigbee2mqtt/cabinet_right_window/availability"
+  value_template: "{{ value_json.contact }}"
+  payload_on: false
+  payload_off: true
+  device_class: "window"
