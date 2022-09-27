@@ -1,7 +1,0 @@
-- platform: "mqtt"
-  unique_id: doorbell
-  name: Звонок (Подъезд)_click
-  state_topic: "entrace/doorbell"
-  value_template: "{{ value_json.click }}"
-  payload_on: true
-  payload_off: false
