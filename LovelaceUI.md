@@ -1,4 +1,4 @@
-# Lovelace UI ScreenshotsView
+# Lovelace UI Screenshots
 
 На самом деле в дальнейшем планируется сделать три дашборда:
 
