@@ -23,6 +23,9 @@
         entity_id: climate.midea_ac_30786325663901
       data:
         fan_mode: Auto
+    - service: homeassistant.turn_off
+      data: 
+        entity_id: light.deerma_jsq5_dbeb_indicator_light
         
 - alias: "[ TIME ] - Переводить все устройства в нормальный режим в 11 утра"
   id: set_device_normal_mode_at_11am
@@ -49,4 +52,7 @@
         entity_id: climate.midea_ac_30786325663901
       data:
         fan_mode: Auto
+    - service: homeassistant.turn_on
+      data: 
+        entity_id: light.deerma_jsq5_dbeb_indicator_light
         
