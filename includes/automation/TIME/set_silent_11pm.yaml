@@ -8,7 +8,7 @@
     - service: fan.set_preset_mode
       entity_id: fan.zhimi_ma4_39fd_air_purifier
       data:
-        preset_mode: Silent
+        preset_mode: Sleep
     - service: vacuum.set_fan_speed
       entity_id: vacuum.xiaomi_1c
       data:
