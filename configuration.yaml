@@ -82,6 +82,8 @@ frontend:
 input_boolean:
   auto_lights:
     name: Адаптивное управления светом
+  auto_lights_motion:
+    name: Управление светом датчиками движения
 
 input_number:
   energy_daily_price:
@@ -92,6 +94,7 @@ input_number:
     max: 1000
     unit_of_measurement: "СУМ/kWh"
     icon: mdi:currency-eur
+
 
 # THEMES
 input_select:

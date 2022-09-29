@@ -172,3 +172,6 @@ living_climate:
 bedroom_climate:
     - climate.bedroom_midea_ac
 
+iphone_focus:
+    - binary_sensor.iphone_amnezia_focus
+    - binary_sensor.tanzilyas_iphone_focus

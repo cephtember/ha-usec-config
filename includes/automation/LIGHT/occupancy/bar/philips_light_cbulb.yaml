@@ -1,0 +1,84 @@
+- alias: "[ OCCUPANCY ] - Включать свет по датчику движения (Бар)"
+  id: bar_occupancy_light
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.datchik_dvizheniia_bar
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.auto_lights_motion
+      state: "on"
+    - condition: state
+      entity_id: group.iphone_focus
+      state: "on"
+  action:
+    - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.datchik_dvizheniia_bar
+            state: 'on'
+          - condition: state
+            entity_id: group.my_device_trackers
+            state: home
+          - condition: state
+            entity_id: group.bar_lights
+            state: 'off'
+        sequence:
+          - service: light.turn_on
+            data:
+              transition: 0
+              brightness_pct: 100
+            target:
+              entity_id: light.svet_nad_stolom_bar
+
+
+- alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 5 минут (Бар)"
+  id: bar_occupancy_light_off_5min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.datchik_dvizheniia_bar
+      to: 'off'
+      for: 00:05:00
+  condition:
+    - condition: state
+      entity_id: input_boolean.auto_lights_motion
+      state: "on"
+  action:
+    - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.datchik_dvizheniia_bar
+            state: 'off'
+          - condition: state
+            entity_id: light.svet_nad_stolom_bar
+            state: 'on'
+        sequence:
+          - service: light.turn_off
+            target:
+              entity_id: light.svet_nad_stolom_bar
+            data:
+              transition: 0
+
+
+- alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 30 минут (Бар)"
+  id: bar_occupancy_light_off_30min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.datchik_dvizheniia_bar
+      to: 'off'
+      for: 00:30:00
+  action:
+    - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.datchik_dvizheniia_bar
+            state: 'off'
+          - condition: state
+            entity_id: group.bar_lights
+            state: 'on'
+        sequence:
+          - service: light.turn_off
+            target:
+              entity_id: group.bar_lights
+            data:
+              transition: 0
