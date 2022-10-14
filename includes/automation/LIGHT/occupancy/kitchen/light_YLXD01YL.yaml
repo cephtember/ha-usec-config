@@ -62,11 +62,8 @@
           - service: light.turn_off
             target:
               entity_id: light.yeelight_strip6_0x12ed5ce2
-            data:
-              transition: 0
+          - delay: 00:00:05
           - service: light.turn_off
-            data:
-              transition: 0
             target:
               entity_id: light.yeelight_ceila_0x1a5b20e7_nightlight
 
@@ -91,10 +88,7 @@
           - service: light.turn_off
             target:
               entity_id: group.kitchen_lights
-            data:
-              transition: 0
+          - delay: 00:00:05
           - service: light.turn_off
-            data:
-              transition: 0
             target:
               entity_id: light.yeelight_ceila_0x1a5b20e7_nightlight

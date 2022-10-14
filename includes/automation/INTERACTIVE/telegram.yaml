@@ -62,68 +62,80 @@
       
           <b>Спальня:</b>
           
-          Дверь: {{ states('sensor.bedroom_door_battery') }}%
+          Дверь: {{ states('sensor.dver_spalnia_battery') }}%
       
-          Датчик движения: {{ states('sensor.bedroom_motion_battery') }}%
+          Датчик движения: {{ states('sensor.datchik_dvizheniia_spalnia_battery') }}%
 
-          Выключатель: {{ states('sensor.aqara_bedroom_switch_battery') }}%
+          Датчик температуры: {{ states('sensor.datchik_temperatury_spalnia_battery') }}%
+
+          Выключатель: {{ states('sensor.vykliuchatel_spalnia_battery') }}%
           
-          Датчик утечки под батареей: {{ states('sensor.aqara_bedroom_leak_battery') }}%
+          Датчик утечки под батареей: {{ states('sensor.datchik_utechki_vody_spalnia_battery') }}%
           
-          Датчик левого окна: {{ states('sensor.bedroom_left_window_battery') }}%
+          Датчик левого окна: {{ states('sensor.levoe_okno_spalnia_battery') }}%
           
-          Датчик правого окна: {{ states('sensor.bedroom_right_window_battery') }}%
+          Датчик правого окна: {{ states('sensor.pravoe_okno_spalnia_battery') }}%
         
         
           <b>Детская:</b>
-        
-          Датчик температуры: {{ states('sensor.aqara_cabinet_temperature_battery') }}%
           
-          Датчик левого окна: {{ states('sensor.cabinet_left_window_battery') }}%
+          Датчик движения: {{ states('sensor.datchik_dvizheniia_detskaia_battery') }}%
+
+          Датчик температуры: {{ states('sensor.datchik_temperatury_detskaia_battery') }}%
+
+          Датчик температуры на полу: {{ states('sensor.datchik_temperatury_na_polu_detskaia_battery') }}%
           
-          Датчик правого окна: {{ states('sensor.cabinet_right_window_battery') }}%
+          Датчик левого окна: {{ states('sensor.levoe_okno_detskaia_battery') }}%
+          
+          Датчик правого окна: {{ states('sensor.pravoe_okno_detskaia_battery') }}%
           
         
           <b>Ванная:</b>
           
-          Дверь: {{ states('sensor.bath_door_battery') }}%
+          Дверь: {{ states('sensor.dver_vannaia_battery') }}%
           
-          Кнопка подсветки: {{ states('sensor.bathroom_underlight_button_battery') }}%
+          Кнопка подсветки: {{ states('sensor.knopka_podsvetki_vannaia_battery') }}%
         
-          Датчик утечки под ванной: {{ states('sensor.aqara_bathroom_leak_battery') }}%
+          Датчик утечки под ванной: {{ states('sensor.datchik_utechki_vody_pod_vannoi_vannaia_battery') }}%
 
-          Датчик утечки под раковиной: {{ states('sensor.aqara_bathroom_2_leak_battery') }}%
+          Датчик утечки под раковиной: {{ states('sensor.datchik_utechki_vody_pod_rakovinoi_vannaia_battery') }}%
          
           
           <b>Кухня:</b>
           
-          Кнопка подсветки: {{ states('sensor.aqara_kitchen_button_battery') }}%
+          Датчик движения: {{ states('sensor.datchik_dvizheniia_kukhnia_battery') }}%
+
+          Кнопка подсветки: {{ states('sensor.knopka_podsvetki_kukhnia_battery') }}%
           
-          Датчик дыма: {{ states('sensor.kitchen_smoke_sensor_battery') }}%
+          Датчик дыма: {{ states('sensor.datchik_dyma_kukhnia_polotok_battery') }}%
           
-          Датчик утечки под посудомойкой: {{ states('sensor.aqara_kitchen_leak_battery') }}%
+          Датчик утечки под посудомойкой: {{ states('sensor.datchik_utechki_vody_pod_posudomoikoi_kukhnia_battery') }}%
           
           
           <b>Зал:</b>
+
+          Датчик движения: {{ states('sensor.datchik_dvizheniia_zal_battery') }}%
           
-          Датчик температуры: {{ states('sensor.livingroom_temperature_battery') }}%
+          Датчик температуры: {{ states('sensor.datchik_temperatury_zal_battery') }}%
           
-          Датчик утечки под батареей: {{ states('sensor.aqara_livingroom_leak_battery') }}%
+          Датчик утечки под батареей: {{ states('sensor.datchik_utechki_vody_zal_battery') }}%
           
           
           <b>Бар:</b>
         
-          Кнопка жалюзи: {{ states('sensor.ikea_button_battery') }}%
-        
-          Жалюзи: {{ states('sensor.ikea_blinds_battery') }}%
-        
-          Датчик температуры: {{ states('sensor.sonoff_bar_temperature_battery') }}%
-          
-          Датчик правого окна: {{ states('sensor.bar_big_window_battery') }}%
-          
-          Датчик левого окна: {{ states('sensor.bar_left_window_battery') }}%
+          Датчик движения: {{ states('sensor.datchik_dvizheniia_bar_battery') }}%
 
-          Датчик левой форточки: {{ states('sensor.aqara_bar_small_window_battery') }}%
+          Кнопка жалюзи: {{ states('sensor.knopka_zhaliuzi_bar_battery') }}%
+        
+          Жалюзи: {{ states('sensor.zhaliuzi_bar_battery') }}%
+        
+          Датчик температуры: {{ states('sensor.datchik_temperatury_bar_battery') }}%
+          
+          Датчик правого окна: {{ states('sensor.pravoe_okno_bar_battery') }}%
+          
+          Датчик левого окна: {{ states('sensor.levoe_okno_bar_battery') }}%
+
+          Датчик левой форточки: {{ states('sensor.levoe_okno_fortochka_bar_battery') }}%
         
         inline_keyboard:
           - 'Статус системы:/status, Состояние батареек:/zigbee_batteries'
@@ -189,21 +201,23 @@
         title: "<b>Датчики температуры: </b>"
         message: >
         
-          <b>Жилая комната:</b>
+          <b>Зал:</b>
           
-          Датчик температуры: Т: {{ states('sensor.livingroom_temperature_temperature') }}С Вл: {{ states('sensor.livingroom_temperature_humidity') }}%
+          Датчик: Т: {{ states('sensor.datchik_temperatury_zal_temperature') }}С Вл: {{ states('sensor.datchik_temperatury_zal_humidity') }}%
           
           <b>Детская:</b>
         
-          Датчик температуры: Т: {{ states('sensor.aqara_cabinet_temperature') }}С Вл: {{ states('sensor.aqara_cabinet_temperature_humidity') }}%
+          Датчик: Т: {{ states('sensor.datchik_temperatury_detskaia_temperature') }}С Вл: {{ states('sensor.datchik_temperatury_detskaia_humidity') }}%
         
+          Датчик пол: {{ states('sensor.datchik_temperatury_na_polu_detskaia_temperature') }}С Вл: {{ states('sensor.datchik_temperatury_na_polu_detskaia_humidity') }}%
+
           <b>Бар:</b>
         
-          Датчик температуры: Т: {{ states('sensor.sonoff_bar_temperature') }}С Вл: {{ states('sensor.sonoff_bar_temperature_humidity') }}%
+          Датчик: Т: {{ states('sensor.datchik_temperatury_bar_temperature') }}С Вл: {{ states('sensor.datchik_temperatury_bar_humidity') }}%
         
           <b>Спальня:</b>
           
-          Датчик температуры: Т: {{ states('sensor.bedroom_temperature_temperature') }}С Вл: {{ states('sensor.bedroom_temperature_humidity') }}%
+          Датчик: Т: {{ states('sensor.datchik_temperatury_spalnia_temperature') }}С Вл: {{ states('sensor.datchik_temperatury_spalnia_humidity') }}%
          
         inline_keyboard:
           - 'Статус системы:/status, Состояние батареек:/zigbee_batteries'
@@ -230,15 +244,21 @@
         title: "<b>Датчики состояния: </b>"
         message: >
         
-          <b>Жилая комната:</b>
+          <b>Зал:</b>
+
+          Датчик движения: {% if is_state('binary_sensor.datchik_dvizheniia_zal','off') %}
+          Не обнаружено
+          {% else %}
+          Обнаружено
+          {% endif %}
           
-          Очиститель воздуха:{% if is_state('fan.zhimi_airpurifier_ma4', 'on') %} 
+          Очиститель воздуха:{% if is_state('fan.zhimi_ma4_39fd_air_purifier', 'on') %} 
           Включен 
           {% else %} 
           Выключен 
           {% endif %}
           
-          Xbox:{% if is_state('media_player.xbox', 'on') %} 
+          Xbox:{% if is_state('media_player.xbox_v_gostinoi', 'on') %} 
           Включен 
           {% else %} 
           Выключен 
@@ -254,7 +274,7 @@
           Выключен
           {% endif %}
           
-          Датчик утечки воды: {% if is_state('binary_sensor.aqara_livingroom_leak_water_leak','off') %}
+          Датчик утечки воды: {% if is_state('binary_sensor.datchik_utechki_vody_zal','off') %}
           Сухо
           {% else %}
           Утечка
@@ -262,26 +282,26 @@
           
           
           <b>Кухня:</b>
-          
-          Датчик утечки газа (плита): {% if is_state('binary_sensor.gas_condition','off') %}
-          Чисто
+
+          Датчик движения: {% if is_state('binary_sensor.datchik_dvizheniia_kukhnia','off') %}
+          Не обнаружено
           {% else %}
-          Выше нормы
+          Обнаружено
           {% endif %}
           
-          Датчик утечки газа (потолок): {% if is_state('binary_sensor.kitchen_gas_sensor','off') %}
-          Чисто
-          {% else %}
-          Тревога
-          {% endif %}
-          
-          Датчик дыма (потолок): {% if is_state('binary_sensor.kitchen_smoke_sensor','off') %}
+          Датчик утечки газа (потолок): {% if is_state('binary_sensor.datchik_gaza_kukhnia','off') %}
           Чисто
           {% else %}
           Тревога
           {% endif %}
           
-          Датчик утечки воды: {% if is_state('binary_sensor.aqara_kitchen_leak_water_leak','off') %}
+          Датчик дыма (потолок): {% if is_state('binary_sensor.datchik_dyma_kukhnia','off') %}
+          Чисто
+          {% else %}
+          Тревога
+          {% endif %}
+          
+          Датчик утечки воды: {% if is_state('binary_sensor.datchik_utechki_vody_pod_posudomoikoi_kukhnia','off') %}
           Сухо
           {% else %}
           Утечка
@@ -290,45 +310,45 @@
           
           <b>Спальня:</b>
           
-          Дверь: {% if is_state('binary_sensor.bedroom_door_contact','off') %}
+          Дверь: {% if is_state('binary_sensor.dver_spalnia','off') %}
           Закрыта
           {% else %}
           Открыта
           {% endif %}
           
-          Датчик движения: {% if is_state('binary_sensor.bedroom_motion','off') %}
+          Датчик движения: {% if is_state('binary_sensor.datchik_dvizheniia_spalnia','off') %}
           Не обнаружено
           {% else %}
           Обнаружено
           {% endif %}
 
-          Кондиционер: {% if is_state('climate.bedroom_midea_ac','fan_only') %}
+          Кондиционер: {% if is_state('climate.midea_ac_30786325663901','fan_only') %}
           Вентиляция
-          {% elif is_state('climate.bedroom_midea_ac','auto') %}
+          {% elif is_state('climate.midea_ac_30786325663901','auto') %}
           Авто
-          {% elif is_state('climate.bedroom_midea_ac','dry') %}
+          {% elif is_state('climate.midea_ac_30786325663901','dry') %}
           Осушение
-          {% elif is_state('climate.bedroom_midea_ac','heat') %}
+          {% elif is_state('climate.midea_ac_30786325663901','heat') %}
           Обогрев
-          {% elif is_state('climate.bedroom_midea_ac','cool') %}
+          {% elif is_state('climate.midea_ac_30786325663901','cool') %}
           Охлаждение
           {% else %}
           Выключен
           {% endif %}
 
-          Левое окно: {% if is_state('binary_sensor.bedroom_left_window_contact','off') %}
+          Левое окно: {% if is_state('binary_sensor.levoe_okno_spalnia','off') %}
           Закрыто
           {% else %}
           Открыто
           {% endif %}
           
-          Правое окно: {% if is_state('binary_sensor.bedroom_right_window_contact','off') %}
+          Правое окно: {% if is_state('binary_sensor.pravoe_okno_spalnia','off') %}
           Закрыто
           {% else %}
           Открыто
           {% endif %}
           
-          Датчик утечки воды: {% if is_state('binary_sensor.aqara_bedroom_leak_water_leak','off') %}
+          Датчик утечки воды: {% if is_state('binary_sensor.datchik_utechki_vody_spalnia','off') %}
           Сухо
           {% else %}
           Утечка
@@ -343,34 +363,22 @@
           Открыта
           {% endif %}
           
-          Датчик утечки воды: {% if is_state('binary_sensor.aqara_bathroom_leak_water_leak','off') %}
+          Датчик утечки воды: {% if is_state('binary_sensor.datchik_utechki_vody_pod_vannoi_vannaia','off') %}
           Сухо
           {% else %}
           Утечка
           {% endif %}
 
-          Датчик утечки воды (р): {% if is_state('binary_sensor.aqara_bathroom_2_leak_water_leak','off') %}
+          Датчик утечки воды (р): {% if is_state('binary_sensor.datchik_utechki_vody_pod_rakovinoi_vannaia','off') %}
           Сухо
           {% else %}
           Утечка
           {% endif %}
           
-          Стиральная машинка: {% if is_state('sensor.washer_job_state','rinse') %} 
-          Полоскает
-          {% elif is_state('sensor.washer_job_state','wash') %}
-          Стирает
-          {% elif is_state('sensor.washer_job_state','spin') %}
-          Отжимает
-          {% elif is_state('sensor.washer_job_state','finish') %}
-          Завершает стирку
-          {% else %}
-          Выключена
-          {% endif %}
-          
           
           <b>Туалет:</b>
           
-          Дверь: {% if is_state('binary_sensor.toilet_door_contact','off') %}
+          Дверь: {% if is_state('binary_sensor.dver_tualet','off') %}
           Закрыта
           {% else %}
           Открыта
@@ -378,34 +386,40 @@
           
           
           <b>Детская:</b>
+
+          Датчик движения: {% if is_state('binary_sensor.datchik_dvizheniia_detskaia','off') %}
+          Не обнаружено
+          {% else %}
+          Обнаружено
+          {% endif %}
         
-          Кондиционер: {% if is_state('climate.cabinet_midea_ac','fan_only') %}
+          Кондиционер: {% if is_state('climate.midea_ac_30786326300484','fan_only') %}
           Вентиляция
-          {% elif is_state('climate.cabinet_midea_ac','auto') %}
+          {% elif is_state('climate.midea_ac_30786326300484','auto') %}
           Авто
-          {% elif is_state('climate.cabinet_midea_ac','dry') %}
+          {% elif is_state('climate.midea_ac_30786326300484','dry') %}
           Осушение
-          {% elif is_state('climate.cabinet_midea_ac','heat') %}
+          {% elif is_state('climate.midea_ac_30786326300484','heat') %}
           Обогрев
-          {% elif is_state('climate.cabinet_midea_ac','cool') %}
+          {% elif is_state('climate.midea_ac_30786326300484','cool') %}
           Охлаждение
           {% else %}
           Выключен
           {% endif %}
           
-          Теплый пол: {% if is_state('climate.cabinet_thermostat','heat') %}
+          Теплый пол: {% if is_state('climate.teplyi_pol_detskaia','heat') %}
           Обогрев
           {% else %}
           Выключен
           {% endif %}
         
-          Левое окно: {% if is_state('binary_sensor.cabinet_left_window_contact','off') %}
+          Левое окно: {% if is_state('binary_sensor.levoe_okno_detskaia','off') %}
           Закрыто
           {% else %}
           Открыто
           {% endif %}
           
-          Правое окно: {% if is_state('binary_sensor.cabinet_right_window_contact','off') %}
+          Правое окно: {% if is_state('binary_sensor.pravoe_okno_detskaia','off') %}
           Закрыто
           {% else %}
           Открыто
@@ -414,19 +428,31 @@
           
           <b>Бар:</b>
         
-          Жалюзи: {{ states('sensor.ikea_blinds_state') }}
+          Датчик движения: {% if is_state('binary_sensor.datchik_dvizheniia_bar','off') %}
+          Не обнаружено
+          {% else %}
+          Обнаружено
+          {% endif %}
+
+          Жалюзи: {{ states('sensor.zhaliuzi_bar_state') }}
           
-          Правое окно: {% if is_state('binary_sensor.aqara_bar_big_window_contact','off') %}
+          Правое окно: {% if is_state('binary_sensor.pravoe_okno_bar','off') %}
           Закрыто
           {% else %}
           Открыто
           {% endif %}
           
-          Левое окно: {% if is_state('binary_sensor.bar_left_window_contact','off') %}
+          Левое окно: {% if is_state('binary_sensor.levoe_okno_bar','off') %}
           Закрыто
           {% else %}
           Открыто
           {% endif %}        
+
+          Форточка: {% if is_state('binary_sensor.levoe_okno_fortochka_bar','off') %}
+          Закрыто
+          {% else %}
+          Открыто
+          {% endif %}      
          
         inline_keyboard:
           - 'Статус системы:/status, Состояние батареек:/zigbee_batteries'

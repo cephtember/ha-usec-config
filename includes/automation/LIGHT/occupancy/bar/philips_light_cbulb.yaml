@@ -56,8 +56,7 @@
           - service: light.turn_off
             target:
               entity_id: light.svet_nad_stolom_bar
-            data:
-              transition: 0
+
 
 
 - alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 30 минут (Бар)"
