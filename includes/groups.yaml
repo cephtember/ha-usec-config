@@ -102,6 +102,7 @@ all_motion_sensors:
 cabinet_motion_sensors:
   entities:
     - binary_sensor.datchik_dvizheniia_detskaia
+    - binary_sensor.datchik_dvizheniia_detskaia_2
 
 bar_motion_sensors:
   entities:

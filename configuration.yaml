@@ -8,6 +8,7 @@ homeassistant:
   packages: !include_dir_merge_named includes/packages
   external_url: "https://home.usec.uz"
   currency: UZS
+  country: UZ
 
 lovelace:
   mode: yaml

@@ -2,7 +2,7 @@
   id: cabinet_occupancy_light
   trigger:
     - platform: state
-      entity_id: binary_sensor.datchik_dvizheniia_detskaia
+      entity_id: group.cabinet_motion_sensors
       to: 'on'
   condition:
     - condition: state
@@ -15,7 +15,7 @@
     - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.datchik_dvizheniia_detskaia
+            entity_id: group.cabinet_motion_sensors
             state: 'on'
           - condition: state
             entity_id: group.my_device_trackers
@@ -36,7 +36,7 @@
   id: cabinet_occupancy_light_off_5min
   trigger:
     - platform: state
-      entity_id: binary_sensor.datchik_dvizheniia_detskaia
+      entity_id: group.cabinet_motion_sensors
       to: 'off'
       for: 00:05:00
   condition:
@@ -47,7 +47,7 @@
     - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.datchik_dvizheniia_detskaia
+            entity_id: group.cabinet_motion_sensors
             state: 'off'
           - condition: state
             entity_id: light.yeelight_ceiling15_0x12ee89e4_nightlight
@@ -64,14 +64,14 @@
   id: cabinet_occupancy_light_off_30min
   trigger:
     - platform: state
-      entity_id: binary_sensor.datchik_dvizheniia_detskaia
+      entity_id: group.cabinet_motion_sensors
       to: 'off'
       for: 00:30:00
   action:
     - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.datchik_dvizheniia_detskaia
+            entity_id: group.cabinet_motion_sensors
             state: 'off'
           - condition: state
             entity_id: group.cabinet_lights
