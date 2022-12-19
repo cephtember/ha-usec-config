@@ -1,0 +1,17 @@
+- alias: "[Дверь (Подъезд)] - Открытие входной двери (уведомление)"
+  id: toggle_entrace_door
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dver_podezd
+      to: 'on'
+
+  mode: single
+  action:
+    - service: telegram_bot.send_message
+          data:
+            title: "<b>ВНИМАНИЕ!!! Кто-то открыл входную дверь</b>"
+            message: "*{{ trigger.event.data.new_state.attributes.friendly_name }}*"
+            target:
+              - !secret telegram_id_1
+              - !secret telegram_id_2
+            disable_notification: false
