@@ -8,10 +8,10 @@
   mode: single
   action:
     - service: telegram_bot.send_message
-          data:
-            title: "<b>ВНИМАНИЕ!!! Кто-то открыл входную дверь</b>"
-            message: "*{{ trigger.event.data.new_state.attributes.friendly_name }}*"
-            target:
-              - !secret telegram_id_1
-              - !secret telegram_id_2
-            disable_notification: false
+      data:
+        title: "<b>ВНИМАНИЕ!!! Кто-то открыл входную дверь</b>"
+        message: "*{{ trigger.event.data.new_state.attributes.friendly_name }}*"
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
