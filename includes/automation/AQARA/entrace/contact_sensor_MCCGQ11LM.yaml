@@ -9,8 +9,8 @@
   action:
     - service: telegram_bot.send_message
       data:
-        title: "<b>ВНИМАНИЕ!!! Кто-то открыл входную дверь</b>"
-        message: "*{{ trigger.event.data.new_state.attributes.friendly_name }}*"
+        title: "<b>ВНИМАНИЕ!!!</b>"
+        message: "*Кто-то открыл входную дверь*"
         target:
           - !secret telegram_id_1
           - !secret telegram_id_2
