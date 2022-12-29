@@ -11,6 +11,10 @@ cards:
       - entity: input_boolean.auto_lights
         state_color: true
         icon: mdi:fan-auto
+
+      - entity: input_boolean.auto_lights_motion
+        state_color: true
+        icon: mdi:motion-sensor
       
       - type: divider
         style:
@@ -296,6 +300,10 @@ cards:
       - type: section     
       
       - entity: binary_sensor.datchik_dvizheniia_detskaia
+        name: Датчик движения 
+        state_color: true
+
+      - entity: binary_sensor.datchik_dvizheniia_detskaia_2
         name: Датчик движения 
         state_color: true
       

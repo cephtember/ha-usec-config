@@ -1,4 +1,4 @@
-- alias: "[ Home Assistant ] - Обновлять локации устройств после перезапуске"
+- alias: "[ Home Assistant ] - Обновлять локации устройств после перезапуске и выключать весь свет"
   id: location_update_and_turnoff_the_lights
   trigger:
       platform: homeassistant

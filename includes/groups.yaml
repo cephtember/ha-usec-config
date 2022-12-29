@@ -12,6 +12,7 @@ all_lights:
     - group.toilet_lights
     - group.bath_lights
     - group.hall_lights
+    - group.night_lights
 
 bar_lights:
   name: Бар
@@ -24,7 +25,7 @@ bedroom_lights:
   entities:
     - light.yeelight_ceiling14_0x12ada382
     - light.trekingovyi_svet_spalnia
-    - light.bedroom_underlight
+    - light.yeelight_stripa_0x19db0b1e
 
 cabinet_lights:
   name: Детская
@@ -74,6 +75,13 @@ hall_lights:
   entities:
     - light.osnovnoi_svet_prikhozhaia
     - light.svet_nad_porogom_prikhozhaia
+
+night_lights:
+  name: Ночники
+  entities:
+    - light.yeelight_ceiling15_0x12ee89e4_nightlight
+    - light.yeelight_ceila_0x1a5b20e7_nightlight
+    - light.yeelight_ceiling14_0x12ada382_nightlight
     
 ###### DEVICES ######
 my_device_trackers:
@@ -94,6 +102,7 @@ all_motion_sensors:
 cabinet_motion_sensors:
   entities:
     - binary_sensor.datchik_dvizheniia_detskaia
+    - binary_sensor.datchik_dvizheniia_detskaia_2
 
 bar_motion_sensors:
   entities:
@@ -172,3 +181,6 @@ living_climate:
 bedroom_climate:
     - climate.bedroom_midea_ac
 
+iphone_focus:
+    - binary_sensor.iphone_amnezia_focus
+    - binary_sensor.tanzilyas_iphone_focus

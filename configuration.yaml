@@ -8,6 +8,7 @@ homeassistant:
   packages: !include_dir_merge_named includes/packages
   external_url: "https://home.usec.uz"
   currency: UZS
+  country: UZ
 
 lovelace:
   mode: yaml
@@ -82,6 +83,8 @@ frontend:
 input_boolean:
   auto_lights:
     name: Адаптивное управления светом
+  auto_lights_motion:
+    name: Управление светом датчиками движения
 
 input_number:
   energy_daily_price:
@@ -92,6 +95,7 @@ input_number:
     max: 1000
     unit_of_measurement: "СУМ/kWh"
     icon: mdi:currency-eur
+
 
 # THEMES
 input_select:

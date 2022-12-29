@@ -1,16 +1,3 @@
-- alias: "[Камера верхняя (Подъезд)] Отправлять фото в телеграм при срабатывании датчика движения камеры"
-  id: send_camphoto_to_tg_on_cellmotion_detection
-  mode: single
-  #max: 3
-  trigger:
-    - platform: device
-      device_id: 12efdf600569a217d856fb01e38f3cbf
-      entity_id: binary_sensor.camera_entrace_motion_alarm
-      domain: binary_sensor
-      type: motion
-  action:
-     - service: script.photo_hikvision_telegram_group
-     
 - alias: "[Камера верхняя (Подъезд)] Включать свет в подъезде при срабатывании датчика движения камеры"
   id: turn_on_the_entrace_light_on_cellmotion_detection
   mode: single

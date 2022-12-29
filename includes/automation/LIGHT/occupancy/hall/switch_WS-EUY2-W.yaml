@@ -1,0 +1,86 @@
+- alias: "[ OCCUPANCY ] - Включать свет по датчику движения (Прихожая)"
+  id: hall_occupancy_light
+  trigger:
+    - platform: state
+      entity_id: group.hall_motion_sensors
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.auto_lights_motion
+      state: "on"
+    # - condition: state
+    #   entity_id: group.iphone_focus
+    #   state: "on"
+  action:
+    - choose:
+      - conditions:
+          - condition: state
+            entity_id: group.hall_motion_sensors
+            state: 'on'
+          - condition: state
+            entity_id: group.my_device_trackers
+            state: home
+          - condition: state
+            entity_id: group.hall_lights
+            state: 'off'
+        sequence:
+          - service: light.turn_on
+            data:
+              transition: 0
+              brightness_pct: 100
+            target:
+              entity_id: light.osnovnoi_svet_prikhozhaia
+
+
+- alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 5 минут (Прихожая)"
+  id: hall_occupancy_light_off_5min
+  trigger:
+    - platform: state
+      entity_id: group.hall_motion_sensors
+      to: 'off'
+      for: 00:05:00
+  condition:
+    - condition: state
+      entity_id: input_boolean.auto_lights_motion
+      state: "on"
+  action:
+    - choose:
+      - conditions:
+          - condition: state
+            entity_id: group.hall_motion_sensors
+            state: 'off'
+          - condition: state
+            entity_id: light.osnovnoi_svet_prikhozhaia
+            state: 'on'
+        sequence:
+          - service: light.turn_off
+            data:
+              transition: 0
+            target:
+              entity_id: light.osnovnoi_svet_prikhozhaia
+
+
+- alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 30 минут (Прихожая)"
+  id: hall_occupancy_light_off_30min
+  trigger:
+    - platform: state
+      entity_id: group.hall_motion_sensors
+      to: 'off'
+      for: 00:30:00
+  action:
+    - choose:
+      - conditions:
+          - condition: state
+            entity_id: group.hall_motion_sensors
+            state: 'off'
+          - condition: state
+            entity_id: group.hall_lights
+            state: 'on'
+        sequence:
+          - service: light.turn_off
+            target:
+              entity_id: group.hall_lights
+          - delay: 00:00:05
+          - service: light.turn_off
+            target:
+              entity_id: light.osnovnoi_svet_prikhozhaia

@@ -1,0 +1,25 @@
+- alias: "[ Home Assistant ] - Выключать свет, когда дали обратно электричество"
+  id: light_shutdown_on_electricity_back
+  trigger:
+    - platform: state
+      entity_id: "sensor.pzem04_energy_current"
+      from: "0"
+
+  action:
+    
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>ВНИМАНИЕ!!!</b>"
+        message: "*Происходит синхронизация света, свет будет выключен через 30 секунд*"
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+
+    - delay: 00:00:30
+
+    - service: homeassistant.turn_off
+      data: {}
+      target:
+        entity_id: group.all_lights
+

@@ -6,3 +6,12 @@
   payload_on: true
   payload_off: false
   device_class: "motion"
+
+- unique_id: datchik_dvizheniia_detskaia_2
+  name: "Датчик движения (Детская)_2"
+  state_topic: "zigbee2mqtt/cabinet_motion_2"
+  availability_topic: "zigbee2mqtt/cabinet_motion_2/availability"
+  value_template: "{{ value_json.occupancy }}"
+  payload_on: true
+  payload_off: false
+  device_class: "motion"
