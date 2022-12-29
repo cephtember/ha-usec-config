@@ -1,8 +1,8 @@
-- alias: "[ OCCUPANCY ] - Включать свет по датчику движения (Детская)"
-  id: cabinet_occupancy_light
+- alias: "[ OCCUPANCY ] - Включать свет по датчику движения (Спальня)"
+  id: bedroom_occupancy_light
   trigger:
     - platform: state
-      entity_id: group.cabinet_motion_sensors
+      entity_id: group.bedroom_motion_sensors
       to: 'on'
   condition:
     - condition: state
@@ -15,13 +15,13 @@
     - choose:
       - conditions:
           - condition: state
-            entity_id: group.cabinet_motion_sensors
+            entity_id: group.bedroom_motion_sensors
             state: 'on'
           - condition: state
             entity_id: group.my_device_trackers
             state: home
           - condition: state
-            entity_id: group.cabinet_lights
+            entity_id: group.bedroom_lights
             state: 'off'
         sequence:
           - service: light.turn_on
@@ -29,14 +29,14 @@
               transition: 0
               brightness_pct: 100
             target:
-              entity_id: light.yeelight_ceiling15_0x12ee89e4_nightlight
+              entity_id: light.yeelight_stripa_0x19db0b1e
 
 
-- alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 5 минут (Детская)"
-  id: cabinet_occupancy_light_off_5min
+- alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 5 минут (Спальня)"
+  id: bedroom_occupancy_light_off_5min
   trigger:
     - platform: state
-      entity_id: group.cabinet_motion_sensors
+      entity_id: group.bedroom_motion_sensors
       to: 'off'
       for: 00:05:00
   condition:
@@ -47,40 +47,40 @@
     - choose:
       - conditions:
           - condition: state
-            entity_id: group.cabinet_motion_sensors
+            entity_id: group.bedroom_motion_sensors
             state: 'off'
           - condition: state
-            entity_id: light.yeelight_ceiling15_0x12ee89e4_nightlight
+            entity_id: light.yeelight_stripa_0x19db0b1e
             state: 'on'
         sequence:
           - service: light.turn_off
             data:
               transition: 0
             target:
-              entity_id: light.yeelight_ceila_0x1a5b20e7_nightlight
+              entity_id: light.yeelight_stripa_0x19db0b1e
 
 
-- alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 30 минут (Детская)"
-  id: cabinet_occupancy_light_off_30min
+- alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 30 минут (Спальня)"
+  id: bedroom_occupancy_light_off_30min
   trigger:
     - platform: state
-      entity_id: group.cabinet_motion_sensors
+      entity_id: group.bedroom_motion_sensors
       to: 'off'
       for: 00:30:00
   action:
     - choose:
       - conditions:
           - condition: state
-            entity_id: group.cabinet_motion_sensors
+            entity_id: group.bedroom_motion_sensors
             state: 'off'
           - condition: state
-            entity_id: group.cabinet_lights
+            entity_id: group.bedroom_lights
             state: 'on'
         sequence:
           - service: light.turn_off
             target:
-              entity_id: group.cabinet_lights
+              entity_id: group.bedroom_lights
           - delay: 00:00:05
           - service: light.turn_off
             target:
-              entity_id: light.yeelight_ceila_0x1a5b20e7_nightlight
+              entity_id: light.yeelight_stripa_0x19db0b1e

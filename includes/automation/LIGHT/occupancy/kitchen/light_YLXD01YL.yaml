@@ -8,9 +8,9 @@
     - condition: state
       entity_id: input_boolean.auto_lights_motion
       state: "on"
-    - condition: state
-      entity_id: group.iphone_focus
-      state: "on"
+    # - condition: state
+    #   entity_id: group.iphone_focus
+    #   state: "on"
   action:
     - choose:
       - conditions:

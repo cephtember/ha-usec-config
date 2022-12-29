@@ -25,7 +25,7 @@ bedroom_lights:
   entities:
     - light.yeelight_ceiling14_0x12ada382
     - light.trekingovyi_svet_spalnia
-    - light.bedroom_underlight
+    - light.yeelight_stripa_0x19db0b1e
 
 cabinet_lights:
   name: Детская
