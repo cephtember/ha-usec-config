@@ -99,6 +99,53 @@ input_number:
 
 # THEMES
 input_select:
+
+  cicle_light_color:
+    name: Список цветов
+    options:
+      - crimson
+      - deeppink
+      - hotpink
+      - lightpink
+      - red
+      - orangered
+      - orange
+      - lightsalmon
+      - darksalmon
+      - coral
+      - goldenrod
+      - gold
+      - yellow
+      - yellowgreen
+      - greenyellow
+      - limegreen
+      - lime
+      - lawngreen
+      - green
+      - aquamarine
+      - mediumturquoise
+      - turquoise
+      - darkturquoise
+      - deepskyblue
+      - dodgerblue
+      - royalblue
+      - blue
+      - darkblue
+      - darkslateblue
+      - darkmagenta
+      - darkorchid
+      - blueviolet
+      - mediumpurple
+      - purple
+      - mediumorchid
+      - orchid
+      - plum
+      - violet
+      - fuchsia
+      - magenta
+      - darkviolet
+      - mediumvioletred
+
   themes:
     name: "Тема Home Assistant"
     icon: mdi:format-paint
