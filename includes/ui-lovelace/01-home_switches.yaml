@@ -332,12 +332,20 @@ cards:
       - entity: light.trekingovyi_svet_spalnia
         name: Трекинговый свет
         state_color: true
+
+      - entity: light.yeelight_stripa_0x19db0b1e
+        name: Подсветка
+        state_color: true
       
       - entity: switch.rozetka_televizor_spalnia
         name: Розетка телевизор
         state_color: true
         
       - type: section   
+
+      - entity: binary_sensor.datchik_dvizheniia_spalnia
+        name: Датчик движения 
+        state_color: true
 
       - entity: binary_sensor.dver_spalnia
         name: Дверь
