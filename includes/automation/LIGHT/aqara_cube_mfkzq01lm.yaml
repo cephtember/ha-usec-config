@@ -1,0 +1,57 @@
+- alias: "[ Light ] - Переключать цвет кубиком освновных лампочек (Зал)"
+  initial_state: 'on'
+  id: change_color_in_livingroom_by_cube
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/cube
+  condition:
+    condition: template
+    value_template: '{{ "flip90" == trigger.payload_json.action }}'
+  action:
+    - entity_id: input_select.cicle_light_color_living_room
+      service: input_select.select_next
+    
+    - data_template:
+        color_name: '{{ states(''input_select.cicle_light_color_living_room'') }}'
+        entity_id: light.zal_tsvetnye
+        transition: 0
+      service: light.turn_on
+
+- alias: "[ Light ] - Вернуть белый цвет кубиком освновных лампочек (Зал)"
+  initial_state: 'on'
+  id: change_color_in_livingroom_by_cube_shake
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/cube
+  condition:
+    condition: template
+    value_template: '{{ "shake" == trigger.payload_json.action }}'
+  action:    
+    - data_template:
+        color_name: 'white'
+        entity_id: light.zal_tsvetnye
+        transition: 0
+      service: light.turn_on
+
+- alias: "[ Light ] - Яркость освновных лампочек кубиком (Зал)"
+  id: change_color_in_livingroom_by_cube_rotate 
+  initial_state: 'on'
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/cube
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.action in ['rotate_right', 'rotate_left'] }}"
+  action:         
+    - service: light.turn_on
+      data:
+        entity_id: light.zal_tsvetnye
+    - service: light.turn_on
+      data_template:
+        entity_id: light.zal_tsvetnye
+        brightness: >-
+          {% if trigger.payload_json.angle | float > 0 %}
+          {{  states.light.zal_tsvetnye.attributes.brightness | int + 30 }}
+          {% else %}
+          {{  states.light.zal_tsvetnye.attributes.brightness | int - 30 }}
+          {% endif %}    
