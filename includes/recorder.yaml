@@ -107,6 +107,7 @@
     ###
     - light.yeelight_ceila_0x1a5b20e7
     - light.yeelight_strip6_0x12ed5ce2
+    - light.yeelight_stripa_0x19db0b1e
     ###
     - light.bra_zal
     - light.trekingovyi_svet_zal

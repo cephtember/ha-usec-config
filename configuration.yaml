@@ -101,7 +101,7 @@ input_number:
 input_select:
 
   cicle_light_color:
-    name: Список цветов
+    name: Список цветов подсветка (Спальня)
     options:
       - crimson
       - deeppink
@@ -145,6 +145,54 @@ input_select:
       - magenta
       - darkviolet
       - mediumvioletred
+
+  cicle_light_color_living_room:
+    name: Список цветов лампочки (Зал)
+    initial: white
+    options:
+      - crimson
+      - deeppink
+      - hotpink
+      - lightpink
+      - red
+      - orangered
+      - orange
+      - lightsalmon
+      - darksalmon
+      - coral
+      - goldenrod
+      - gold
+      - yellow
+      - yellowgreen
+      - greenyellow
+      - limegreen
+      - lime
+      - lawngreen
+      - green
+      - aquamarine
+      - mediumturquoise
+      - turquoise
+      - darkturquoise
+      - deepskyblue
+      - dodgerblue
+      - royalblue
+      - blue
+      - darkblue
+      - darkslateblue
+      - darkmagenta
+      - darkorchid
+      - blueviolet
+      - mediumpurple
+      - purple
+      - mediumorchid
+      - orchid
+      - plum
+      - violet
+      - fuchsia
+      - magenta
+      - darkviolet
+      - mediumvioletred
+      - white
 
   themes:
     name: "Тема Home Assistant"
@@ -332,6 +380,7 @@ homekit:
       include_entities:
         - camera.embedded_net_vis_mainstream
         - camera.camera_entrace_mainstream
+        - camera.hikvision_ds_2cv2141g2_idw_mainstream
     entity_config:
       camera.camera_entrace_mainstream:
         stream_source: !secret rtsp_1
