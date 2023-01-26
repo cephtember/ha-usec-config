@@ -1,0 +1,128 @@
+title: Люди
+icon: mdi:account-box
+# panel: true
+cards:   
+    - type: vertical-stack
+      cards:
+
+        - type: entities
+          title: "Elena Pletukhina"
+          style: |
+            ha-card {
+              background: var(--homekit-card-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: var(--border-radius);
+              font-family: 'Open Sans', sans-serif;
+              font-size: 12px;
+            }
+          entities:
+            - entity: device_tracker.m2101k6i
+              type: custom:multiple-entity-row
+              name: 'Presence'
+              icon: mdi:map-marker-circle
+              #show_state: false
+              secondary_info: last-changed
+              entities:
+                - entity: proximity.ep_to_home
+                  name: Proximity to home
+                # - entity: proximity.ep_to_home
+                #   attribute: dir_of_travel
+                #   name: Direction
+                  
+            - entity: device_tracker.m2101k6i
+              type: custom:multiple-entity-row
+              name: Android
+              icon: mdi:android
+              show_state: false
+              secondary_info: last-changed
+              entities:
+                - entity: sensor.m2101k6i_battery_level
+                  name: Battery
+                - entity: sensor.m2101k6i_battery_state
+                  name: Status
+            - entity: sensor.m2101k6i_geocoded_location
+              name: Location
+              icon: mdi:android
+              secondary_info: last-changed
+
+            - entity: device_tracker.m2101k6i
+              type: custom:multiple-entity-row
+              name: 'Wifi'
+              icon: mdi:wifi
+              show_state: false
+              secondary_info: last-changed
+              entities:
+                - entity: sensor.m2101k6i_ssid
+                  name: Connected to
+
+        - type: vertical-stack
+          cards:
+          
+            - type: horizontal-stack
+              cards:
+                - type: entities
+                  title: "Vladimir Filatov"
+                  style: |
+                    ha-card {
+                      background: var(--homekit-card-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: var(--border-radius);
+                      font-family: 'Open Sans', sans-serif;
+                      font-size: 12px;
+                    }
+                  entities:
+                    - entity: device_tracker.iphone_amnezia
+                      type: custom:multiple-entity-row
+                      name: 'Presence'
+                      icon: mdi:map-marker-circle
+                      #show_state: false
+                      secondary_info: last-changed
+                      entities:
+                        - entity: proximity.vf_to_home
+                          name: Proximity to home
+                          
+                    - entity: device_tracker.iphone_amnezia
+                      type: custom:multiple-entity-row
+                      name: iPhone
+                      icon: mdi:apple
+                      show_state: false
+                      secondary_info: last-changed
+                      entities:
+                        - entity: sensor.iphone_amnezia_battery_level
+                          name: Battery
+                        - entity: sensor.iphone_amnezia_battery_state
+                          name: Status
+                    - entity: sensor.iphone_amnezia_geocoded_location
+                      name: Location
+                      icon: mdi:apple
+                      secondary_info: last-changed
+
+                    - entity: device_tracker.iphone_amnezia
+                      type: custom:multiple-entity-row
+                      name: 'Wifi'
+                      icon: mdi:wifi
+                      show_state: false
+                      secondary_info: last-changed
+                      entities:
+                        - entity: sensor.iphone_amnezia_ssid
+                          name: Connected to
+                   
+                    - entity: sensor.iphone_amnezia_average_active_pace
+                      type: custom:multiple-entity-row
+                      name: Active pace
+                      secondary_info: last-changed
+                      entities:
+                        - entity: sensor.iphone_amnezia_distance
+                        - entity: sensor.iphone_amnezia_activity
+                    
+                    - entity: sensor.iphone_amnezia_steps
+                      type: custom:multiple-entity-row
+                      name: Activity
+                      icon: mdi:walk
+                      show_state: false
+                      secondary_info: last-changed
+                      entities:
+                        - entity: sensor.iphone_amnezia_steps
+                          name: Steps

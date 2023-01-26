@@ -19,4 +19,3 @@ group.livingroom_lights:
 group.toilet_and_bath_lights:
   friendly_name: "Свет в туалете и ванной"
   icon: mdi:lightbulb-group
-  

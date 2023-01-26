@@ -1,0 +1,18 @@
+- unique_id: knopka_nochnik_availability
+  name: Кнопка ночника (Детская)_availability
+  state_topic: "zigbee2mqtt/button_nightlight/availability"
+  
+- unique_id: knopka_nochnik_battery
+  name: Кнопка ночника (Детская)_battery
+  state_topic: "zigbee2mqtt/button_nightlight"
+  availability_topic: "zigbee2mqtt/button_nightlight/availability"
+  unit_of_measurement: "%"
+  value_template: "{{ value_json.battery }}"
+  device_class: "battery"
+
+- unique_id: knopka_nochnik_action
+  name: Кнопка ночника (Детская)_action
+  state_topic: "zigbee2mqtt/button_nightlight"
+  availability_topic: "zigbee2mqtt/button_nightlight/availability"
+  value_template: "{{ value_json.action }}"
+  icon: "mdi:gesture-double-tap"

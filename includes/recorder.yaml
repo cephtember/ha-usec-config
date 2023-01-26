@@ -18,6 +18,7 @@
     - sensor.datchik_temperatury_zal_temperature
     - sensor.datchik_temperatury_zal_humidity
     - binary_sensor.datchik_dvizheniia_zal
+    - vacuum.xiaomi_1c
 
     ### ДЕТСКАЯ
     - sensor.datchik_temperatury_na_polu_detskaia_temperature
@@ -54,7 +55,7 @@
     ### Подъезд
     - binary_sensor.dver_podezd
     - binary_sensor.camera_entrace_cell_motion_detection
-    - binary_sensor.camera_entrace_motion_alarm
+  #  - binary_sensor.camera_entrace_motion_alarm
 
     ### Спальня
     - binary_sensor.levoe_okno_spalnia
@@ -97,15 +98,18 @@
     - light.bar_tsvetnye
     ###
     - light.yeelight_ceiling14_0x12ada382
+    - light.yeelight_ceiling14_0x12ada382_nightlight
     - light.trekingovyi_svet_spalnia
     - light.bedroom_underlight
     ###
     - light.yeelight_ceiling15_0x12ee89e4
+    - light.yeelight_ceiling15_0x12ee89e4_nightlight
     - light.trekingovyi_svet_detskaia
     ###
     - light.entrace_light
     ###
     - light.yeelight_ceila_0x1a5b20e7
+    - light.yeelight_ceila_0x1a5b20e7_nightlight
     - light.yeelight_strip6_0x12ed5ce2
     - light.yeelight_stripa_0x19db0b1e
     ###
@@ -130,3 +134,6 @@
     - climate.teplyi_pol_detskaia
     - humidifier.deerma_jsq5_dbeb_humidifier
     - fan.zhimi_ma4_39fd_air_purifier
+
+    ### camera
+    

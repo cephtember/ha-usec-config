@@ -8,7 +8,7 @@ all_lights:
     - group.entrace_lights
     - group.kitchen_lights
     - group.livingroom_lights
-    - group.livingroon_color_lights
+    - group.livingroom_color_lights
     - group.toilet_lights
     - group.bath_lights
     - group.hall_lights
@@ -87,7 +87,7 @@ night_lights:
 my_device_trackers:
   entities:
     - device_tracker.iphone_amnezia
-    - device_tracker.tanzilyas_iphone
+    - device_tracker.m2101k6i
 
 all_motion_sensors:
   entities:
@@ -169,17 +169,17 @@ entrace_contact_sensors:
 
 all_climate:
   entities:
-    - climate.cabinet_thermostat
-    - climate.cabinet_midea_ac
-    - climate.bedroom_midea_ac
-    - climate.hall_thermostat
+    - climate.teplyi_pol_detskaia
+    - climate.midea_ac_30786326300484
+    - climate.midea_ac_30786325663901
+    - climate.teplyi_pol_vannaia
 
 living_climate:
-    - climate.cabinet_thermostat
-    - climate.cabinet_midea_ac
+    - climate.teplyi_pol_detskaia
+    - climate.midea_ac_30786326300484
     
 bedroom_climate:
-    - climate.bedroom_midea_ac
+    - climate.midea_ac_30786325663901
 
 iphone_focus:
     - binary_sensor.iphone_amnezia_focus
