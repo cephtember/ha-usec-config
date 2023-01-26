@@ -1,0 +1,13 @@
+- alias: "[Кнопка ночника (Детская)] - Переключать ночник по нажатию на Aqara Button"
+  id: toggle_nochnik_detskaya
+  trigger:
+    - platform: mqtt
+      topic: "zigbee2mqtt/button_nightlight/action"
+      # Optional
+      #payload: "single"
+      encoding: "utf-8"
+  mode: single
+  action:
+     - service: light.toggle
+       entity_id: light.yeelight_ceiling15_0x12ee89e4_nightlight
+     - delay: '00:00:02'

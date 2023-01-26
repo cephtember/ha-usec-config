@@ -1,0 +1,11 @@
+- name: Home
+  latitude: !secret latitude_coord
+  longitude: !secret longitude_coord
+  radius: 100
+  icon: mdi:home
+
+- name: Work
+  latitude: 41.326995849609375
+  longitude: 69.31346716365712
+  radius: 100
+  icon: mdi:calendar-clock

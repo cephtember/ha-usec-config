@@ -13,7 +13,7 @@
         target:
           entity_id:
           - light.bar_lights_color
-          - light.livingroon_color_lights
+          - light.livingroom_color_lights
           - light.strips_color
         data:
           color_name: red
@@ -24,7 +24,7 @@
         target:
           entity_id:
           - light.bar_lights_color
-          - light.livingroon_color_lights
+          - light.livingroom_color_lights
           - light.strips_color
       - delay:
           seconds: 2
@@ -44,7 +44,7 @@
         target:
           entity_id:
           - light.bar_lights_color
-          - light.livingroon_color_lights
+          - light.livingroom_color_lights
           - light.strips_color
         data:
           color_name: red
@@ -55,7 +55,7 @@
         target:
           entity_id:
           - light.bar_lights_color
-          - light.livingroon_color_lights
+          - light.livingroom_color_lights
           - light.strips_color
       - delay:
           seconds: 2

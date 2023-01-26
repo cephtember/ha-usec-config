@@ -1,6 +1,6 @@
 - unique_id: datchik_utechki_vody_pod_vannoi_vannaia_water_leak
   name: "! Датчик утечки воды под ванной (Ванная)"
-  state_topic: "zigbeebinary_sensor.datchik_utechki2mqtt/bathroom_leak"
+  state_topic: "zigbee2mqtt/bathroom_leak"
   availability_topic: "zigbee2mqtt/bathroom_leak/availability"
   value_template: "{{ value_json.water_leak }}"
   payload_on: true
