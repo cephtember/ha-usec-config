@@ -1,6 +1,6 @@
 title: Камеры и датчики
 icon: mdi:cctv
-panel: true
+#panel: true
 cards:   
     - type: vertical-stack
       cards: 
