@@ -1,0 +1,7 @@
+- alias: "[ Home Assistant ] - Синхронизация / Обновление списка покупок"
+  id: update_shopping_list
+  trigger:
+      platform: time_pattern
+      minutes: "/60"
+  action:
+      service: script.update_shopping_list

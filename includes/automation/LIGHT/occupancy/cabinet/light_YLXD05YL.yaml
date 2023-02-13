@@ -9,6 +9,9 @@
       entity_id: input_boolean.auto_lights_motion
       state: "on"
     - condition: state
+      entity_id: input_boolean.children_sleep
+      state: "off"
+    - condition: state
       entity_id: sun.sun
       state: "below_horizon"
     # - condition: state

@@ -8,11 +8,11 @@
       encoding: "utf-8"
   action:
      - service: light.toggle
-       entity_id: light.bedroom_underlight
+       entity_id: light.yeelight_stripa_0x19db0b1e
      - delay: 0.5
      - service: mqtt.publish
        data:
          topic: "bedroom/stat/yeelight/RESULT2"
          retain: false
-         payload: "{\"POWER\":\"{{ states('light.bedroom_underlight') }}\"}"
+         payload: "{\"POWER\":\"{{ states('light.yeelight_stripa_0x19db0b1e') }}\"}"
          

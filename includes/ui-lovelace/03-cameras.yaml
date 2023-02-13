@@ -2,10 +2,11 @@ title: Камеры и датчики
 icon: mdi:cctv
 panel: true
 cards:   
-    - type: horizontal-stack
+    - type: vertical-stack
+#    - type: horizontal-stack
       cards: 
-        - type: vertical-stack
-          cards:
+        # - type: vertical-stack
+        #   cards:
             - type: picture-entity
               entity: camera.camera_entrace_mainstream
               camera_view: live 
@@ -100,8 +101,8 @@ cards:
             #             - entity: sensor.tanzilyas_iphone_steps
             #               name: Steps
 
-        - type: vertical-stack
-          cards:        
+        # - type: vertical-stack
+        #   cards:        
             - type: picture-entity
               entity: camera.embedded_net_vis_mainstream
               camera_view: live 
