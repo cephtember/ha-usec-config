@@ -12,6 +12,9 @@
       data:
         media_content_id: 'Кто-то звонит в дверь, отправляю фото в телеграм'
         media_content_type: text
+        extra:
+          volume_level: 0.8
+      
 
     - service: mqtt.publish
       data:
