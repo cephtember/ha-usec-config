@@ -2,7 +2,7 @@
   id: update_shopping_list_sync
   trigger:
     platform: time_pattern
-    minutes: "/5"
+    minutes: "/60"
   action:
     - service: script.update_shopping_list
       data: {}
@@ -23,7 +23,7 @@
         media_content_id: '{{ trigger.event.data.item.name }} добавлено в список покупок'
         media_content_type: text
         extra:
-          volume_level: 0.3
+          volume_level: 0.8
 
     - service: notify.notify
       data:

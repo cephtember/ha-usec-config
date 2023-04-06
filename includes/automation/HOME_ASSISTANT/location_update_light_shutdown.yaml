@@ -17,8 +17,19 @@
 
     - delay: 00:01:30
 
+    - service: rest_command.reload_miot_auto
+      data: {}
+    
+    - delay: 00:00:30
+
     - service: homeassistant.turn_off
       data: {}
       target:
         entity_id: group.all_lights
+
+    - delay: 00:00:30
+
+    - service: rest_command.reload_miot_auto
+      data: {}
+
 

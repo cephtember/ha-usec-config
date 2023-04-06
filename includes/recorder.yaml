@@ -13,6 +13,7 @@
     - binary_sensor.dver_vannaia
 
     ### ЗАЛ
+    - media_player.televizor
     - binary_sensor.datchik_utechki_vody_zal
     - sensor.zhimi_ma4_39fd_pm25_density
     - sensor.datchik_temperatury_zal_temperature
@@ -54,7 +55,7 @@
 
     ### Подъезд
     - binary_sensor.dver_podezd
-    - binary_sensor.camera_entrace_cell_motion_detection
+    # - binary_sensor.camera_entrace_cell_motion_detection
   #  - binary_sensor.camera_entrace_motion_alarm
 
     ### Спальня

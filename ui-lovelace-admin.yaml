@@ -1,0 +1,2 @@
+title: Камеры
+views: !include_dir_list includes/ui-lovelace-admin/
