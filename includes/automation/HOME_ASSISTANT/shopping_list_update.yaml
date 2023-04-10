@@ -1,0 +1,51 @@
+- alias: "[ Home Assistant ] - Синхронизация списка покупок"
+  id: update_shopping_list_sync
+  trigger:
+    platform: time_pattern
+    minutes: "/5"
+  action:
+    - service: script.update_shopping_list
+      data: {}
+    - service: system_log.write
+      data:
+        message: "time_pattern triggered"
+
+- alias: "[ Home Assistant ] - Говорить что добавлено в список покупок"
+  trigger:
+    - platform: event
+      event_type: shopping_list_updated
+      event_data:
+        action: "add"
+  action:
+    - service: media_player.play_media
+      entity_id: media_player.yandex_station_m00320b000eg4g  # замените на вашу колонку
+      data:
+        media_content_id: '{{ trigger.event.data.item.name }} добавлено в список покупок'
+        media_content_type: text
+        extra:
+          volume_level: 0.3
+
+    - service: notify.notify
+      data:
+        message: "{{ trigger.event.data.item.name }} добавлено в список покупок"
+        data:
+            clickAction: "/shopping-list"
+            url: "/shopping-list"
+
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>Список покупок изменен</b>"
+        message: "*{{ trigger.event.data.item.name }} добавлено в список покупок*"
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false
+
+    - service: telegram_bot.send_message
+      data:
+        title: "<b>В Вашем списке покупок:</b>"
+        message: "{{ states('sensor.shopping_list') }}"
+        target:
+          - !secret telegram_id_1
+          - !secret telegram_id_2
+        disable_notification: false

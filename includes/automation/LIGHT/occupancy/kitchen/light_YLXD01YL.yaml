@@ -8,6 +8,9 @@
     - condition: state
       entity_id: input_boolean.auto_lights_motion
       state: "on"
+    - condition: state
+      entity_id: sun.sun
+      state: "below_horizon"
     # - condition: state
     #   entity_id: group.iphone_focus
     #   state: "on"
@@ -49,6 +52,9 @@
     - condition: state
       entity_id: input_boolean.auto_lights_motion
       state: "on"
+    - condition: state
+      entity_id: sun.sun
+      state: "below_horizon"
   action:
     - choose:
       - conditions:

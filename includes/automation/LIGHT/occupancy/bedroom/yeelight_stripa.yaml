@@ -1,3 +1,16 @@
+- alias: "[ OCCUPANCY ] - Включать свет по датчику движения_синхронизация (Спальня)"
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_select.cicle_light_color
+  action:
+  - service: light.turn_on
+    entity_id: light.yeelight_stripa_0x19db0b1e
+    data_template:
+      color_name: >
+        {{trigger.to_state.state}}
+      transition: 2
+
 - alias: "[ OCCUPANCY ] - Включать свет по датчику движения (Спальня)"
   id: bedroom_occupancy_light
   trigger:
@@ -8,6 +21,9 @@
     - condition: state
       entity_id: input_boolean.auto_lights_motion
       state: "on"
+    - condition: state
+      entity_id: sun.sun
+      state: "below_horizon"
     # - condition: state
     #   entity_id: group.iphone_focus
     #   state: "on"
@@ -24,12 +40,18 @@
             entity_id: group.bedroom_lights
             state: 'off'
         sequence:
-          - service: light.turn_on
-            data:
-              transition: 0
-              brightness_pct: 100
+          # - service: light.turn_on
+          #   entity_id: light.yeelight_stripa_0x19db0b1e
+          #   data_template:
+          #     color_name: >
+          #       {{states('input_select.cicle_light_color')}}
+          #     transition: 2
+          - service: input_select.select_next
             target:
-              entity_id: light.yeelight_stripa_0x19db0b1e
+              entity_id: input_select.cicle_light_color
+          # - service: automation.turn_on
+          #   target:
+          #     entity_id: automation.cicle_light_color_change
 
 
 - alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 5 минут (Спальня)"
@@ -43,6 +65,9 @@
     - condition: state
       entity_id: input_boolean.auto_lights_motion
       state: "on"
+    - condition: state
+      entity_id: sun.sun
+      state: "below_horizon"
   action:
     - choose:
       - conditions:
@@ -54,10 +79,10 @@
             state: 'on'
         sequence:
           - service: light.turn_off
-            data:
-              transition: 0
+            entity_id: light.yeelight_stripa_0x19db0b1e
+          - service: automation.turn_off
             target:
-              entity_id: light.yeelight_stripa_0x19db0b1e
+              entity_id: automation.cicle_light_color_change
 
 
 - alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 30 минут (Спальня)"

@@ -11,6 +11,15 @@
     - condition: template
       value_template: '{{ trigger.event.data.new_state.state == "on" }}'
   action:
+
+    - service: media_player.play_media
+      entity_id: media_player.yandex_station_m00320b000eg4g  # замените на вашу колонку
+      data:
+        media_content_id: 'Внимание! Обнаружена утечка газа'
+        media_content_type: text
+        extra:
+          volume_level: 0.8
+
     - service: telegram_bot.send_message
       data:
         title: "<b>ВНИМАНИЕ!!! Утечка газа</b>"

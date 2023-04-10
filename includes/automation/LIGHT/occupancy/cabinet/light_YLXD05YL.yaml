@@ -8,6 +8,12 @@
     - condition: state
       entity_id: input_boolean.auto_lights_motion
       state: "on"
+    - condition: state
+      entity_id: input_boolean.children_sleep
+      state: "off"
+    - condition: state
+      entity_id: sun.sun
+      state: "below_horizon"
     # - condition: state
     #   entity_id: group.iphone_focus
     #   state: "on"
@@ -43,6 +49,9 @@
     - condition: state
       entity_id: input_boolean.auto_lights_motion
       state: "on"
+    - condition: state
+      entity_id: sun.sun
+      state: "below_horizon"
   action:
     - choose:
       - conditions:
@@ -57,7 +66,7 @@
             data:
               transition: 0
             target:
-              entity_id: light.yeelight_ceila_0x1a5b20e7_nightlight
+              entity_id: light.yeelight_ceiling15_0x12ee89e4_nightlight
 
 
 - alias: "[ OCCUPANCY ] - Выключать свет по датчику движения 30 минут (Детская)"
@@ -83,4 +92,4 @@
           - delay: 00:00:05
           - service: light.turn_off
             target:
-              entity_id: light.yeelight_ceila_0x1a5b20e7_nightlight
+              entity_id: light.yeelight_ceiling15_0x12ee89e4_nightlight

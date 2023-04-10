@@ -132,7 +132,7 @@ flick_red_lights:
             target:
               entity_id: 
                 - light.bar_lights_color
-                - light.livingroon_color_lights
+                - light.livingroom_color_lights
                 - light.strips_color
             data:
               color_name: red
@@ -143,8 +143,18 @@ flick_red_lights:
             target:
               entity_id:
                 - light.bar_lights_color
-                - light.livingroon_color_lights
+                - light.livingroom_color_lights
                 - light.strips_color
           - delay:
               seconds: 0.2
   mode: single
+
+
+update_shopping_list:
+  alias: Обновить список покупок
+  sequence:
+    - service: media_player.play_media
+      entity_id: media_player.yandex_station_m00320b000eg4g  # замените на вашу колонку
+      data:
+        media_content_id: update
+        media_content_type: shopping_list

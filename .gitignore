@@ -5,6 +5,7 @@ secrets.yaml
 *.db-wal
 *.log
 *.log.*
+core
 usec-home-48074a7f2b57.json
 /pureftpd
 /www/cam_captures
@@ -14,3 +15,4 @@ usec-home-48074a7f2b57.json
 /crt/privkey.pem
 .storage
 .cloud
+.vscode

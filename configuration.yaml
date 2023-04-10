@@ -80,11 +80,16 @@ tts:
 frontend:
   themes: !include_dir_merge_named themes
 
+my:
+  
+
 input_boolean:
   auto_lights:
     name: Адаптивное управления светом
   auto_lights_motion:
     name: Управление светом датчиками движения
+  children_sleep:
+    name: Детский режим
 
 input_number:
   energy_daily_price:
@@ -96,9 +101,75 @@ input_number:
     unit_of_measurement: "СУМ/kWh"
     icon: mdi:currency-eur
 
+shopping_list:
 
 # THEMES
 input_select:
+
+  cicle_light_color:
+    name: Список цветов подсветка (Спальня)
+    options:
+      - crimson
+      - deeppink
+      - hotpink
+      - lightpink
+      - red
+      - orangered
+      - orange
+      - lightsalmon
+      - darksalmon
+      - coral
+      - goldenrod
+      - gold
+      - yellow
+      - yellowgreen
+      - greenyellow
+      - limegreen
+      - lime
+      - lawngreen
+      - green
+      - aquamarine
+      - mediumturquoise
+      - turquoise
+      - darkturquoise
+      - deepskyblue
+      - dodgerblue
+      - royalblue
+      - blue
+      - darkblue
+      - darkslateblue
+      - darkmagenta
+      - darkorchid
+      - blueviolet
+      - mediumpurple
+      - purple
+      - mediumorchid
+      - orchid
+      - plum
+      - violet
+      - fuchsia
+      - magenta
+      - darkviolet
+      - mediumvioletred
+
+  cicle_light_color_living_room:
+    name: Список цветов лампочки (Зал)
+    initial: white
+    options:
+      - maroon
+      - red
+      - purple
+      - fuchsia
+      - green
+      - lime
+      - olive
+      - yellow
+      - navy
+      - blue
+      - teal
+      - aqua
+      - white
+
   themes:
     name: "Тема Home Assistant"
     icon: mdi:format-paint
@@ -163,34 +234,30 @@ notify:
     chat_id: !secret telegram_id_1
 
   - platform: telegram
-    name: ty_telegram
+    name: ep_telegram
     chat_id: !secret telegram_id_2
 
   - name: ALL_DEVICES
     platform: group
     services:
       - service: mobile_app_iphone_amnezia
-      - service: mobile_app_tanzilyas_iphone
-
-# spotcast:
-#   sp_dc: !secret spotcast_dc
-#   sp_key: !secret spotcast_key
+      - service: mobile_app_m2101k6i
 
 proximity:
-  ty_to_home:
+  ep_to_home:
     zone: home
     ignored_zones:
       - work
       - school
     devices:
-      - person.tanzilya_yakshimbetova
+      - person.elena_pletukhina
     tolerance: 10
     unit_of_measurement: km
 
-  ty_to_work:
+  ep_to_work:
     zone: work
     devices:
-      - person.tanzilya_yakshimbetova
+      - person.elena_pletukhina
     tolerance: 10
 
   vf_to_home:
@@ -223,6 +290,7 @@ xiaomi_miot:
 cover: !include_dir_merge_list includes/covers
 sensor: !include_dir_merge_list includes/sensor
 switch: !include_dir_merge_list includes/switch
+zone: !include_dir_merge_list includes/zone
 mqtt: 
   switch: !include_dir_merge_list includes/mqtt/switch
   binary_sensor: !include_dir_merge_list includes/mqtt/binary_sensor
@@ -230,8 +298,8 @@ mqtt:
   cover: !include_dir_merge_list includes/mqtt/cover
   light: !include_dir_merge_list includes/mqtt/light
   sensor: !include_dir_merge_list includes/mqtt/sensor
-  discovery: false
-  discovery_prefix: ha
+  # discovery: false
+  # discovery_prefix: ha
 fan: !include_dir_merge_list includes/fan
 binary_sensor: !include_dir_merge_list includes/binary_sensor
 automation: !include_dir_merge_list includes/automation
@@ -285,6 +353,7 @@ homekit:
       include_entities:
         - camera.embedded_net_vis_mainstream
         - camera.camera_entrace_mainstream
+        - camera.hikvision_ds_2cv2141g2_idw_mainstream
     entity_config:
       camera.camera_entrace_mainstream:
         stream_source: !secret rtsp_1
@@ -296,13 +365,14 @@ homekit:
     filter:
       include_entities: !include includes/recorder.yaml
 
-
-  # panel_iframe:
-  #   pihole:
-  #     title: "ADGUARD"
-  #     url: !secret pihole_link
-  #     icon: mdi:shield-check
-
 pandora_cas:
     username: !secret pandora_username_1 
     password: !secret pandora_password_1
+
+yandex_smart_home:
+  notifier:
+    - oauth_token: !secret yandex_oauth_token
+      skill_id: !secret yandex_skill_id
+      user_id: !secret yandex_user_id
+  filter:
+    include_entities: !include includes/recorder.yaml
