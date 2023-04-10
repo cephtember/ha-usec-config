@@ -158,3 +158,5 @@ update_shopping_list:
       data:
         media_content_id: update
         media_content_type: shopping_list
+        extra:
+          volume_level: 0

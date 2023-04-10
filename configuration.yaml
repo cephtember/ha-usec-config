@@ -47,18 +47,13 @@ lovelace:
       type: module
     - url: /hacsfiles/PlexMeetsHomeAssistant/plex-meets-homeassistant.js
       type: module
-  #dashboards:
-  # lovelace-generated:
-  # mode: yaml
-  # filename: ui-lovelace.yaml
-  # title: Browser
-  # show_in_sidebar: true
-  # require_admin: true
-  # lovelace-mobile:
-  # mode: yaml
-  # title: Mobile
-  # show_in_sidebar: true
-  # filename: ui-lovelace-mobile.yaml
+  dashboards:
+   lovelace-generated:
+    mode: yaml
+    filename: ui-lovelace-admin.yaml
+    title: Camera
+    show_in_sidebar: true
+    require_admin: true
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
@@ -352,11 +347,7 @@ homekit:
   - filter:
       include_entities:
         - camera.embedded_net_vis_mainstream
-        - camera.camera_entrace_mainstream
-        - camera.hikvision_ds_2cv2141g2_idw_mainstream
     entity_config:
-      camera.camera_entrace_mainstream:
-        stream_source: !secret rtsp_1
       camera.embedded_net_vis_mainstream:
         linked_doorbell_sensor: binary_sensor.doorbell
         stream_source: !secret rtsp_2
@@ -376,3 +367,11 @@ yandex_smart_home:
       user_id: !secret yandex_user_id
   filter:
     include_entities: !include includes/recorder.yaml
+
+rest_command:
+  reload_miot_auto:
+    url: "https://home.usec.uz:8123/api/config/config_entries/entry/730b07dbe0a0afb47edf47bdf269e047/reload"
+    content_type: "application/json"
+    headers:
+      authorization: !secret ha_token
+    method: post
