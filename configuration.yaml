@@ -88,6 +88,8 @@ input_boolean:
     name: Адаптивное управления светом
   auto_lights_motion:
     name: Управление светом датчиками движения
+  children_sleep:
+    name: Детский режим
 
 input_number:
   energy_daily_price:
@@ -99,6 +101,7 @@ input_number:
     unit_of_measurement: "СУМ/kWh"
     icon: mdi:currency-eur
 
+shopping_list:
 
 # THEMES
 input_select:

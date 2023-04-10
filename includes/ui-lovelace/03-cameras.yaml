@@ -1,11 +1,9 @@
 title: Камеры и датчики
 icon: mdi:cctv
-panel: true
+#panel: true
 cards:   
-    - type: horizontal-stack
+    - type: vertical-stack
       cards: 
-        - type: vertical-stack
-          cards:
             - type: picture-entity
               entity: camera.camera_entrace_mainstream
               camera_view: live 
@@ -18,90 +16,6 @@ cards:
               show_state: false
               show_name: false
             
-            # - type: markdown
-            #   style: |
-            #     ha-card {
-            #       box-shadow: none;
-            #       height: 33px;
-            #       background: none;
-            #     }
-            #     ha-markdown {
-            #       padding: 16px 16px 0 8px !important;
-            #     }
-            #   content: |
-            #     #### Tanzilya Yakshimbetova
-            # - type: horizontal-stack
-            #   cards:
-            #     - type: entities
-            #       style: |
-            #         ha-card {
-            #           background: var(--homekit-card-off);
-            #           --paper-item-icon-color: var(--icon-color-off);
-            #           color: var(--name-color-off);
-            #           border-radius: var(--border-radius);
-            #           font-family: 'Open Sans', sans-serif;
-            #           font-size: 12px;
-            #         }
-            #       entities:
-            #         - entity: device_tracker.tanzilyas_iphone
-            #           type: custom:multiple-entity-row
-            #           name: 'Presence'
-            #           icon: mdi:map-marker-circle
-            #           #show_state: false
-            #           secondary_info: last-changed
-            #           entities:
-            #             - entity: proximity.ty_to_home
-            #               name: Proximity to home
-            #             #- entity: proximity.ty_to_home
-            #             #  attribute: dir_of_travel
-            #             #  name: Direction
-                          
-            #         - entity: device_tracker.tanzilyas_iphone
-            #           type: custom:multiple-entity-row
-            #           name: iPhone
-            #           icon: mdi:apple
-            #           show_state: false
-            #           secondary_info: last-changed
-            #           entities:
-            #             - entity: sensor.tanzilyas_iphone_battery_level
-            #               name: Battery
-            #             - entity: sensor.tanzilyas_iphone_battery_state
-            #               name: Status
-            #         - entity: sensor.tanzilyas_iphone_geocoded_location
-            #           name: Location
-            #           icon: mdi:apple
-            #           secondary_info: last-changed
-
-            #         - entity: device_tracker.tanzilyas_iphone
-            #           type: custom:multiple-entity-row
-            #           name: 'Wifi'
-            #           icon: mdi:wifi
-            #           show_state: false
-            #           secondary_info: last-changed
-            #           entities:
-            #             - entity: sensor.tanzilyas_iphone_ssid
-            #               name: Connected to
-                   
-            #         - entity: sensor.tanzilyas_iphone_average_active_pace
-            #           type: custom:multiple-entity-row
-            #           name: Active pace
-            #           secondary_info: last-changed
-            #           entities:
-            #             - entity: sensor.tanzilyas_iphone_distance
-            #             - entity: sensor.tanzilyas_iphone_activity
-                    
-            #         - entity: sensor.tanzilyas_iphone_steps
-            #           type: custom:multiple-entity-row
-            #           name: Activity
-            #           icon: mdi:walk
-            #           show_state: false
-            #           secondary_info: last-changed
-            #           entities:
-            #             - entity: sensor.tanzilyas_iphone_steps
-            #               name: Steps
-
-        - type: vertical-stack
-          cards:        
             - type: picture-entity
               entity: camera.embedded_net_vis_mainstream
               camera_view: live 

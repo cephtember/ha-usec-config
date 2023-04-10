@@ -15,6 +15,10 @@ cards:
       - entity: input_boolean.auto_lights_motion
         state_color: true
         icon: mdi:motion-sensor
+
+      - entity: input_boolean.children_sleep
+        state_color: true
+        icon: mdi:human-child
       
       - type: divider
         style:
