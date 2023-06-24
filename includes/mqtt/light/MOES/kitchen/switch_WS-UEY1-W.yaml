@@ -1,0 +1,12 @@
+- name: "Питание лампы (Кухня)"
+  unique_id: pitanie_lampi_kuhnya
+  icon: mdi:power
+  command_topic: "kitchen/cmnd/tuya_light/power"
+  state_topic: "kitchen/stat/tuya_light/RESULT"
+  state_value_template: "{{ value_json.POWER }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false

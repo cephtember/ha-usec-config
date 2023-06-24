@@ -51,7 +51,7 @@ lovelace:
    lovelace-generated:
     mode: yaml
     filename: ui-lovelace-admin.yaml
-    title: Camera
+    title: Камеры
     show_in_sidebar: true
     require_admin: true
 
@@ -96,7 +96,7 @@ input_number:
     unit_of_measurement: "СУМ/kWh"
     icon: mdi:currency-eur
 
-shopping_list:
+#shopping_list:
 
 # THEMES
 input_select:
@@ -156,13 +156,9 @@ input_select:
       - purple
       - fuchsia
       - green
-      - lime
       - olive
-      - yellow
       - navy
-      - blue
       - teal
-      - aqua
       - white
 
   themes:
@@ -305,7 +301,7 @@ media_player: !include includes/media_players.yaml
 climate: !include_dir_merge_list includes/climate
 utility_meter: !include includes/utility_meter.yaml
 light: !include_dir_merge_list includes/light
-google_assistant: !include google_assistant.yaml
+#google_assistant: !include google_assistant.yaml
 alarm_control_panel: !include includes/alarm_control_panel.yaml
 recorder: 
   purge_keep_days: 1000
@@ -324,22 +320,25 @@ history:
 adaptive_lighting:
   - name: "default"
     lights:
-      - light.kitchen_main_lamp
-      - light.cabinet_main_lamp
-      - light.bedroom_main_lamp
+      - light.yeelight_ceila_0x1a5b20e7
+      - light.yeelight_ceiling15_0x12ee89e4
+      - light.yeelight_ceiling14_0x12ada382
     only_once: true
 
   - name: "color"
     lights:
-      - light.livingroom_cbulb_light_x1
-      - light.livingroom_cbulb_light_x2
-      - light.livingroom_cbulb_light_x3
-      - light.livingroom_cbulb_light_x4
-      - light.livingroom_cbuld_add_light_x1
-      - light.livingroom_cbuld_add_light_x2
-      - light.bar_philips_cbulb_light_x1
-      - light.bar_philips_cbulb_light_x2
-      - light.bar_philips_cbulb_light_x3
+      - light.bar_tsvetnye
+      - light.zal_tsvetnye
+      - light.zal_tsvetnye_malenkie
+      # - light.livingroom_cbulb_light_x1
+      # - light.livingroom_cbulb_light_x2
+      # - light.livingroom_cbulb_light_x3
+      # - light.livingroom_cbulb_light_x4
+      # - light.livingroom_cbuld_add_light_x1
+      # - light.livingroom_cbuld_add_light_x2
+      # - light.bar_philips_cbulb_light_x1
+      # - light.bar_philips_cbulb_light_x2
+      # - light.bar_philips_cbulb_light_x3
     only_once: true
     #prefer_rgb_color: true
 

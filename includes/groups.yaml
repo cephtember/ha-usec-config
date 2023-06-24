@@ -75,6 +75,7 @@ hall_lights:
   entities:
     - light.osnovnoi_svet_prikhozhaia
     - light.svet_nad_porogom_prikhozhaia
+    - light.podsvetka_prikhozhaia
 
 night_lights:
   name: Ночники
@@ -183,4 +184,3 @@ bedroom_climate:
 
 iphone_focus:
     - binary_sensor.iphone_amnezia_focus
-    - binary_sensor.tanzilyas_iphone_focus

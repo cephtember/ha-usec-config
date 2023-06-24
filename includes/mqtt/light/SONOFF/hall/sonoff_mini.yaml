@@ -1,0 +1,12 @@
+- name: "Подсветка (Прихожая)"
+  unique_id: svet_prikhozhaya
+  icon: mdi:dome-light
+  command_topic: "hall/cmnd/sonoff_switch_underlight/power"
+  state_topic: "hall/stat/sonoff_switch_underlight/RESULT"
+  state_value_template: "{{ value_json.POWER }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false

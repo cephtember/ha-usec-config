@@ -3,6 +3,7 @@
   trigger:
     - platform: webhook
       webhook_id: "doorbell_click"
+      local_only: true
   variables:
     snapshot_access_file_path: "/local/cam_captures/hikvision_doorbell.jpg" 
   action:

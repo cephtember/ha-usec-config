@@ -2,7 +2,7 @@
   id: light_shutdown_on_electricity_back
   trigger:
     - platform: state
-      entity_id: "sensor.pzem04_energy_current"
+      entity_id: "sensor.pzem04_energy_power"
       from: "0"
 
   action:

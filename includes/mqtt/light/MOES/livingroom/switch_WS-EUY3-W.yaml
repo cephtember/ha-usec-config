@@ -10,3 +10,29 @@
   payload_on: "ON"
   payload_off: "OFF"
   retain: false
+
+- name: "Питание лампы (Зал)"
+  unique_id: pitanie_lampi_zal_1
+  icon: mdi:power
+  command_topic: "livingroom/cmnd/tuya_light/power1"
+  state_topic: "livingroom/stat/tuya_light/RESULT"
+  state_value_template: "{{ value_json.POWER1 }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+
+- name: "Питание лампы 2 (Зал)"
+  unique_id: pitanie_lampi_zal_2
+  icon: mdi:power
+  command_topic: "livingroom/cmnd/tuya_light/power2"
+  state_topic: "livingroom/stat/tuya_light/RESULT"
+  state_value_template: "{{ value_json.POWER2 }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false

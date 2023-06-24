@@ -10,3 +10,16 @@
   payload_on: "ON"
   payload_off: "OFF"
   retain: false
+
+- name: "Питание лампы (Детская)"
+  unique_id: pitanie_lampi_detskaia
+  icon: mdi:power
+  command_topic: "cabinet/cmnd/tuya_light/power1"
+  state_topic: "cabinet/stat/tuya_light/RESULT"
+  state_value_template: "{{ value_json.POWER1 }}"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
