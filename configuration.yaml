@@ -356,9 +356,9 @@ homekit:
     filter:
       include_entities: !include includes/recorder.yaml
 
-pandora_cas:
-    username: !secret pandora_username_1 
-    password: !secret pandora_password_1
+#pandora_cas:
+#    username: !secret pandora_username_1 
+#    password: !secret pandora_password_1
 
 yandex_smart_home:
   notifier:

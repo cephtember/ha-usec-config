@@ -18,7 +18,6 @@
   - platform: state
     entity_id: binary_sensor.datchik_dvizheniia_prikhozhaia
     to: 'on'
-  
   - platform: state
     entity_id: binary_sensor.pravoe_okno_detskaia
     to: 'on'
@@ -70,7 +69,7 @@
     - service: telegram_bot.send_message
       data:
         title: "<b>ВНИМАНИЕ!!! Запущен таймер сигнализации</b>"
-        message: "*У вас есть 30-секунд *"
+        message: "*У вас есть 30-секунд на выключение*"
         target:
           - !secret telegram_id_1
           - !secret telegram_id_2
