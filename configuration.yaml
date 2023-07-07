@@ -297,11 +297,9 @@ automation: !include_dir_merge_list includes/automation
 group: !include includes/groups.yaml
 script: !include includes/scripts.yaml
 scene: !include includes/scenes.yaml
-media_player: !include includes/media_players.yaml
 climate: !include_dir_merge_list includes/climate
 utility_meter: !include includes/utility_meter.yaml
 light: !include_dir_merge_list includes/light
-#google_assistant: !include google_assistant.yaml
 alarm_control_panel: !include includes/alarm_control_panel.yaml
 recorder: 
   purge_keep_days: 1000
@@ -345,11 +343,14 @@ adaptive_lighting:
 homekit:
   - filter:
       include_entities:
-        - camera.embedded_net_vis_mainstream
-    entity_config:
-      camera.embedded_net_vis_mainstream:
-        linked_doorbell_sensor: binary_sensor.doorbell
-        stream_source: !secret rtsp_2
+        - camera.camera_entrace_mainstream 
+  # - filter:
+  #     include_entities:
+  #       - camera.embedded_net_vis_mainstream
+  #   entity_config:
+  #     camera.embedded_net_vis_mainstream:
+  #       linked_doorbell_sensor: binary_sensor.doorbell
+  #       stream_source: !secret rtsp_2
   - name: Homekit Accessories
     port: 21065
     filter:

@@ -9,15 +9,3 @@ cards:
               camera_view: live 
               show_state: false
               show_name: false
-
-            - type: picture-entity
-              entity: camera.hikvision_ds_2cv2141g2_idw_mainstream
-              camera_view: live 
-              show_state: false
-              show_name: false
-            
-            - type: picture-entity
-              entity: camera.embedded_net_vis_mainstream
-              camera_view: live 
-              show_state: false
-              show_name: false

@@ -22,8 +22,6 @@
     - vacuum.xiaomi_1c
 
     ### ДЕТСКАЯ
-    - sensor.datchik_temperatury_na_polu_detskaia_temperature
-    - sensor.datchik_temperatury_na_polu_detskaia_humidity
     - binary_sensor.levoe_okno_detskaia
     - binary_sensor.pravoe_okno_detskaia
     - sensor.datchik_temperatury_detskaia_temperature
@@ -52,6 +50,7 @@
     - sensor.pzem04_energy_voltage
     - sensor.pzem04_energy_yesterday
     - sensor.no_electricity
+    - alarm_control_panel.home_alarm
 
     ### Подъезд
     - binary_sensor.dver_podezd

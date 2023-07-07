@@ -1,24 +1,24 @@
-- alias: "[Температура (Детская)] - Выключать теплый пол если температура пола 40C"
-  id: kq917df3-3e20-4ebe-9fsl-bc9ba69ad2b6
-  trigger:
-    - platform: template
-      value_template: "{{ (states('sensor.datchik_temperatury_na_polu_detskaia_temperature') | float) > 40 }}"
-      for:
-        minutes: 15
-  action:
-    - service: telegram_bot.send_message
-      data:
-        title: "<b>Теплый пол в детской</b>"
-        message: >-
-          {% if (trigger.to_state.state | float) > 39 -%} Пол нагрелся,
-          {% endif -%} температура: <b>{{ trigger.to_state.state }}°C, произвожу экстренное выключение</b>
-        target:
-          - !secret telegram_id_1
-          - !secret telegram_id_2
-        disable_notification: false
+# - alias: "[Температура (Детская)] - Выключать теплый пол если температура пола 40C"
+#   id: kq917df3-3e20-4ebe-9fsl-bc9ba69ad2b6
+#   trigger:
+#     - platform: template
+#       value_template: "{{ (states('sensor.datchik_temperatury_na_polu_detskaia_temperature') | float) > 40 }}"
+#       for:
+#         minutes: 15
+#   action:
+#     - service: telegram_bot.send_message
+#       data:
+#         title: "<b>Теплый пол в детской</b>"
+#         message: >-
+#           {% if (trigger.to_state.state | float) > 39 -%} Пол нагрелся,
+#           {% endif -%} температура: <b>{{ trigger.to_state.state }}°C, произвожу экстренное выключение</b>
+#         target:
+#           - !secret telegram_id_1
+#           - !secret telegram_id_2
+#         disable_notification: false
 
-    - delay: 00:00:03
+#     - delay: 00:00:03
     
-    - service: climate.turn_off
-      target:
-        entity_id: climate.teplyi_pol_detskaia
+#     - service: climate.turn_off
+#       target:
+#         entity_id: climate.teplyi_pol_detskaia

@@ -1,43 +1,43 @@
-- alias: "[Звонок (Подъезд)] Моргать светом при нажатии на дверной звонок и отправлять фото в телеграм" 
-  id: send_camphoto_to_tg_on_doorbell_click_and_flick_lights
-  trigger:
-    - platform: webhook
-      webhook_id: "doorbell_click"
-      local_only: true
-  variables:
-    snapshot_access_file_path: "/local/cam_captures/hikvision_doorbell.jpg" 
-  action:
+# - alias: "[Звонок (Подъезд)] Моргать светом при нажатии на дверной звонок и отправлять фото в телеграм" 
+#   id: send_camphoto_to_tg_on_doorbell_click_and_flick_lights
+#   trigger:
+#     - platform: webhook
+#       webhook_id: "doorbell_click"
+#       local_only: true
+#   variables:
+#     snapshot_access_file_path: "/local/cam_captures/hikvision_doorbell.jpg" 
+#   action:
 
-    - service: media_player.play_media
-      entity_id: media_player.yandex_station_m00320b000eg4g  # замените на вашу колонку
-      data:
-        media_content_id: 'Кто-то звонит в дверь, отправляю фото в телеграм'
-        media_content_type: text
-        extra:
-          volume_level: 0.8
+#     - service: media_player.play_media
+#       entity_id: media_player.yandex_station_m00320b000eg4g  # замените на вашу колонку
+#       data:
+#         media_content_id: 'Кто-то звонит в дверь, отправляю фото в телеграм'
+#         media_content_type: text
+#         extra:
+#           volume_level: 0.8
       
 
-    - service: mqtt.publish
-      data:
-         topic: "entrace/doorbell"
-         retain: false
-         payload: "{\"click\":true}" 
+#     - service: mqtt.publish
+#       data:
+#          topic: "entrace/doorbell"
+#          retain: false
+#          payload: "{\"click\":true}" 
  
-    - service: telegram_bot.send_message
-      data:
-        title: "<b>ВНИМАНИЕ!!! Кто-то звонит в дверь</b>"
-        message: "*Шеф, вот тебе фото с камер*"
-        target:
-          - !secret telegram_id_1
-          - !secret telegram_id_2
-        disable_notification: false
+#     - service: telegram_bot.send_message
+#       data:
+#         title: "<b>ВНИМАНИЕ!!! Кто-то звонит в дверь</b>"
+#         message: "*Шеф, вот тебе фото с камер*"
+#         target:
+#           - !secret telegram_id_1
+#           - !secret telegram_id_2
+#         disable_notification: false
         
-    - service: script.photo_hikvision_telegram
+#     - service: script.photo_hikvision_telegram
     
-    - delay: 30
+#     - delay: 30
     
-    - service: mqtt.publish
-      data:
-         topic: "entrace/doorbell"
-         retain: false
-         payload: "{\"click\":false}"
+#     - service: mqtt.publish
+#       data:
+#          topic: "entrace/doorbell"
+#          retain: false
+#          payload: "{\"click\":false}"
