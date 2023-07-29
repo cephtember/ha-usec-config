@@ -125,6 +125,7 @@
     ###
     - light.osnovnoi_svet_prikhozhaia
     - light.svet_nad_porogom_prikhozhaia
+    - light.podsvetka_prikhozhaia
     ###
     - light.svet_podezd
 

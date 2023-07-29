@@ -465,6 +465,10 @@ cards:
       - entity: light.svet_nad_porogom_prikhozhaia
         name: Свет над порогом
         state_color: true
+
+      - entity: light.podsvetka_prikhozhaia
+        name: Зеркало
+        state_color: true
   
       - type: section     
       

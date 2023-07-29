@@ -5,7 +5,6 @@ all_lights:
     - group.bar_lights_color
     - group.bedroom_lights
     - group.cabinet_lights
-    - group.entrace_lights
     - group.kitchen_lights
     - group.livingroom_lights
     - group.livingroom_color_lights

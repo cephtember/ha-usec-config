@@ -19,11 +19,14 @@
   unique_id: zal_tsvetnye_malenkie
   name: "Зал цветные маленькие"
   entities:
-    - light.philips_cbulb_4b48_light
-    - light.philips_cbulb_2872_light
+    #- light.philips_cbulb_4b48_light
+    #- light.philips_cbulb_2872_light
+    - light.yeelight_mono4_0x10176043
+    - light.yeelight_mono4_0x1017ad1a
 
 - platform: group
   unique_id: tsvetnye_lenty
   name: "Цветные ленты"
   entities:
     - light.yeelight_strip6_0x12ed5ce2
+    - light.yeelight_stripa_0x19db0b1e

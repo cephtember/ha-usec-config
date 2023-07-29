@@ -148,3 +148,13 @@ flick_red_lights:
           - delay:
               seconds: 0.2
   mode: single
+
+
+yandex_alarm:
+  alias: Локальная сирена
+  sequence:
+  - service: media_player.play_media
+    entity_id: media_player.yandex_station_m00320b000eg4g
+    data:
+      media_content_id: <speaker audio="alice-sounds-things-siren-1.opus"> Сработала сигнализация
+      media_content_type: dialog

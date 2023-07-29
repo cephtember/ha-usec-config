@@ -9,3 +9,8 @@ cards:
               camera_view: live 
               show_state: false
               show_name: false
+	    - type: picture-entity
+	      entity: camera.kamera_ulichnaia_mainstream
+	      camera_view: live
+	      show_state: false
+	      show_name: false
