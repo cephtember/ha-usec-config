@@ -32,49 +32,49 @@ fade_the_light:
           {% endif %}
 
 
-photo_hikvision_telegram:
-  alias: Отправить фото в telegram
-  sequence:
-    - service: camera.snapshot
-      data:
-        entity_id: camera.camera_entrace_mainstream
-        filename: "www/cam_captures/hikvision_upper.jpg"
-    - service: camera.snapshot
-      data:
-        entity_id: camera.embedded_net_vis_mainstream
-        filename: "www/cam_captures/hikvision_doorbell.jpg"
-    - delay: 00:00:3
-    - service: telegram_bot.send_photo
-      data_template:
-        target:
-         - !secret telegram_id_1
-         - !secret telegram_id_2
-        file: "www/cam_captures/hikvision_doorbell.jpg"
-        timeout: 60 # set any timeout
-    - service: telegram_bot.send_photo
-      data_template:
-        target:
-         - !secret telegram_id_1
-         - !secret telegram_id_2
-        file: "www/cam_captures/hikvision_upper.jpg"
-        timeout: 60 # set any timeout
+# photo_hikvision_telegram:
+#   alias: Отправить фото в telegram
+#   sequence:
+#     - service: camera.snapshot
+#       data:
+#         entity_id: camera.camera_entrace_substream
+#         filename: "www/cam_captures/hikvision_upper.jpg"
+#     - service: camera.snapshot
+#       data:
+#         entity_id: camera.embedded_net_vis_mainstream
+#         filename: "www/cam_captures/hikvision_doorbell.jpg"
+#     - delay: 00:00:3
+#     - service: telegram_bot.send_photo
+#       data_template:
+#         target:
+#          - !secret telegram_id_1
+#          - !secret telegram_id_2
+#         file: "www/cam_captures/hikvision_doorbell.jpg"
+#         timeout: 60 # set any timeout
+#     - service: telegram_bot.send_photo
+#       data_template:
+#         target:
+#          - !secret telegram_id_1
+#          - !secret telegram_id_2
+#         file: "www/cam_captures/hikvision_upper.jpg"
+#         timeout: 60 # set any timeout
 
-video_hikvision_telegram:
-  alias: Отправить видео в telegram
-  sequence:
-    - service: camera.record
-      data_template:
-        entity_id: camera.camera_entrace_mainstream
-        filename: "www/cam_captures/hikvision.mp4"
-        duration: 10
-    - delay: 00:00:45
-    - service: telegram_bot.send_video
-      data_template:
-        target:
-          - !secret telegram_id_1
-          - !secret telegram_id_2
-        file: "www/cam_captures/hikvision.mp4"
-        timeout: 360 # set any timeout
+# video_hikvision_telegram:
+#   alias: Отправить видео в telegram
+#   sequence:
+#     - service: camera.record
+#       data_template:
+#         entity_id: camera.camera_entrace_mainstream
+#         filename: "www/cam_captures/hikvision.mp4"
+#         duration: 10
+#     - delay: 00:00:45
+#     - service: telegram_bot.send_video
+#       data_template:
+#         target:
+#           - !secret telegram_id_1
+#           - !secret telegram_id_2
+#         file: "www/cam_captures/hikvision.mp4"
+#         timeout: 360 # set any timeout
 
 
 wet_clean: 
@@ -158,3 +158,44 @@ yandex_alarm:
     data:
       media_content_id: <speaker audio="alice-sounds-things-siren-1.opus"> Сработала сигнализация
       media_content_type: dialog
+      extra:
+        volume_level: 1.0
+  - delay:
+      seconds: 30
+  - service: media_player.play_media
+    entity_id: media_player.yandex_station_m00320b000eg4g
+    data:
+      media_content_id: <speaker audio="alice-sounds-things-siren-1.opus"> Сработала сигнализация
+      media_content_type: dialog
+      extra:
+        volume_level: 0.5
+
+
+yandex_sleep_david:
+  alias: Спать
+  sequence:
+  - service: media_player.play_media
+    entity_id: media_player.yandex_station_m00320b000eg4g  
+    data:
+      media_content_id: 'Давид, надо ложиться спать'
+      media_content_type: dialog
+      extra:
+        volume_level: 0.7
+  - delay:
+      seconds: 60
+  - service: media_player.play_media
+    entity_id: media_player.yandex_station_m00320b000eg4g  
+    data:
+      media_content_id: 'Давид, надо ложиться спать'
+      media_content_type: text
+      extra:
+        volume_level: 0.6
+  - delay:
+      seconds: 60
+  - service: media_player.play_media
+    entity_id: media_player.yandex_station_m00320b000eg4g
+    data:
+      media_content_id: 'Давид, глазки закрывай, баю бай'
+      media_content_type: text
+      extra:
+        volume_level: 0.5

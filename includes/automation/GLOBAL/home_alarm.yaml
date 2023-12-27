@@ -89,7 +89,7 @@
           - !secret telegram_id_1
           - !secret telegram_id_2
         disable_notification: false
-    - service: script.flick_red_lights
+    - service: script.yandex_alarm
 
 - alias: '[ Alarm ] - Disarmed'
   id: 118afb36f63a4d8390330c3cf9593d91

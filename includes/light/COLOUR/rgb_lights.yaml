@@ -2,27 +2,32 @@
   unique_id: bar_tsvetnye
   name: "Бар цветные"
   entities:
-    - light.philips_cbulb_3896_light
-    - light.philips_cbulb_0c10_light
-    - light.philips_cbulb_734f_light
+    - light.yeelight_mono4_0x10175539
+    - light.yeelight_mono4_0x10176043
+    - light.yeelight_mono4_0x1017ad1a
 
 - platform: group
   unique_id: zal_tsvetnye
   name: "Зал цветные"
   entities:
-    - light.philips_cbulb_338e_light
-    - light.philips_cbulb_f841_light
-    - light.philips_cbulb_b87d_light
-    - light.philips_cbulb_c7d3_light
+    #- light.philips_cbulb_338e_light
+    # - light.philips_cbulb_f841_light
+    # - light.philips_cbulb_b87d_light
+    - light.yeelight_colorb_0x1b2e2ace
+    - light.yeelight_colorb_0x1b11c344
+    - light.yeelight_colorb_0x1c0604de
+    - light.yeelight_colorb_0x1c0bd54b
+    #- light.philips_cbulb_c7d3_light
 
 - platform: group
   unique_id: zal_tsvetnye_malenkie
   name: "Зал цветные маленькие"
   entities:
+    - light.yeelight_colorb_0x1c0565ae
+    - light.yeelight_colorb_0x1c05614f
     #- light.philips_cbulb_4b48_light
     #- light.philips_cbulb_2872_light
-    - light.yeelight_mono4_0x10176043
-    - light.yeelight_mono4_0x1017ad1a
+
 
 - platform: group
   unique_id: tsvetnye_lenty

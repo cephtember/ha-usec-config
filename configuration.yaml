@@ -343,8 +343,8 @@ adaptive_lighting:
 homekit:
   - filter:
       include_entities:
-        - camera.camera_entrace_mainstream
-	- camera.kamera_ulichnaia_mainstream 
+        - camera.camera_entrace_substream
+        - camera.kamera_ulichnaia_substream
   # - filter:
   #     include_entities:
   #       - camera.embedded_net_vis_mainstream

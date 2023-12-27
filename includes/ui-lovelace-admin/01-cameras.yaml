@@ -5,12 +5,12 @@ cards:
     - type: vertical-stack
       cards: 
             - type: picture-entity
-              entity: camera.camera_entrace_mainstream
+              entity: camera.camera_entrace_substream
               camera_view: live 
               show_state: false
               show_name: false
-	    - type: picture-entity
-	      entity: camera.kamera_ulichnaia_mainstream
-	      camera_view: live
-	      show_state: false
-	      show_name: false
+            - type: picture-entity
+              entity: camera.kamera_ulichnaia_substream
+              camera_view: live
+              show_state: false
+              show_name: false

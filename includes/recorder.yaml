@@ -136,5 +136,13 @@
     - humidifier.deerma_jsq5_dbeb_humidifier
     - fan.zhimi_ma4_39fd_air_purifier
 
-    ### camera
+    ### Машина
+    - binary_sensor.1078951606_driver_door
+    - binary_sensor.1078951606_passenger_door
+    - binary_sensor.1078951606_hood
+    - binary_sensor.1078951606_left_back_door
+    - binary_sensor.1078951606_right_back_door
+    - binary_sensor.1078951606_trunk
+    - binary_sensor.1078951606_ignition
+    - lock.1078951606_central_lock
     
