@@ -1,18 +1,18 @@
-- alias: "[Подсветка (Спальня)] - Переключать состояние подсветки в спальне через MQTT"
-  id: toggle_bedroom_underlight
-  trigger:
-    - platform: mqtt
-      topic: "zigbee2mqtt/bedroom_switch/action"
-      # Optional
-      payload: "button_2_double"
-      encoding: "utf-8"
-  action:
-     - service: light.toggle
-       entity_id: light.yeelight_stripa_0x19db0b1e
-     - delay: 0.5
-     - service: mqtt.publish
-       data:
-         topic: "bedroom/stat/yeelight/RESULT2"
-         retain: false
-         payload: "{\"POWER\":\"{{ states('light.yeelight_stripa_0x19db0b1e') }}\"}"
+# - alias: "[Подсветка (Спальня)] - Переключать состояние подсветки в спальне через MQTT"
+#   id: toggle_bedroom_underlight
+#   trigger:
+#     - platform: mqtt
+#       topic: "zigbee2mqtt/bedroom_switch/action"
+#       # Optional
+#       payload: "button_2_double"
+#       encoding: "utf-8"
+#   action:
+#      - service: light.toggle
+#        entity_id: light.yeelight_stripa_0x19db0b1e
+#      - delay: 0.5
+#      - service: mqtt.publish
+#        data:
+#          topic: "bedroom/stat/yeelight/RESULT2"
+#          retain: false
+#          payload: "{\"POWER\":\"{{ states('light.yeelight_stripa_0x19db0b1e') }}\"}"
          
