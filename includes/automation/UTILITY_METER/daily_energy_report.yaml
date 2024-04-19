@@ -14,7 +14,7 @@
 
           ------- ТЕКУЩИЙ МЕСЯЦ -------
           
-          Использовано <b>{{ states('sensor.elektrichestvo_mesiats') }}</b> СУМ
+          Использовано <b>{{ states('sensor.elektrichestvo_mesiats') }}</b> кВт
           
           Сумма: <b>{{ states('sensor.electricity_cost_monthly') }}</b> Сум
 
