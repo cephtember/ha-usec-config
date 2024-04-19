@@ -152,7 +152,7 @@
     - service: telegram_bot.answer_callback_query
       data_template:
         callback_query_id: '{{ trigger.event.data.id }}'
-        message: "Стоимость потраеной электроэнергии: "
+        message: "Стоимость израсходованной электроэнергии: "
         
     - service: telegram_bot.edit_message
       data_template:
@@ -160,9 +160,23 @@
         chat_id: "{{ trigger.event.data.chat_id }}"
         title: "<b>Отчет электричество:</b>"
         message: >
-          Сегодня было потрачено <b>{{ states('sensor.pzem04_energy_today') }}</b> кВт 
+          Текущая стоимость кВт.ч: <b>{{ states('sensor.electricity_price_current') }}</b> СУМ 
+
+          ------- ТЕКУЩИЙ МЕСЯЦ -------
           
-          Сумма: <b>{{ states('sensor.house_cost_daily') }}</b> Сум
+          Использовано <b>{{ states('sensor.elektrichestvo_mesiats') }}</b> СУМ
+          
+          Сумма: <b>{{ states('sensor.electricity_cost_monthly') }}</b> Сум
+
+          ----------- ВЧЕРА -----------
+
+          Использовано <b>{{ states('sensor.pzem04_energy_yesterday') }}</b> кВт
+          
+          Сумма: <b>{{ states('sensor.house_cost_yesterday') }}</b> Сум
+
+          ---------- СЕГОДНЯ ----------
+
+          Использовано <b>{{ states('sensor.pzem04_energy_today') }}</b> кВт 
           
           Кондиционер в детской: <b>{{ states('sensor.ac_cost_daily') }}</b> Сум
           
@@ -171,10 +185,8 @@
           Полотенцесушитель: <b>{{ states('sensor.bath_radiator_cost_daily') }}</b> Сум
           
           Стиральная машинка: <b>{{ states('sensor.washer_cost_daily') }}</b> Сум
-          
-          Вчера было потрачено <b>{{ states('sensor.pzem04_energy_yesterday') }}</b> кВт
-          
-          Сумма: <b>{{ states('sensor.house_cost_yesterday') }}</b> Сум
+
+          Сумма: <b>{{ states('sensor.house_cost_daily') }}</b> Сум
         
         inline_keyboard:
           - 'Статус системы:/status, Состояние батареек:/zigbee_batteries'

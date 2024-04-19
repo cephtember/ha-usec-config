@@ -12,9 +12,21 @@
         message: > 
           Текущая стоимость кВт.ч: <b>{{ states('sensor.electricity_price_current') }}</b> СУМ 
 
-          Сегодня было потрачено <b>{{ states('sensor.pzem04_energy_today') }}</b> кВт 
+          ------- ТЕКУЩИЙ МЕСЯЦ -------
           
-          Сумма: <b>{{ states('sensor.house_cost_daily') }}</b> Сум
+          Использовано <b>{{ states('sensor.elektrichestvo_mesiats') }}</b> СУМ
+          
+          Сумма: <b>{{ states('sensor.electricity_cost_monthly') }}</b> Сум
+
+          ----------- ВЧЕРА -----------
+
+          Использовано <b>{{ states('sensor.pzem04_energy_yesterday') }}</b> кВт
+          
+          Сумма: <b>{{ states('sensor.house_cost_yesterday') }}</b> Сум
+
+          ---------- СЕГОДНЯ ----------
+
+          Использовано <b>{{ states('sensor.pzem04_energy_today') }}</b> кВт 
           
           Кондиционер в детской: <b>{{ states('sensor.ac_cost_daily') }}</b> Сум
           
@@ -23,10 +35,10 @@
           Полотенцесушитель: <b>{{ states('sensor.bath_radiator_cost_daily') }}</b> Сум
           
           Стиральная машинка: <b>{{ states('sensor.washer_cost_daily') }}</b> Сум
-          
-          Вчера было потрачено <b>{{ states('sensor.pzem04_energy_yesterday') }}</b> кВт
-          
-          Сумма: <b>{{ states('sensor.house_cost_yesterday') }}</b> Сум
+
+          Сумма: <b>{{ states('sensor.house_cost_daily') }}</b> Сум
+
+
         target:
           - !secret telegram_id_1
           - !secret telegram_id_2
