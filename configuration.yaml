@@ -86,15 +86,15 @@ input_boolean:
   children_sleep:
     name: Детский режим
 
-input_number:
-  energy_daily_price:
-    name: "Стоимость электроэнергии (Ежедневная)"
-    mode: box
-    initial: 295
-    min: 0
-    max: 1000
-    unit_of_measurement: "СУМ/kWh"
-    icon: mdi:currency-eur
+# input_number:
+#   energy_daily_price:
+#     name: "Стоимость электроэнергии (Ежедневная)"
+#     mode: box
+#     initial: 295
+#     min: 0
+#     max: 1000
+#     unit_of_measurement: "СУМ/kWh"
+#     icon: mdi:currency-eur
 
 #shopping_list:
 

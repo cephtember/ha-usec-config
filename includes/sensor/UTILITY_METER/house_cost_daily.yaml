@@ -3,90 +3,91 @@
     ac_cost_daily:
       friendly_name: 'Стоимость кондиционера в детской дневная'
       icon_template: mdi:air-conditioner
-      value_template: > 
-        {{ ((states('sensor.konditsioner_v_detskoi_energiia_den')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
       unit_of_measurement: "СУМ"
-      
-    ac_cost_monthly:
-      friendly_name: 'Стоимость кондиционера в детской месячная'
-      icon_template: mdi:air-conditioner
       value_template: > 
-        {{ ((states('sensor.konditsioner_v_detskoi_energiia_mesiats')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
-      unit_of_measurement: "СУМ"
+        {{ ((states('sensor.konditsioner_v_detskoi_energiia_den')|float * states('sensor.electricity_price_current')|float)) | round(0) }}
       
     bath_radiator_cost_daily:
       friendly_name: 'Стоимость полотенцесушителя дневная'
       icon_template: mdi:ladder
-      value_template: > 
-        {{ ((states('sensor.polotentsesushitel_energiia_den')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
       unit_of_measurement: "СУМ"
-    
-    bath_radiator_cost_monthly:
-      friendly_name: 'Стоимость полотенцесушителя месячная'
-      icon_template: mdi:ladder
       value_template: > 
-        {{ ((states('sensor.polotentsesushitel_energiia_mesiats')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
-      unit_of_measurement: "СУМ"
-    
+        {{ ((states('sensor.polotentsesushitel_energiia_den')|float * states('sensor.electricity_price_current')|float)) | round(0) }}
+      
     washer_cost_daily:
       friendly_name: 'Стоимость стиральной машины дневная'
       icon_template: mdi:washing-machine
-      value_template: > 
-        {{ ((states('sensor.stiralnaia_mashina_energiia_den')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
       unit_of_measurement: "СУМ"
-        
-    washer_cost_monthly:
-      friendly_name: 'Стоимость стиральной машины месячная'
-      icon_template: mdi:washing-machine
       value_template: > 
-        {{ ((states('sensor.stiralnaia_mashina_energiia_mesiats')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
-      unit_of_measurement: "СУМ"
+        {{ ((states('sensor.stiralnaia_mashina_energiia_den')|float * states('sensor.electricity_price_current')|float)) | round(0) }}
     
     ac_bedroom_cost_daily:
       friendly_name: 'Стоимость кондиционера в спальне дневная'
       icon_template: mdi:air-conditioner
-      value_template: > 
-        {{ ((states('sensor.konditsioner_v_spalne_energiia_den')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
       unit_of_measurement: "СУМ"
-        
-    ac_bedroom_cost_monthly:
-      friendly_name: 'Стоимость кондиционера в спальне месячная'
-      icon_template: mdi:air-conditioner
       value_template: > 
-        {{ ((states('sensor.konditsioner_v_spalne_energiia_mesiats')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
-      unit_of_measurement: "СУМ"
+        {{ ((states('sensor.konditsioner_v_spalne_energiia_den')|float * states('sensor.electricity_price_current')|float)) | round(0) }}
       
     house_cost_daily:
       friendly_name: 'Общая стоимость дневная'
       icon_template: mdi:cash-multiple
       value_template: >
-        {{ ((states('sensor.pzem04_energy_today')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
+        {{ ((states('sensor.pzem04_energy_today')|float * states('sensor.electricity_price_current')|float)) | round(0) }}
       unit_of_measurement: "СУМ"
       
     house_cost_yesterday: 
       friendly_name: 'Общая стоимость дневная за вчера'
       icon_template: mdi:cash-multiple
       value_template: >
-        {{ ((states('sensor.pzem04_energy_yesterday')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
+        {{ ((states('sensor.pzem04_energy_yesterday')|float * states('sensor.electricity_price_current')|float)) | round(0) }}
       unit_of_measurement: "СУМ"
       
-    electricity_cost_daily:
-      friendly_name: 'Стоимость электричества дневная'
-      icon_template: mdi:cash-multiple
-      value_template: > 
-        {{ ((states('sensor.electricity_daily_current_energy')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
-      unit_of_measurement: "СУМ"
-      
+    electricity_price_current:
+        friendly_name: "Текущий тариф электроэнергии"
+        unit_of_measurement: "UZS/kWh"
+        value_template: >-
+            {% set current_price = 0 %}
+            {% set tiers = [
+                  (200, 450),
+                  (1000, 900),
+                  (5000, 1350),
+                  (10000, 1575),
+                  (float('inf'), 1800)
+              ] %}
+              {% set monthly_consumption = states('sensor.elektrichestvo_mesiats')|int %}
+              
+              {% for tier in tiers %}
+              
+                  {% if monthly_consumption <= tier[0] %}
+                      {% set current_price = tier[1] %}
+                      {{ current_price }}
+                      {% break %}
+                  {% else %}
+                  {% endif %}
+              {% endfor %}  
+
     electricity_cost_monthly:
-      friendly_name: 'Стоимость электричества месячная'
-      icon_template: mdi:cash-multiple
-      value_template: > 
-        {{ ((states('sensor.electricity_monthly_current_energy')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
-      unit_of_measurement: "СУМ"
-      
-    electricity_cost_yearly:
-      friendly_name: 'Стоимость электричества годовая'
-      icon_template: mdi:cash-multiple
-      value_template: > 
-        {{ ((states('sensor.electricity_yearly_current_energy')|float * states('input_number.energy_daily_price')|float)) | round(0) }}
-      unit_of_measurement: "СУМ"
+        friendly_name: "Стоимость электроэнергии (в этом месяце)"
+        unit_of_measurement: "СУМ"
+        value_template: >-
+            {% set total_cost = 0 %}
+            {% set tiers = [
+                  (200, 450),
+                  (1000, 900),
+                  (5000, 1350),
+                  (10000, 1575),
+                  (float('inf'), 1800)
+              ] %}
+              {% set monthly_consumption = states('sensor.elektrichestvo_mesiats')|int %}
+              
+              {% for tier in tiers %}
+                  {% if monthly_consumption <= tier[0] %}
+                      {% set total_cost = total_cost + (monthly_consumption * tier[1]) %}
+                      {% break %}
+                  {% else %}
+                      {% set total_cost = total_cost + (tier[0] * tier[1]) %}
+                      {% set monthly_consumption = monthly_consumption - tier[0] %}
+                      {% set total_cost = total_cost + (monthly_consumption * tier[1]) %}
+                  {% endif %}
+                  {{total_cost}}
+              {% endfor %}  
