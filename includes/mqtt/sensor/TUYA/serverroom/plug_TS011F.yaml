@@ -1,0 +1,42 @@
+
+- unique_id: rozetka_servernaya_availability
+  name: Розетка (Серверная)_availability
+  state_topic: "zigbee2mqtt/server_ac_switch/availability"
+  
+- unique_id: rozetka_servernaya_power
+  name: "Розетка (Серверная)_power"
+  state_topic: "zigbee2mqtt/server_ac_switch"
+  availability_topic: "zigbee2mqtt/server_ac_switch/availability"
+  value_template: "{{ value_json.power }}"
+  unit_of_measurement: "W"
+  device_class: "power"
+
+- unique_id: rozetka_servernaya_current
+  name: "Розетка (Серверная)_current"
+  state_topic: "zigbee2mqtt/server_ac_switch"
+  availability_topic: "zigbee2mqtt/server_ac_switch/availability"
+  value_template: "{{ value_json.current }}"
+  unit_of_measurement: "A"
+  device_class: "current"
+
+- unique_id: rozetka_servernaya_voltage
+  name: "Розетка (Серверная)_voltage"
+  state_topic: "zigbee2mqtt/server_ac_switch"
+  availability_topic: "zigbee2mqtt/server_ac_switch/availability"
+  value_template: "{{ value_json.voltage }}"
+  unit_of_measurement: "V"
+  device_class: "voltage"
+
+- unique_id: rozetka_servernaya_energy
+  name: "Розетка (Серверная)_energy"
+  state_topic: "zigbee2mqtt/server_ac_switch"
+  availability_topic: "zigbee2mqtt/server_ac_switch/availability"
+  value_template: "{{ value_json.energy }}"
+  unit_of_measurement: "kWh"
+  device_class: "energy"
+
+- unique_id: rozetka_servernaya_power_outage_memory
+  name: "Розетка (Серверная)_power_outage_memory"
+  state_topic: "zigbee2mqtt/server_ac_switch"
+  availability_topic: "zigbee2mqtt/server_ac_switch/availability"
+  value_template: "{{ value_json.power_outage_memory }}"

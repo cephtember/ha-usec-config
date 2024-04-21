@@ -186,6 +186,10 @@
           
           Стиральная машинка: <b>{{ states('sensor.washer_cost_daily') }}</b> Сум
 
+          Xbox и телевизор: <b>{{ states('sensor.livingroom_cost_daily')}}</b> Сум
+
+          Серверная комната: <b>{{ states('sensor.server_cost_daily')}}</b> Сум
+
           Сумма: <b>{{ states('sensor.house_cost_daily') }}</b> Сум
         
         inline_keyboard:

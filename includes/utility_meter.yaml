@@ -38,6 +38,26 @@
     source: sensor.konditsioner_spalnia_energy
     cycle: monthly
       
+  ac_serverroom_daily_current_energy:
+    name: Серверная энергия (день)
+    source: sensor.rozetka_servernaia_energy
+    cycle: daily
+    
+  ac_serverroom_monthly_current_energy:
+    name: Серверная энергия (месяц)
+    source: sensor.rozetka_servernaia_energy
+    cycle: monthly
+
+  ac_xbox_livingroom_daily_current_energy:
+    name: Зал XBOX энергия (день)
+    source: sensor.rozetka_xbox_zal_energy
+    cycle: daily
+    
+  ac_xbox_livingroom_monthly_current_energy:
+    name: Зал XBOX энергия (месяц)
+    source: sensor.rozetka_xbox_zal_energy
+    cycle: monthly
+
   electricity_daily_current_energy:
     name: Электричество (день)
     source: sensor.pzem04_energy_total

@@ -106,7 +106,7 @@ cards:
                   - type: custom:mini-graph-card
                     name: Температура 24ч
                     entities: 
-                      - entity: sensor.datchik_temperatury_detskaia_temperature
+                      - entity: sensor.midea_ac_30786326300484_indoor_temperature
                         name: Детская Температура
                     line_width: 4
                     height: 150
@@ -122,9 +122,9 @@ cards:
                     animate: true
                   
                   - type: custom:mini-graph-card
-                    name: Влажность 24ч
+                    name: Уличная 24ч
                     entities: 
-                      - entity: sensor.datchik_temperatury_detskaia_humidity
+                      - entity: sensor.midea_ac_30786326300484_outdoor_temperature
                         name: Детсткая Влажность
                     line_width: 4
                     height: 150

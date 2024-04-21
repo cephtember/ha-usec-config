@@ -18,6 +18,11 @@
     - sensor.zhimi_ma4_39fd_pm25_density
     - sensor.datchik_temperatury_zal_temperature
     - sensor.datchik_temperatury_zal_humidity
+    - sensor.rozetka_xbox_zal_current
+    - sensor.rozetka_xbox_zal_energy
+    - sensor.rozetka_xbox_zal_power
+    - sensor.rozetka_xbox_zal_power_outage_memory
+    - sensor.rozetka_xbox_zal_voltage
     - binary_sensor.datchik_dvizheniia_zal
     - vacuum.xiaomi_1c
 
@@ -32,6 +37,8 @@
     - sensor.konditsioner_detskaia_power
     - sensor.konditsioner_detskaia_power_outage_memory
     - sensor.konditsioner_detskaia_voltage
+    - sensor.midea_ac_30786326300484_outdoor_temperature
+    - sensor.midea_ac_30786326300484_indoor_temperature
 
     ### Кухня
     - binary_sensor.datchik_gaza_kukhnia
@@ -50,6 +57,11 @@
     - sensor.pzem04_energy_voltage
     - sensor.pzem04_energy_yesterday
     - sensor.no_electricity
+    - sensor.rozetka_servernaia_current
+    - sensor.rozetka_servernaia_energy
+    - sensor.rozetka_servernaia_power
+    - sensor.rozetka_servernaia_power_outage_memory
+    - sensor.rozetka_servernaia_voltage
     - alarm_control_panel.home_alarm
 
     ### Подъезд
@@ -91,6 +103,10 @@
     - sensor.polotentsesushitel_energiia_den
     - sensor.stiralnaia_mashina_energiia_den
     - sensor.konditsioner_v_spalne_energiia_den
+    - sensor.servernaia_energiia_den
+    - sensor.zal_xbox_energiia_den
+
+
 
     ### Свет
     ### Бар

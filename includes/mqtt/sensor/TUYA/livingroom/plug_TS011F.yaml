@@ -1,0 +1,44 @@
+- unique_id: xbox_zal_availability
+  name: Розетка Xbox (Зал)_availability
+  state_topic: "zigbee2mqtt/xbox_ac_switch/availability"
+    
+- unique_id: xbox_zal_power
+  name: "Розетка Xbox (Зал)_power"
+  state_topic: "zigbee2mqtt/xbox_ac_switch"
+  availability_topic: "zigbee2mqtt/xbox_ac_switch/availability"
+  value_template: "{{ value_json.power }}"
+  unit_of_measurement: "W"
+  device_class: "power"
+
+- unique_id: xbox_zal_current
+  name: "Розетка Xbox (Зал)_current"
+  state_topic: "zigbee2mqtt/xbox_ac_switch"
+  availability_topic: "zigbee2mqtt/xbox_ac_switch/availability"
+  value_template: "{{ value_json.current }}"
+  unit_of_measurement: "A"
+  device_class: "current"
+
+- unique_id: xbox_zal_voltage
+  name: "Розетка Xbox (Зал)_voltage" 
+  state_topic: "zigbee2mqtt/xbox_ac_switch"
+  availability_topic: "zigbee2mqtt/xbox_ac_switch/availability"
+  value_template: "{{ value_json.voltage }}"
+  unit_of_measurement: "V"
+  device_class: "voltage"
+
+
+- unique_id: xbox_zal_energy
+  name: "Розетка Xbox (Зал)_energy"
+  state_topic: "zigbee2mqtt/xbox_ac_switch"
+  availability_topic: "zigbee2mqtt/xbox_ac_switch/availability"
+  value_template: "{{ value_json.energy }}"
+  unit_of_measurement: "kWh"
+  device_class: "energy"
+
+- unique_id: xbox_zal_power_outage_memory 
+  name: "Розетка Xbox (Зал)_power_outage_memory"
+  state_topic: "zigbee2mqtt/xbox_ac_switch"
+  availability_topic: "zigbee2mqtt/xbox_ac_switch/availability"
+  value_template: "{{ value_json.power_outage_memory }}"
+    
+####################
