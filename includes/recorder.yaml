@@ -97,6 +97,7 @@
     # - vacuum.xiaomi_1c
 
     ### Электричество
+    - sensor.electricity_cost_monthly
     - sensor.elektrichestvo_den
     - sensor.elektrichestvo_den_cost
     - sensor.konditsioner_v_detskoi_energiia_den
@@ -105,6 +106,13 @@
     - sensor.konditsioner_v_spalne_energiia_den
     - sensor.servernaia_energiia_den
     - sensor.zal_xbox_energiia_den
+    - sensor.house_cost_daily
+    - sensor.ac_cost_daily
+    - sensor.ac_bedroom_cost_daily
+    - sensor.bath_radiator_cost_daily
+    - sensor.server_cost_daily
+    - sensor.washer_cost_daily
+    - sensor.livingroom_cost_daily
 
 
 
