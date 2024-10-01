@@ -1,0 +1,18 @@
+- unique_id: vykliuchatel_zal_availability
+  name: Выключатель (Зал)_availability
+  state_topic: "zigbee2mqtt/livingroom_switch/availability"
+
+- unique_id: vykliuchatel_zal_battery
+  name: Выключатель (Зал)_battery
+  state_topic: "zigbee2mqtt/livingroom_switch"
+  availability_topic: "zigbee2mqtt/livingroom_switch/availability"
+  value_template: "{{ value_json.battery }}"
+  unit_of_measurement: "%"
+  device_class: "battery"
+
+- unique_id: vykliuchatel_zal_action
+  name: Выключатель (Зал)_action
+  state_topic: "zigbee2mqtt/livingroom_switch"
+  availability_topic: "zigbee2mqtt/livingroom_switch/availability"
+  value_template: "{{ value_json.action }}"
+  icon: "mdi:gesture-double-tap"

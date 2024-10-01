@@ -1,0 +1,30 @@
+- alias: "[Основной свет (Зал)] - Переключать состояние Yeelight в залу через MQTT"
+  id: toggle_livingroom_yeelight
+  trigger:
+    - platform: mqtt
+      topic: "zigbee2mqtt/livingroom_switch/action"
+      # Optional
+      payload: "button_1_single"
+      encoding: "utf-8"
+  action:
+     - service: light.toggle
+       entity_id: light.zal_tsvetnye
+     - delay: 0.5
+
+- alias: "[Споты (Зал)] - Переключать состояние спотов в залу через MQTT"
+  id: toggle_livingroom_spots
+  trigger:
+    - platform: mqtt
+      topic: "zigbee2mqtt/livingroom_switch/action"
+      # Optional
+      payload: "button_2_single"
+      encoding: "utf-8"
+  action:
+     - service: light.toggle
+       entity_id: light.spoty_zal
+     - delay: 0.5
+    #  - service: mqtt.publish
+    #    data:
+    #      topic: "bedroom/stat/yeelight/RESULT"
+    #      retain: false
+    #      payload: "{\"POWER\":\"{{ states('light.yeelight_ceiling14_0x12ada382') }}\"}"
